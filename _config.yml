@@ -61,9 +61,6 @@ author:
   avatar : "/assets/images/launch.png"
   bio    : "Programmer, analyst, and salsa guzzler"
   links:
-    - label: "Website"
-      icon: "fas fa-fw fa-link"
-      url: "https://"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/"
