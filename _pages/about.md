@@ -1,8 +1,14 @@
 ---
 permalink: /about/
-title: "About"
+title: "About Me"
 ---
 
-Tempor velit sint sunt ipsum tempor enim ad qui ullamco. Est dolore anim ad velit duis dolore minim sunt aliquip amet commodo labore. Ut eu pariatur aute ea aute excepteur laborum. Esse ea esse excepteur minim mollit qui cillum excepteur ex dolore magna. Labore deserunt fugiat incididunt incididunt sint ea. Consequat dolore aute laboris quis proident quis non et est consectetur ex eiusmod sit culpa.
+My path to being interested in data, statistics, and programming was pretty haphazard. I majored in math mostly because I couldn't get an A in any other subject. I studied statistics because I thought there was a vague chance I'd rather do something with data than be a teacher. Now I get paid to write ugly R programs full time.
 
-Cupidatat ea do et in excepteur in. Ad nostrud ut est esse eu duis ea sunt eiusmod. Aliquip tempor veniam sint elit fugiat. Velit incididunt laboris amet incididunt labore dolore irure velit excepteur commodo deserunt laborum. Consectetur eu fugiat veniam veniam Lorem labore magna eiusmod. Ea occaecat reprehenderit pariatur consectetur minim labore ut aliquip.
+I'm most interested in using my skill set for: 
++ Non-profit work
++ Creating educational materials
++ Social sciences
++ Creative expression
+
+I'm also interested in becoming skilled in Mexican cooking. Hit me up with your recipies.
