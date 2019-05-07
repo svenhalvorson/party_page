@@ -58,7 +58,7 @@ plugins:
 
 author:
   name   : "Sven Halvorson"
-  avatar : "/assets/images/bio-photo.jpg"
+  avatar : "/assets/images/launch.png"
   bio    : "Programmer, analyst, and salsa guzzler"
   links:
     - label: "Website"
