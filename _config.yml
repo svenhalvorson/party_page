@@ -66,15 +66,14 @@ author:
       url: "https://"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/svenhalvorson"
- 
+      url: "https://github.com/"
 
 footer:
   links:
-   - label: "GitHub"
+    - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/svenhalvorson"
-
+      url: "https://github.com/"
+      
 defaults:
   # _posts
   - scope:
