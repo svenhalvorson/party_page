@@ -3,7 +3,7 @@ permalink: /about/
 title: "About Me"
 ---
 
-My path to being interested in data, statistics, and programming was pretty haphazard. I majored in math mostly because I couldn't get an A in any other subject. I studied statistics because I thought there was a vague chance I'd rather do something with data than be a teacher. Now I get paid to write ugly R programs full time. My favorite aspects are data visualization and making the comuter do my bidding.
+My path to being interested in data, statistics, and programming was pretty haphazard. I studied math because I couldn't get an A in any other subject, dropped the only programming class I signed up for in college, and didn't like statistics until after completing my MS. Now I get paid to write ugly R programs full time. My favorite aspects are data visualization and making the comuter do my bidding.
 
 I'm most interested in using my skill set for: 
 + Non-profit work
