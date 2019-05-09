@@ -88,6 +88,7 @@ defaults:
     values:
       layout: single
       author_profile: true
+      share: true
   # _portfolio
   - scope:
       path: ""
@@ -99,6 +100,9 @@ defaults:
 
 collections:
   portfolio:
+    output: true
+    permalink: /:collection/:path/
+   pages:
     output: true
     permalink: /:collection/:path/
 #category_archive:
