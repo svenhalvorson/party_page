@@ -4,10 +4,6 @@ excerpt: "Baz Boom design system including logo mark, website design, and brandi
 header:
   image: /assets/images/dist_teaser.PNG
   teaser: assets/images/dist_teaser.PNG
-sidebar:
-  - title: "Role"
-    text: "Designer, Front-End Developer"
-  - title: "Responsibilities"
-    text: "Reuters try PR stupid commenters should isn't a business model"
+
 ---
 LOL OWNED
