@@ -99,7 +99,7 @@ defaults:
 
 collections:
   portfolio:
-    output: true
+    output: false
     permalink: /:collection/:path/
 #category_archive:
 #  type: liquid
