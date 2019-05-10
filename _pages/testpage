@@ -2,8 +2,6 @@
 title: Projects
 layout: splash
 permalink: /testpage2
-entries_layout: grid
-classes: wide
 feature_row:
   - id: "row2"
   - image_path: /assets/images/dist_teaser.png
@@ -14,5 +12,16 @@ feature_row:
     alt: "placeholder image 1"
     title: "Placeholder 2"
     excerpt: "EX 2"
+feature_row2:
+  - id: "row2"
+  - image_path: /assets/images/dist_teaser.png
+    alt: "placeholder image 1"
+    title: "Placeholder 3"
+    excerpt: "EX 3"
+  - image_path: /assets/images/launch.png
+    alt: "placeholder image 1"
+    title: "Placeholder 4"
+    excerpt: "EX 4"    
 ---
-{% include feature_row id="row2" %}
+{% include feature_row id="feature_row" type="left" %}
+{% include feature_row id="feature_row2" type="center" %}
