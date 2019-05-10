@@ -4,7 +4,7 @@ layout: splash
 permalink: /whootnanny/
 feature_row:
   - id: "row2"
-  - image_path: /assets/images/dist_teaser.PNG
+  - image_path: /assets/images/launch.PNG
     alt: "placeholder image 1"
     title: "Placeholder 1"
     excerpt: "EX 1"
