@@ -6,11 +6,11 @@ author_profile: true
 
 gallery1:
   - url: 'https://svenhalvorson.github.io/party_page/portfolio/distribution_signatures'
-    image_path: assets/images/dist_teaser.png
+    image_path: assets/images/dist_teaser2.png
     alt: "placeholder image 1"
     title: "Image 1 title caption"
   - url: 'https://public.tableau.com/profile/svenny#!/vizhome/CongressionalPowerMap/CongressionalPowerMap'
-    image_path: assets/images/rep_map_teaser.png
+    image_path: assets/images/rep_map_teaser.PNG
     alt: "placeholder image 1"
     title: "Image 1 title caption"
   - url: 'https://github.com/svenhalvorson/SvenR'
