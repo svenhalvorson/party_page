@@ -10,6 +10,5 @@ feature_row:
     excerpt: "EX 1"
     btn_label: "Read More"
     btn_class: "btn--primary"
-    url:'https://www.stackoverflow.com'
 ---
 {% include feature_row id="feature_row" type="left" %}
