@@ -2,15 +2,12 @@
 title: HOOTENANNY
 layout: splash
 permalink: /hootenanny/
+author_profile: true
 feature_row:
   - image_path: assets/images/dist_teaser.PNG
     alt: "placeholder image 1"
     title: "Placeholder 1"
     excerpt: "EX 1"
-    btn_label: "Read More"
-    btn_class: "btn--primary"
-    btn_label: "Read More"
-    btn_class: "btn--primary"
     url: 'https://www.stackoverflow.com'
   - image_path: assets/images/launch.png
     alt: "placeholder image 2"
@@ -26,6 +23,6 @@ feature_row:
     btn_label: "Read More"
     btn_class: "btn--primary"
     url: 'https://www.google.com'
-author_profile: true
+
 ---
 {% include feature_row id="feature_row" %}
