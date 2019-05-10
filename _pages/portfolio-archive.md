@@ -1,7 +1,7 @@
 ---
 title: Projects
 layout: collection
-permalink: /
+permalink: /lolowned/
 collection: portfolio
 entries_layout: grid
 classes: wide
