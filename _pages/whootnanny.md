@@ -25,7 +25,12 @@ feature_row:
     url: 'https://www.google.com'
     btn_class: "btn--small"
     btn_label: "YOLO"
-
+gallery:
+  - url: 'https://svenhalvorson.github.io/party_page/portfolio/distribution_signatures'
+    image_path: assets/images/launch.png
+    alt: "placeholder image 1"
+    title: "Image 1 title caption"
 ---
 {% include feature_row id="feature_row" %}
 
+{% include gallery caption="This is a sample gallery with **Markdown support**." %}
