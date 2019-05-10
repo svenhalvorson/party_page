@@ -10,7 +10,7 @@ gallery1:
     alt: "placeholder image 1"
     title: "Distribution Signatures"
   - url: 'https://public.tableau.com/profile/svenny#!/vizhome/CongressionalPowerMap/CongressionalPowerMap'
-    image_path: assets/images/rep_map_teaser4.png
+    image_path: assets/images/rep_map_teaser6.png
     alt: "placeholder image 1"
     title: "Representation Map"
   - url: 'https://github.com/svenhalvorson/SvenR'
