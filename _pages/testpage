@@ -1,0 +1,16 @@
+---
+title: Projects
+layout: splash
+permalink: /testpage
+entries_layout: grid
+classes: wide
+feature_row:
+  - image_path: /assets/images/dist_teaser.png
+    alt: "placeholder image 1"
+    title: "Placeholder 1"
+    excerpt: "EX 1"
+  - image_path: /assets/images/launch.png
+    alt: "placeholder image 1"
+    title: "Placeholder 2"
+    excerpt: "EX 2"
+---
