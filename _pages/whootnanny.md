@@ -28,4 +28,4 @@ feature_row:
     url: 'https://www.google.com'
 author_profile: true
 ---
-{% include feature_row id="feature_row" type="left" %}
+{% include feature_row id="feature_row" %}
