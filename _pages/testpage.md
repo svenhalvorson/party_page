@@ -4,7 +4,7 @@ layout: splash
 permalink: /testpage2/
 feature_row:
   - id: "row2"
-  - image_path: /assets/images/dist_teaser.png
+  - image_path: /assets/images/dist_teaser.PNG
     alt: "placeholder image 1"
     title: "Placeholder 1"
     excerpt: "EX 1"
@@ -18,7 +18,7 @@ feature_row:
     btn_class: "btn--primary"
 feature_row2:
   - id: "row2"
-  - image_path: /assets/images/dist_teaser.png
+  - image_path: /assets/images/dist_teaser.PNG
     alt: "placeholder image 1"
     title: "Placeholder 3"
     excerpt: "EX 3"
@@ -30,6 +30,7 @@ feature_row2:
     excerpt: "EX 4"    
     btn_label: "Read More"
     btn_class: "btn--primary"
+author_profile = TRUE
 ---
 {% include feature_row id="feature_row" type="left" %}
 {% include feature_row id="feature_row2" type="center" %}
