@@ -20,5 +20,7 @@ gallery2:
     title: "Image 2 title caption"    
 ---
 
+{% include gallery id='gallery' layout = "half" %}
 {% include gallery id='gallery' caption="This is a sample gallery with **Markdown support**." %}
 {% include gallery id='gallery2' caption="gallery no 2" layout = "half" %}
+{% include gallery id='gallery2' caption="gallery no 2" layout = "third" %}
