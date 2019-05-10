@@ -35,4 +35,4 @@ feature_row:
 author_profile = TRUE
 ---
 {% include feature_row id="feature_row" type="left" %}
-{% include feature_row id="feature_row2" type="center" %}
+# {% include feature_row id="feature_row2" type="center" %}
