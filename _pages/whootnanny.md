@@ -16,15 +16,20 @@ feature_row:
     title: "Representation Map"
     excerpt: "Home made metrics for congressional power"
     url: 'https://public.tableau.com/profile/svenny#!/vizhome/CongressionalPowerMap/CongressionalPowerMap'
-    btn_class: "btn--primary"
+    btn_class: "btn--light-outline"
     btn_label: "Read"
   - image_path: assets/images/bio-photo.jpg
     alt: "placeholder image 3"
     title: "Placeholder 3"
     excerpt: "EX 3"
     url: 'https://www.google.com'
-    btn_class: "btn--primary"
+    btn_class: "btn--small"
     btn_label: "YOLO"
-
+gallery:
+  - url: 'https://svenhalvorson.github.io/party_page/portfolio/distribution_signatures'
+    image_path: assets/images/launch.png
+    alt: "placeholder image 1"
+    title: "Image 1 title caption"
 ---
 {% include feature_row id="feature_row" %}
+{% include gallery caption="This is a sample gallery with **Markdown support**." %}
