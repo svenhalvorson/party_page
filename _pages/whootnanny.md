@@ -43,3 +43,4 @@ gallery2:
 {% include feature_row id="feature_row" %}
 
 {% include gallery caption="This is a sample gallery with **Markdown support**." %}
+{% include gallery2 caption="gallery no 2" layout = "half" %}
