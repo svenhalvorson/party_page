@@ -8,7 +8,7 @@ feature_row:
     alt: "QQ"
     title: "Distribution Signatures"
     excerpt: "Quantiles & QQ plots visualized"
-    url: 'https://github.com/svenhalvorson/party_page/portfolio/distribution_signatures'
+    url: 'https://svenhalvorson.github.io/party_page/portfolio/distribution_signatures'
     btn_class: "btn--primary"
     btn_label: ""
   - image_path: assets/images/launch.png
