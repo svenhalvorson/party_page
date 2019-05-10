@@ -1,7 +1,7 @@
 ---
-title: whootnanny
+title: HOOTENANNY
 layout: splash
-permalink: /whootnanny/
+permalink: /hootenanny/
 feature_row:
   - id: "row2"
   - image_path: assets/images/dist_teaser.PNG
