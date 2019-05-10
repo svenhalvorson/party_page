@@ -5,10 +5,12 @@ permalink: /hootenanny/
 author_profile: true
 feature_row:
   - image_path: assets/images/dist_teaser.PNG
-    alt: "placeholder image 1"
-    title: "Placeholder 1"
-    excerpt: "EX 1"
-    url: 'https://www.stackoverflow.com'
+    alt: "QQ"
+    title: "Distribution Signatures"
+    excerpt: "Quantiles & QQ plots visualized"
+    url: 'https://github.com/svenhalvorson/party_page/portfolio/distribution_signatures'
+    btn_class: "btn--primary"
+    btn_label: ""
   - image_path: assets/images/launch.png
     alt: "placeholder image 2"
     title: "Placeholder 2"
