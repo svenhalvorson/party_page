@@ -14,7 +14,7 @@ gallery1:
     alt: "placeholder image 1"
     title: "Representation Map"
   - url: 'https://github.com/svenhalvorson/SvenR'
-    image_path: assets/images/launch.png
+    image_path: assets/images/check_id.PNG
     alt: "placeholder image2"
     title: "SvenR"    
 ---
