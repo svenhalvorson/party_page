@@ -11,4 +11,4 @@ I'm most interested in using my skill set for:
 + Social sciences
 + Creative expression
 
-I'm also interested in becoming skilled in Mexican cooking. Hit me up with your recipies.
+I'm also interested in becoming skilled in Mexican cooking. Hit me up with your recipes.
