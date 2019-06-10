@@ -7,15 +7,15 @@ author_profile: true
 gallery1:
   - url: 'https://svenhalvorson.github.io/party_page/portfolio/distribution_signatures'
     image_path: assets/images/dist_sigs_teaser.png
-    alt: "placeholder image 1"
+    
     title: "Distribution Signatures"
   - url: 'https://public.tableau.com/profile/svenny#!/vizhome/CongressionalPowerMap/CongressionalPowerMap'
     image_path: assets/images/rep_map_teaser.png
-    alt: "placeholder image 1"
+    
     title: "Representation Map"
   - url: 'https://github.com/svenhalvorson/SvenR'
-    image_path: assets/images/svenr_teaser.PNG
-    alt: "placeholder image2"
+    image_path: assets/images/svenr_teaser.png
+    
     title: "SvenR"    
 ---
 
