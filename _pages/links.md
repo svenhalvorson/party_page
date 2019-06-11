@@ -1,6 +1,6 @@
 ---
 permalink: /links/
-title: "Links I Enjoy"
+title: "Links"
 ---
 
 Here are some links to books and articles that I rather enjoy. I'm putting them up here in part so that I can find them in the future.
