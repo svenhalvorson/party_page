@@ -7,7 +7,8 @@ Here are some links to books and articles that I rather enjoy. I'm putting them 
 
 ### R Programming
 
-* 
+* [R for Data Science](https://r4ds.had.co.nz/): An excellent introduction to R and the tidyverse.
+* [Advanced R](http://adv-r.had.co.nz/): Complext concepts, like functional programming, using R.
 
 ### Statistics
 
