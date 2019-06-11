@@ -16,4 +16,6 @@ gallery1:
     title: "SvenR"    
 ---
 
+Here are some of my 'for fun' projects:
+
 {% include gallery id='gallery1' caption="" layout = "third" %}
