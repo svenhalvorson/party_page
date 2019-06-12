@@ -23,4 +23,11 @@ Here are some links to books and articles that I rather enjoy. I'm putting them 
 * [Automate the Boring Stuff with Python](https://automatetheboringstuff.com/#toc): Similarly simple introduction.
 * [Merging with pandas](https://stackoverflow.com/questions/53645882/pandas-merging-101): In depth guide to horizontal joins
 
+### Stats
+
+* [Non-parametric tests](http://www.stat.umn.edu/geyer/old03/5102/notes/rank.pdf): Simple non-parametric tests and example R code
+
+
 ### Other
+
+* [Dual Scale Axes](http://www.perceptualedge.com/articles/visual_business_intelligence/dual-scaled_axes.pdf): A critiqute of graphs with differently scaled axes. 
