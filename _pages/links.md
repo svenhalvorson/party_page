@@ -22,6 +22,7 @@ Here are some links to books and articles that I rather enjoy. I'm putting them 
 * [Whirlwind tour of Python](https://jakevdp.github.io/WhirlwindTourOfPython/): Basic introduction to Python
 * [Automate the Boring Stuff with Python](https://automatetheboringstuff.com/#toc): Similarly simple introduction.
 * [Merging with pandas](https://stackoverflow.com/questions/53645882/pandas-merging-101): In depth guide to horizontal joins
+* [Pandas Documentation](https://pandas.pydata.org/pandas-docs/stable/index.html): Library for data manipulation.
 
 ### Stats
 
