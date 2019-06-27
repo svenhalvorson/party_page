@@ -32,3 +32,4 @@ Here are some links to books and articles that I rather enjoy. I'm putting them 
 ### Other
 
 * [Dual Scale Axes](http://www.perceptualedge.com/articles/visual_business_intelligence/dual-scaled_axes.pdf): A critique of graphs with differently scaled axes. 
+* [Advent of Code](http://adventofcode.com) Great practice problems for coding. They can be done in any language and range from quite easy to more difficult than I can handle.
