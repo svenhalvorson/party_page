@@ -1,5 +1,5 @@
 ---
-title: Projects
+title:
 layout: single
 permalink: /
 author_profile: true
