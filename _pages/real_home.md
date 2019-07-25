@@ -16,7 +16,9 @@ gallery1:
     title: "SvenR"    
 ---
 
-Welcome to my page. My main goal is to have a place to store and display some vaguely career related projects. I'm doing this in part to demonstrate my abilities for potential employers but also because I just enjoy learning and programming.
+Welcome to my little slice of the internet.
+
+The purpose of this page is to store and display some vaguely career related projects. I'm doing this in part to demonstrate my abilities but also because I just enjoy learning and programming.
 
 Here are some of my larger 'for fun' projects:
 
