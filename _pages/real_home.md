@@ -13,7 +13,11 @@ gallery1:
     title: "Representation Map"
   - url: 'https://github.com/svenhalvorson/SvenR'
     image_path: assets/images/svenr_teaser.png
-    title: "SvenR"    
+    title: "SvenR" 
+  - url: 'https://svenhalvorson.github.io/party_page/portfolio/aoc_2017'
+    image_path: assets/images/aoc_teaser.png
+    title: "Advent of Code 2017"
+    
 ---
 
 Welcome to my little slice of the internet.
