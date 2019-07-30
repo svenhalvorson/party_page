@@ -28,7 +28,7 @@ Here are some links to books and articles that I rather enjoy. I'm putting them 
 ### Stats
 
 * [Non-parametric tests](http://www.stat.umn.edu/geyer/old03/5102/notes/rank.pdf): Simple non-parametric tests and example R code
-
+* [Modeling with fixed, random, and mixed effects](https://rlbarter.github.io/Practical-Statistics/2017/03/03/fixed-mixed-and-random-effects/)
 
 ### Other
 
