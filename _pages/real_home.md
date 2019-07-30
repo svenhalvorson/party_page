@@ -5,12 +5,12 @@ permalink: /
 author_profile: true
 
 gallery1:
-  - url: 'https://svenhalvorson.github.io/party_page/portfolio/aoc_2017'
-    image_path: assets/images/aoc_teaser.png
-    title: "Advent of Code 2017"
   - url: 'https://svenhalvorson.github.io/party_page/portfolio/distribution_signatures'
     image_path: assets/images/dist_sigs_teaser.png
     title: "Distribution Signatures"
+  - url: 'https://svenhalvorson.github.io/party_page/portfolio/aoc_2017'
+    image_path: assets/images/aoc_teaser.png
+    title: "Advent of Code 2017"
   - url: 'https://github.com/svenhalvorson/SvenR'
     image_path: assets/images/svenr_teaser.png
     title: "SvenR" 
