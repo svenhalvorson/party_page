@@ -19,3 +19,4 @@ So I have a lot of goals and not a lot of time. Here's a list of things that I w
 * Programming
   - Get better at python: numpy, pandas, seaborn, scikit
   - More SQL improvement
+  - Shiny?
