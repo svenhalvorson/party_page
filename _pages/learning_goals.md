@@ -1,9 +1,9 @@
 ---
 permalink: /learning_goals/
-title: "Topics to learn"
+title: "Learning Goals"
 ---
 
-So I have a lot of goals and not a lot of time. Here's a list of things that I want to learn/review in the next year or so.
+I have a lot of goals and not a lot of extra time. Here's a list of things that I want to learn/review in the next year or so.
 
 * Stats (mostly review)  
   - Probability
@@ -19,4 +19,5 @@ So I have a lot of goals and not a lot of time. Here's a list of things that I w
 * Programming
   - Get better at python: numpy, pandas, seaborn, scikit
   - More SQL improvement
+  - Latex
   - Shiny?
