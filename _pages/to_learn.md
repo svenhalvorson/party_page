@@ -1,9 +1,9 @@
 ---
-permalink: /links/
+permalink: /learning_goals/
 title: "Topics to learn"
 ---
 
-So I have a lot of goals and not a lot of time. Here's a list of things that I want to learn in the next year or so.
+So I have a lot of goals and not a lot of time. Here's a list of things that I want to learn/review in the next year or so.
 
 * Stats (mostly review)  
   - Probability
