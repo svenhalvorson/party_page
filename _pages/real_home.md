@@ -29,3 +29,6 @@ The purpose of this page is to store and display some vaguely career related pro
 Here are some of my larger 'for fun' projects:
 
 {% include gallery id='gallery1' caption="" layout = "third" %}
+
+Some small stuff
+* [K-means replication](https://svenhalvorson.github.io/party_page/portfolio/k_means)
