@@ -31,4 +31,5 @@ Here are some of my larger 'for fun' projects:
 {% include gallery id='gallery1' caption="" layout = "third" %}
 
 Some small stuff
+* [The cutest little virus](https://svenhalvorson.github.io/party_page/portfolio/cutest_little_virus)
 * [K-means replication](https://svenhalvorson.github.io/party_page/portfolio/k_means)
