@@ -32,4 +32,5 @@ Here are some of my larger 'for fun' projects:
 
 Some small stuff
 * [The cutest little virus](https://svenhalvorson.github.io/party_page/portfolio/cutest_little_virus)
+* [Harvard's STAT100](https://svenhalvorson.github.io/party_page/portfolio/stat110)
 * [K-means replication](https://svenhalvorson.github.io/party_page/portfolio/k_means)
