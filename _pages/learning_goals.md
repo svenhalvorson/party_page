@@ -10,8 +10,10 @@ I have a lot of goals and not a lot of extra time. Here's a list of things that 
   - GLM
   - Survival analysis
   - Mixed effects models
-  - Non-inferiority testing
+  - Non-inferiority & joint hypothesis testing
+  - ROC curves
   - Different measures of difference (ASD, SMD, ect.)
+  - Why we get geometric means from log transforming the outcome
 * Machine learning
   - Random forests
   - [~~K-means~~](https://svenhalvorson.github.io/party_page/portfolio/k_means)
