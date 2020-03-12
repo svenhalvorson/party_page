@@ -24,13 +24,14 @@ gallery1:
 
 Welcome to my little slice of the internet.
 
-The purpose of this page is to store and display some vaguely career related projects. I'm doing this in part to demonstrate my abilities but also because I just enjoy learning and programming.
+The purpose of this page is to store and display some vaguely career related projects. I'm doing this in part to demonstrate my abilities but mostly because I just enjoy learning and programming!
 
 Here are some of my larger 'for fun' projects:
 
 {% include gallery id='gallery1' caption="" layout = "third" %}
 
 Some small stuff
+* [Tidyverse style: I am a very persnickety person](https://svenhalvorson.github.io/party_page/portfolio/tidyverse_indentation)
 * [The cutest little virus](https://svenhalvorson.github.io/party_page/portfolio/cutest_little_virus)
 * [Harvard's STAT110](https://svenhalvorson.github.io/party_page/portfolio/stat110)
 * [K-means replication](https://svenhalvorson.github.io/party_page/portfolio/k_means)
