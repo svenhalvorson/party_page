@@ -30,7 +30,7 @@ Here are some of my larger 'for fun' projects:
 
 {% include gallery id='gallery1' caption="" layout = "third" %}
 
-Some small stuff
+Some small stuff:
 * [Tidyverse style: I am a very persnickety person](https://svenhalvorson.github.io/party_page/portfolio/tidyverse_indentation)
 * [The cutest little virus](https://svenhalvorson.github.io/party_page/portfolio/cutest_little_virus)
 * [Harvard's STAT110](https://svenhalvorson.github.io/party_page/portfolio/stat110)
