@@ -1,0 +1,201 @@
+---
+title: "Tidyverse style: I am a very persnickety person"
+author: "Sven Halvorson"
+date: "3/12/2020"
+output: html_document
+---
+
+I've often heard people speak about the beauty of mathematics. By this, they often mean that there is a certain satisfaction in how it all 'fits together' or has its own internal consistency. As an undergraduate student studying math, I felt this way as well but there was another aspect that I found even more attractive. Aesthetically, there's something just peaceful about seeing the symbols and words written in a smooth and consistent style. As a method of double checking my work, I would often re-copy my homework and take great pain to make each $\alpha$ and $\Sigma$ as lovely as the textbook. For a while, I considered getting this as a tattoo:
+  
+$$(a+b)^n=\sum_{k=0}^n {n\choose k}a^kb^{n-k}$$
+While I do love the binomial theorem, the motivation for this was mostly based on the aesthetics not the meaning. As I have transitioned from proving theorems to writing code this appreciation of *how* your writing looks stayed with me. Over time, I've become more and more finicky about the way that code is organized, not just whether it does what you asked. This isn't just because I like how it looks, it's also because a large portion of the mistakes I make are because *I can't easily read what I've written*! This little blurb is mostly about how I've improved my code's appearance and also about being real with my OCD.
+  
+### Base R vs. Tidyverse
+One of my favorite things about the  `tidyverse` library is that it leads you towards writing more interpretable code. For me, it's more interpretable in two major ways. First, it eliminates the need to constantly reference object names by scoping within data sets. Secondly, the pipes system allow you to spread out function calls across multiple lines which makes it read more like story or sequence of actions. 
+
+If you're not familiar with the pipe (`%>%`), you can think of it as saying 'and then' between two verbs. It's a nice way of chaining together a series of function calls. Mathematically it's like this:
+
+$$A\;\%>\%\;F(B)\Longleftrightarrow F(A,B)$$
+
+As an example, here is the base R and tidyverse method of taking a subset of rows and columns of the `iris` data set. Which one looks more readable?  
+
+Base R:
+
+```{r setup, echo=FALSE, message = FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+library('tidyverse')
+```
+
+```{r}
+
+new_iris = iris[iris$Species == 'versicolor' & iris$Petal > 4, c('Sepal.Width', 'Sepal.Length')]
+
+```
+  
+Tidyverse:
+```{r}
+new_iris = iris %>% 
+  filter(
+    Species == 'versicolor',
+    Petal.Length > 4
+  ) %>% 
+  select(
+    Sepal.Width,
+    Sepal.Length
+  )
+```
+
+To me, the second is a lot easier to follow. You can see that there are two actions (function calls): `filter` and `select`. We don't have to re-reference `iris` for each of the columns and putting this on multiple lines makes it easier to absorb the steps. Once I started working with the tidyverse functions, I almost stopped writing commands like the base R version above. I think there *are* some very good reasons to use base R commands but in terms of readability, it doesn't seem close.
+
+If you want to be a `TRUE` hipster, you *can* pipe with base R:
+
+```{r}
+new_iris = iris %>% 
+  .[iris$Species == 'versicolor' & iris$Petal.Length > 4, ] %>% 
+  .[,c('Sepal.Width', 'Sepal.Length')]
+```
+
+
+### Tidy style evolution
+
+Once I started working with the tidyverse 'grammar', I went through a number of iterations for how I like to format and indent the code. Some people, like my former self and a coworker who will not be named, don't have any sort of plan:
+
+```{r}
+new_iris = iris %>% filter( Species == 'versicolor', Petal.Length> 4 ) %>% 
+  select(Sepal.Width,Sepal.Length) %>% mutate(size = case_when(Sepal.Length < median(Sepal.Length) ~ 'small',
+                                               TRUE ~ 'big'), q1 = quantile(Sepal.Width, .25))
+```
+
+This style doesn't have any rule about when to use a carriage return, whether extra spaces matter, or whether arguments need to be named. When I read this, it's clear that the programmer knows *what* pipes do but not *why* pipes are useful. To me it isn't much better than just doing this with a series of base R commands.
+  
+The next thing I started doing to clean this ugliness up is to require that each pipe be followed by a carriage return:
+
+```{r}
+new_iris = iris %>% 
+  filter( Species == 'versicolor' , Petal.Length> 4 ) %>% 
+  select(Sepal.Width,Sepal.Length) %>% 
+  mutate(size = case_when(Sepal.Length < median(Sepal.Length) ~ 'small',
+                          TRUE ~ 'big'), q1 = quantile(Sepal.Width, 0.25))
+```
+
+This is quite a bit better as now we can just scan the left hand side and know that the primary functions we're calling here are `filter`, then `select`, then `mutate`. It still could use a lot of work though. We should definitely remove the random spacing before and after arguments. Personally, I like spaces on the sides of my infix operators as well so the greater than sign should have a space on both sides. Numbers between -1 and 1 should have a leading zero. I also like to use named arguments when they're not something super generic like `x`.
+  
+A bigger issue for me is how many arguments should be on each line. I still struggle with this but it seems clear that when we're writing something as long as `Sepal.Length < median(Sepal.Length) ~ 'small'`, that should be on its own line. I am often tempted lump several arguments together on a line if they're short. This is something I might have written a year or two ago:
+
+```{r}
+new_iris = iris %>% 
+  filter(Species == 'versicolor', 
+         Petal.Length > 4) %>% 
+  select(Sepal.Width, Sepal.Length) %>% 
+  mutate(size = case_when(Sepal.Length < median(Sepal.Length) ~ 'small',
+                          TRUE ~ 'big'), 
+         q1 = quantile(Sepal.Width, probs = 0.25))
+```
+
+This is not bad in my eyes but as I used this style more, some problems arose. Notice the indentation for the `case_when` statement. The alignment for the second argument is completely dependent on the number of characters in the previous line. What happens if we say 'ooops, I meant to use `transmute`!' and just change the function name:
+
+```{r}
+new_iris = iris %>% 
+  filter(Species == 'versicolor', 
+         Petal.Length > 4) %>% 
+  select(Sepal.Width, Sepal.Length) %>% 
+  transmute(size = case_when(Sepal.Length < median(Sepal.Length) ~ 'small',
+                          TRUE ~ 'big'), 
+            q1 = quantile(Sepal.Width, probs = 0.25))
+```
+
+Now we have `TRUE ~ 'big'` sitting at some random indentation that doesn't relate to the previous line at all. After fixing this kind of problem countless times, I went to a presentation by [somebody](https://github.com/zajichek) at my organization has a more algorithmic indentation style. Inside every function call is a carriage return and every argument is on its own line: 
+
+```{r}
+new_iris = iris %>% 
+  filter(
+    Species == 'versicolor',
+    Petal.Length > 4
+  ) %>% 
+  select(
+    Sepal.Width, 
+    Sepal.Length
+  ) %>% 
+  transmute(
+    size = case_when(
+      Sepal.Length < median(Sepal.Length) ~ 'small',
+      TRUE ~ 'big'
+    ),
+    q1 = quantile(
+      Sepal.Width, 
+      probs = 0.25
+    )
+  )
+```
+
+At first I thought this looked completely crazy because it's 18 lines long. After begrudgingly trying this style for a while though, it does seem to be the clearest and most consistent method that I've seen. I really like that the indentation directly corresponds to how many function calls deep you are. The pipes are aligned instead of making a pokey exterior code chunk. It's very similar (identical?) to what r-studio will do if you ask it to clean up your code. My practical side still has a hard time devoting three lines to a function call with one short argument but my aesthetic sense loves it. The fact that this is quite verbose also discourages you from making huge pipe chains that can get confusing in a hurry.
+
+I haven't quite committed this next change to muscle memory: putting the right side of the assignment operator on its own line. It does look nice though:
+
+```{r}
+new_iris = 
+  iris %>% 
+  filter(
+    Species == 'versicolor',
+    Petal.Length > 4
+  )
+
+# vs 
+
+new_iris = iris %>% 
+  filter(
+    Species == 'versicolor',
+    Petal.Length > 4
+  ) 
+```
+
+It looks nice because the data set is aligned with all the function calls that will act upon it but it raises some other questions. Should we do this for *every* assignment operator?
+
+```{r}
+new_iris = 
+  iris %>% 
+  transmute(
+    size = 
+      case_when(
+        Sepal.Length < median(Sepal.Length) ~ 'small',
+        TRUE ~ 'big'
+    ),
+    q1 = 
+      quantile(
+        Sepal.Width, 
+        probs = 0.25
+    )
+  )
+```
+
+I'm not sure if I'm ready to go that far. It is consistent with the first assignment operator but at some point the vertical length of the pipeline will become a readability issue of its own. 
+  
+Another question is should we use a carriage return for a function call with no (additional) arguments? If not, the pipes will not line up anymore:
+
+```{r}
+new_iris = 
+  iris %>% 
+  group_by(
+    Species
+  ) %>% 
+  summarize(
+    Sepal.Width = mean(
+      Sepal.Width
+    )
+  ) %>% 
+  ungroup() %>% 
+  mutate(
+    avg_of_avg = mean(
+      Sepal.Width
+    )
+  )
+```
+It seems weird to put a carriage return inside `ungroup` but that *will* keep the pipes aligned.  
+  
+I think I'll just try a new line after the initial `=` (not `<-` you heathens) for a while and see how it goes.
+
+Things like this are kind of a mixed bag when compared to python. Having more specific rules about how the white space can be used is part of what makes python readable but I feel like I end up writing a lot uglier code. That's in part due to the less flexible syntax formatting but also because I'm not nearly as good at it.
+  
+Silly things like this will probably continue to tax my sleep. Should a tab be two or three spaces? Which arguments really need to be named? Do I need a carriage return after tying each shoe?!?! Writing code that looks good is part of what keeps me coming back though. Just because you're fretting over white space doesn't mean you're not having a good time.  
+
+What do you think? If you have a totally different take, send me an email at svenpubmail@gmail.com !
