@@ -14,6 +14,6 @@ I'm most interested in using my skill set for:
 + Creating educational materials
 + Creative expression
 
-My near term goals are to become a proficient python programmer, expand my SQL skills, and review many of the modeling techniques from my graduate education.
+My near term goals are to become a proficient python programmer, expand my SQL skills, and learn some more machine learning tricks.
 
-I'm also interested in becoming skilled in Mexican cooking. Hit me up with your recipes.
+I'm also interested in becoming skilled in Mexican cuisine. Hit me up with your recipes.
