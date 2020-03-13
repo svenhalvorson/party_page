@@ -31,6 +31,7 @@ Here are some links to books and articles that I rather enjoy. I'm putting them 
 * [Modeling with fixed, random, and mixed effects](https://rlbarter.github.io/Practical-Statistics/2017/03/03/fixed-mixed-and-random-effects/)
 * [Bootstrapping a confidence interval for correlation](https://blog.methodsconsultants.com/posts/understanding-bootstrap-confidence-interval-output-from-the-r-boot-package/)
 * [Generalized Estimating Equations (GEE) explainer](https://rlbarter.github.io/Practical-Statistics/2017/05/10/generalized-estimating-equations-gee/)
+* [Survival analysis tutorial](https://www.emilyzabor.com/tutorials/survival_analysis_in_r_tutorial.html)
 
 ### Other
 
