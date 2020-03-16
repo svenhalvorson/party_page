@@ -16,6 +16,7 @@ Here are some links to books and articles that I rather enjoy. I'm putting them 
 * [R packages](http://r-pkgs.had.co.nz/): For package development and github.
 * [Programming with dplyr](https://cran.r-project.org/web/packages/dplyr/vignettes/programming.html): Examples on how to work with non-standard evaluation within functions.
 * [gganimate](https://cran.r-project.org/web/packages/gganimate/vignettes/gganimate.html): Using ggplot to create animations.
+* [Tidy Evaluation](https://tidyeval.tidyverse.org/): How to use non-standard evaluation in tidyverse functions.
 
 ### Python
 
