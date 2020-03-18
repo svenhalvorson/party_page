@@ -506,6 +506,10 @@ round(100*ez_calc, 1)</code></pre>
 <p>It just seems hard to explain why you would want to exponentiate the odds ratio for the second group by the relative frequency of that group in order to compute the overall odds. This isn’t that satisfying either but it does at least make prediction at the mean (method 3) seem more bizarre.</p>
 <p>Framing it this way does let us see how, as Muller notes, having a low correlation between the predictor and outcome will cause this to be very similar to the marginal method. If <span class="math inline">\(e^{\beta_1}\approx1\)</span>:</p>
 <p><span class="math display">\[\frac{p}{1-p}=e^{\beta_0+\beta_1\cdot P(X=1)} \approx e^{\beta_0}\cdot 1^{P(X =1)}\approx e^{\beta_0}\]</span> And if the relationship between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> is very weak, the odds of <span class="math inline">\(Y\)</span> should be about the same when <span class="math inline">\(X = 0\)</span> as when <span class="math inline">\(X = 1\)</span>.</p>
+<p>Another question we might ask is ‘does this matter for continuous outcomes?’ The answer to this is a clean ‘no’. If you have a model like:</p>
+<p><span class="math display">\[Y=\beta_0+\beta_1(\textrm{female = 1})\]</span> Where Y is a continuous variable, then we predicting with marginal standardization gives:</p>
+<p><span class="math display">\[\hat{Y}=P(\textrm{female = 0})\beta_0 + P(\textrm{female = 1})[\beta_0+\beta_1]\]</span> And this is exactly what you would get through prediction at the mean:</p>
+<p><span class="math display">\[P(\textrm{female = 0})\beta_0 + P(\textrm{female = 1})[\beta_0+\beta_1]= \beta_0 + P(\textrm{female =1})\beta_1\]</span></p>
 </div>
 <div id="computing-marginally-adjusted-probabilities-with-larger-models" class="section level3">
 <h3>Computing marginally adjusted probabilities with larger models</h3>
