@@ -13,7 +13,10 @@ gallery1:
     title: "Advent of Code 2017"
   - url: 'https://github.com/svenhalvorson/SvenR'
     image_path: assets/images/svenr_teaser.png
-    title: "SvenR" 
+    title: "SvenR"
+  - url: 'https://svenhalvorson.github.io/party_page/portfolio/logistic_landing'
+    image_path: assets/images/logistic_teaser.PNG
+    title: "Marginal Standardization & Plotting Simulations"
   - url: 'https://public.tableau.com/profile/svenny#!/vizhome/CongressionalPowerMap/CongressionalPowerMap'
     image_path: assets/images/representation_teaser2.PNG
     title: "Representation Map"
