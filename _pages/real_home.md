@@ -15,7 +15,7 @@ gallery1:
     image_path: assets/images/svenr_teaser.png
     title: "SvenR"
   - url: 'https://svenhalvorson.github.io/party_page/portfolio/logistic_landing'
-    image_path: assets/images/logistic_teaser.PNG
+    image_path: assets/images/logistic_teaser.png
     title: "Marginal Standardization & Plotting Simulations"
   - url: 'https://public.tableau.com/profile/svenny#!/vizhome/CongressionalPowerMap/CongressionalPowerMap'
     image_path: assets/images/representation_teaser2.PNG
