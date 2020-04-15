@@ -20,7 +20,10 @@ gallery1:
   - url: 'https://public.tableau.com/profile/svenny#!/vizhome/CongressionalPowerMap/CongressionalPowerMap'
     image_path: assets/images/representation_teaser2.PNG
     title: "Representation Map"
-  
+  - url: 'https://svenhalvorson.github.io/party_page/portfolio/icd_ccs_elix'
+    image_path: assets/images/icd_teaser.jpg  
+    title: "ICD Code Data Set"   
+    
 
     
 ---
