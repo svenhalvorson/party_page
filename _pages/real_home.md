@@ -29,7 +29,9 @@ gallery1:
     
 ---
 
-Welcome to my little slice of the internet. I hope you enjoy my whimsical blurbs on programming and statistics.
+Welcome to my little slice of the internet.
+
+As a former teacher, I find the challenge of explaining something almost as much fun as learning it in the first place. The content on this page was created in part to solidify and document my learning as well as share with others. I hope you enjoy my whimsical blurbs on programming and statistics. 
 
 In no particular order, here are some of my larger personal projects:
 
