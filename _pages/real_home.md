@@ -29,9 +29,7 @@ gallery1:
     
 ---
 
-Welcome to my little slice of the internet.
-
-I would like to think of myself as a lifelong learner and I've found that creating materials is essential in that goal. It's important that I create public reminders of the rabbit holes I've gone down. This is both so that I can recall the specific subject matter but also so that I don't lose sight of the progress I'm making. I hope you enjoy my whimsical blurbs on programming and statistics.
+Welcome to my little slice of the internet. I hope you enjoy my whimsical blurbs on programming and statistics.
 
 In no particular order, here are some of my larger personal projects:
 
