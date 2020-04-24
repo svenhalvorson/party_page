@@ -13,10 +13,10 @@ Here are some links to books and articles that I rather enjoy. I'm putting them 
 * [Regular Expressions in R](http://stat545.com/block022_regular-expression.html): Simple examples because I can never remember the character classes.
 * [ggplot color reference](http://sape.inf.usi.ch/quick-reference/ggplot2/colour): Predefined colors and brewing.
 * [tableone](https://cran.r-project.org/web/packages/tableone/vignettes/introduction.html): Tools for describing cohorts.
-* [R packages](http://r-pkgs.had.co.nz/): For package development and github.
-* [Programming with dplyr](https://cran.r-project.org/web/packages/dplyr/vignettes/programming.html): Examples on how to work with non-standard evaluation within functions.
+* [R Packages](http://r-pkgs.had.co.nz/): For package development and github.
+* [Programming with Dplyr](https://cran.r-project.org/web/packages/dplyr/vignettes/programming.html): Examples on how to work with non-standard evaluation within functions.
 * [gganimate](https://cran.r-project.org/web/packages/gganimate/vignettes/gganimate.html): Using ggplot to create animations.
-* [Tidy Evaluation](https://tidyeval.tidyverse.org/): How to use non-standard evaluation in tidyverse functions.
+* [Tidy evaluation](https://tidyeval.tidyverse.org/): How to use non-standard evaluation in tidyverse functions.
 
 ### Python
 
@@ -31,10 +31,11 @@ Here are some links to books and articles that I rather enjoy. I'm putting them 
 * [Non-parametric tests](http://www.stat.umn.edu/geyer/old03/5102/notes/rank.pdf): Simple non-parametric tests and example R code
 * [Modeling with fixed, random, and mixed effects](https://rlbarter.github.io/Practical-Statistics/2017/03/03/fixed-mixed-and-random-effects/)
 * [Bootstrapping a confidence interval for correlation](https://blog.methodsconsultants.com/posts/understanding-bootstrap-confidence-interval-output-from-the-r-boot-package/)
-* [Generalized Estimating Equations (GEE) explainer](https://rlbarter.github.io/Practical-Statistics/2017/05/10/generalized-estimating-equations-gee/)
+* [Generalized estimating equations (GEE) explainer](https://rlbarter.github.io/Practical-Statistics/2017/05/10/generalized-estimating-equations-gee/)
 * [Survival analysis tutorial](https://www.emilyzabor.com/tutorials/survival_analysis_in_r_tutorial.html)
 
 ### Other
 
-* [Dual Scale Axes](http://www.perceptualedge.com/articles/visual_business_intelligence/dual-scaled_axes.pdf): A critique of graphs with differently scaled axes. 
+* [Dual scale axes](http://www.perceptualedge.com/articles/visual_business_intelligence/dual-scaled_axes.pdf): A critique of graphs with differently scaled axes. 
 * [Advent of Code](http://adventofcode.com) Great practice problems for coding. They can be done in any language and range from quite easy to more difficult than I can handle.
+* [Regex crossword puzzles](https://regexcrossword.com/): A fun way to practice regular expressions.
