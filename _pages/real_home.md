@@ -31,13 +31,13 @@ gallery1:
 
 Welcome to my little slice of the internet.
 
-The purpose of this page is to store and display some vaguely career related projects. I'm doing this in part to demonstrate my abilities but mostly because I just enjoy learning and programming!
+I would like to think of myself as a life long learner and I've found that creating materials is essential in that goal. It's important that I create public reminders of the rabbit holes I've gone down. This is both so that I can recall the specific subject matter but also so that I don't lose sight of the progress I'm making. I hope you enjoy my whimisical blurbs on programming and statistics.
 
-Here are some of my larger 'for fun' projects:
+In no particular order, here are some of my larger projects:
 
 {% include gallery id='gallery1' caption="" layout = "third" %}
 
-Some small stuff:
+And some 'blog post' type musings:
 * [Tidyverse style: I am a very persnickety person](https://svenhalvorson.github.io/party_page/portfolio/tidyverse_indentation)
 * [The cutest little virus](https://svenhalvorson.github.io/party_page/portfolio/cutest_little_virus)
 * [Harvard's STAT110](https://svenhalvorson.github.io/party_page/portfolio/stat110)
