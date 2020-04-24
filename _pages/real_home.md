@@ -35,7 +35,7 @@ In no particular order, here are some of my larger personal projects:
 
 {% include gallery id='gallery1' caption="" layout = "third" %}
 
-And some 'blog post' type musings:
+And some 'blog post' style musings:
 * [Tidyverse style: I am a very persnickety person](https://svenhalvorson.github.io/party_page/portfolio/tidyverse_indentation)
 * [The cutest little virus](https://svenhalvorson.github.io/party_page/portfolio/cutest_little_virus)
 * [Harvard's STAT110](https://svenhalvorson.github.io/party_page/portfolio/stat110)
