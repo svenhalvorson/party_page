@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -341,6 +340,7 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -387,7 +387,7 @@ summary {
 </ul>
 </div>
 
-<p>After struggling to plot some logistic models on top of the aggregated data, my teammate gave me <a href="https://pdfs.semanticscholar.org/6807/8f0a3839b8d89cd25a964c03a571545793cb.pdf?_ga=2.241765888.362902951.1583340021-1552661845.1583340021">this paper</a><span class="math inline">\(^1\)</span> as a potential solution. The concept, marginal standardization, didn’t solve my problem but it was well worth learning so I created a little explainer on the concept.</p>
+<p>After struggling to plot some logistic models on top of the aggregated data, my teammate gave me <a href="https://pdfs.semanticscholar.org/6807/8f0a3839b8d89cd25a964c03a571545793cb.pdf?_ga=2.241765888.362902951.1583340021-1552661845.1583340021">this paper</a><span class="math inline">\(^1\)</span> as a potential solution. The concept, marginal standardization, didn’t solve my problem but it was well worth learning so I created a little explainer.</p>
 <p>Our goals are:<br />
 1. Explain the concept of marginal standardization<br />
 2. Give an easy example of how to employ it and contrast it with prediction at the mean<br />
@@ -533,10 +533,10 @@ distance
 pm
 </th>
 <th style="text-align:right;">
-origin_LGA
+origin_JFK
 </th>
 <th style="text-align:right;">
-origin_JFK
+origin_LGA
 </th>
 <th style="text-align:right;">
 carrier_AA
@@ -555,13 +555,13 @@ carrier_YV
 <tbody>
 <tr>
 <td style="text-align:right;">
-0
+1
 </td>
 <td style="text-align:right;">
-533
+602
 </td>
 <td style="text-align:right;">
-0
+1
 </td>
 <td style="text-align:right;">
 0
@@ -586,7 +586,7 @@ carrier_YV
 0
 </td>
 <td style="text-align:right;">
-301
+1020
 </td>
 <td style="text-align:right;">
 1
@@ -614,16 +614,16 @@ carrier_YV
 0
 </td>
 <td style="text-align:right;">
-1620
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
+479
 </td>
 <td style="text-align:right;">
 0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
 </td>
 <td style="text-align:right;">
 0
@@ -639,97 +639,13 @@ carrier_YV
 </tr>
 <tr>
 <td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-872
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:right;">
-0
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-1521
-</td>
-<td style="text-align:right;">
 1
 </td>
 <td style="text-align:right;">
-0
+746
 </td>
 <td style="text-align:right;">
 1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:right;">
-0
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-944
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:right;">
-0
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-820
-</td>
-<td style="text-align:right;">
-0
 </td>
 <td style="text-align:right;">
 0
@@ -754,7 +670,119 @@ carrier_YV
 0
 </td>
 <td style="text-align:right;">
-2565
+184
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1598
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2475
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1372
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+746
 </td>
 <td style="text-align:right;">
 0
@@ -782,10 +810,7 @@ carrier_YV
 1
 </td>
 <td style="text-align:right;">
-733
-</td>
-<td style="text-align:right;">
-0
+725
 </td>
 <td style="text-align:right;">
 1
@@ -795,31 +820,6 @@ carrier_YV
 </td>
 <td style="text-align:right;">
 1
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:right;">
-0
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-246
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
 </td>
 <td style="text-align:right;">
 0
@@ -871,10 +871,10 @@ flight_mod = glm(
 pm
 </th>
 <th style="text-align:right;">
-origin_LGA
+origin_JFK
 </th>
 <th style="text-align:right;">
-origin_JFK
+origin_LGA
 </th>
 <th style="text-align:right;">
 carrier_AA
@@ -897,6 +897,62 @@ rel_freq
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+959
+</td>
+<td style="text-align:right;">
+0.003
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+2,761
+</td>
+<td style="text-align:right;">
+0.008
+</td>
+</tr>
 <tr>
 <td style="text-align:right;">
 1
@@ -927,33 +983,8 @@ rel_freq
 </tr>
 <tr>
 <td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
 1
 </td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:left;">
-1,399
-</td>
-<td style="text-align:right;">
-0.004
-</td>
-</tr>
-<tr>
 <td style="text-align:right;">
 1
 </td>
@@ -966,47 +997,16 @@ rel_freq
 <td style="text-align:right;">
 0
 </td>
-<td style="text-align:right;">
-0
-</td>
 <td style="text-align:left;">
 </td>
 <td style="text-align:right;">
 0
 </td>
 <td style="text-align:left;">
-5,467
+8,710
 </td>
 <td style="text-align:right;">
-0.017
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:left;">
-2,221
-</td>
-<td style="text-align:right;">
-0.007
+0.027
 </td>
 </tr>
 <tr>
@@ -1031,122 +1031,10 @@ rel_freq
 0
 </td>
 <td style="text-align:left;">
-1,030
+342
 </td>
 <td style="text-align:right;">
-0.003
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:left;">
-26,460
-</td>
-<td style="text-align:right;">
-0.081
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:left;">
-2,050
-</td>
-<td style="text-align:right;">
-0.006
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:left;">
-3,368
-</td>
-<td style="text-align:right;">
-0.010
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:left;">
-1,137
-</td>
-<td style="text-align:right;">
-0.003
+0.001
 </td>
 </tr>
 <tr>
@@ -1177,6 +1065,118 @@ rel_freq
 0.006
 </td>
 </tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+506
+</td>
+<td style="text-align:right;">
+0.002
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+6,158
+</td>
+<td style="text-align:right;">
+0.019
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+777
+</td>
+<td style="text-align:right;">
+0.002
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+22
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
 </tbody>
 </table>
 <p>Now we take this matrix, tack on the means of the continuous variables (just distance in this case), and then make the predictions from the model:</p>
@@ -1199,10 +1199,10 @@ distance
 pm
 </th>
 <th style="text-align:right;">
-origin_LGA
+origin_JFK
 </th>
 <th style="text-align:right;">
-origin_JFK
+origin_LGA
 </th>
 <th style="text-align:right;">
 carrier_AA
@@ -1228,6 +1228,74 @@ predicted_prob
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:right;">
+1048.571
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+959
+</td>
+<td style="text-align:right;">
+0.003
+</td>
+<td style="text-align:right;">
+0.211
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1048.571
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+2,761
+</td>
+<td style="text-align:right;">
+0.008
+</td>
+<td style="text-align:right;">
+0.261
+</td>
+</tr>
 <tr>
 <td style="text-align:right;">
 1048.571
@@ -1267,38 +1335,7 @@ predicted_prob
 1048.571
 </td>
 <td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
 1
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:left;">
-1,399
-</td>
-<td style="text-align:right;">
-0.004
-</td>
-<td style="text-align:right;">
-0.207
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-1048.571
 </td>
 <td style="text-align:right;">
 1
@@ -1312,56 +1349,19 @@ predicted_prob
 <td style="text-align:right;">
 0
 </td>
-<td style="text-align:right;">
-0
-</td>
 <td style="text-align:left;">
 </td>
 <td style="text-align:right;">
 0
 </td>
 <td style="text-align:left;">
-5,467
+8,710
 </td>
 <td style="text-align:right;">
-0.017
+0.027
 </td>
 <td style="text-align:right;">
-0.415
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-1048.571
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:left;">
-2,221
-</td>
-<td style="text-align:right;">
-0.007
-</td>
-<td style="text-align:right;">
-0.318
+0.408
 </td>
 </tr>
 <tr>
@@ -1389,149 +1389,13 @@ predicted_prob
 0
 </td>
 <td style="text-align:left;">
-1,030
+342
 </td>
 <td style="text-align:right;">
-0.003
+0.001
 </td>
 <td style="text-align:right;">
-0.232
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-1048.571
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:left;">
-26,460
-</td>
-<td style="text-align:right;">
-0.081
-</td>
-<td style="text-align:right;">
-0.484
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-1048.571
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:left;">
-2,050
-</td>
-<td style="text-align:right;">
-0.006
-</td>
-<td style="text-align:right;">
-0.614
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-1048.571
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:left;">
-3,368
-</td>
-<td style="text-align:right;">
-0.010
-</td>
-<td style="text-align:right;">
-0.256
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-1048.571
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:left;">
-1,137
-</td>
-<td style="text-align:right;">
-0.003
-</td>
-<td style="text-align:right;">
-0.369
+0.153
 </td>
 </tr>
 <tr>
@@ -1568,6 +1432,142 @@ predicted_prob
 0.418
 </td>
 </tr>
+<tr>
+<td style="text-align:right;">
+1048.571
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+506
+</td>
+<td style="text-align:right;">
+0.002
+</td>
+<td style="text-align:right;">
+0.550
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1048.571
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+6,158
+</td>
+<td style="text-align:right;">
+0.019
+</td>
+<td style="text-align:right;">
+0.187
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1048.571
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+777
+</td>
+<td style="text-align:right;">
+0.002
+</td>
+<td style="text-align:right;">
+0.292
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1048.571
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+22
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.319
+</td>
+</tr>
 </tbody>
 </table>
 <p>There is some real variation in the predicted probabilities between these combinations categorical variables. These differences will make the marginal method better than the means method.</p>
@@ -1601,10 +1601,10 @@ distance
 pm
 </th>
 <th style="text-align:right;">
-origin_LGA
+origin_JFK
 </th>
 <th style="text-align:right;">
-origin_JFK
+origin_LGA
 </th>
 <th style="text-align:right;">
 carrier_AA
@@ -1629,10 +1629,10 @@ carrier_YV
 0.608
 </td>
 <td style="text-align:right;">
-0.309
+0.333
 </td>
 <td style="text-align:right;">
-0.333
+0.309
 </td>
 <td style="text-align:right;">
 0.098
@@ -1698,6 +1698,7 @@ rel_freq_pm %&gt;%
   mutate(
     RD = pm_1-pm_0
   )</code></pre>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <pre><code>## # A tibble: 1 x 3
 ##    pm_0  pm_1    RD
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -1714,6 +1715,7 @@ rel_freq_pm %&gt;%
     values_from = late
   ) %&gt;% 
   mutate(RD = pm-am)</code></pre>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <pre><code>## # A tibble: 1 x 3
 ##      am    pm    RD
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
