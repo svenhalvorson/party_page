@@ -8,7 +8,7 @@ gallery1:
   - url: 'https://svenhalvorson.github.io/party_page/portfolio/distribution_signatures'
     image_path: assets/images/dist_sigs_teaser.png
     title: "Distribution Signatures"
-  - url: 'https://svenhalvorson.github.io/party_page/portfolio/isl/landing'
+  - url: 'https://svenhalvorson.github.io/party_page/portfolio/ISL/landing'
     image_path: assets/images/isl_teaser.jpg
     title: "Introduction to Statistical Learning"
   - url: 'https://github.com/svenhalvorson/SvenR'
