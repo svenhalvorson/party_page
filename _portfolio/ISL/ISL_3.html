@@ -381,16 +381,19 @@ summary {
 <li><a href="#lab">Lab</a></li>
 <li><a href="#exercises">Exercises</a><ul>
 <li><a href="#section">1</a></li>
-<li><a href="#section-1">5</a></li>
-<li><a href="#section-2">6</a></li>
-<li><a href="#section-3">7</a></li>
-<li><a href="#section-4">8</a></li>
-<li><a href="#section-5">9</a></li>
-<li><a href="#section-6">10</a></li>
-<li><a href="#section-7">11</a></li>
-<li><a href="#section-8">12</a></li>
-<li><a href="#section-9">13</a></li>
-<li><a href="#section-10">14</a></li>
+<li><a href="#section-1">2</a></li>
+<li><a href="#section-2">3</a></li>
+<li><a href="#section-3">4</a></li>
+<li><a href="#section-4">5</a></li>
+<li><a href="#section-5">6</a></li>
+<li><a href="#section-6">7</a></li>
+<li><a href="#section-7">8</a></li>
+<li><a href="#section-8">9</a></li>
+<li><a href="#section-9">10</a></li>
+<li><a href="#section-10">11</a></li>
+<li><a href="#section-11">12</a></li>
+<li><a href="#section-12">13</a></li>
+<li><a href="#section-13">14</a></li>
 </ul></li>
 </ul>
 </div>
@@ -965,12 +968,21 @@ ggplot(
 <h3>Exercises</h3>
 <div id="section" class="section level4">
 <h4>1</h4>
-<p>The hypotheses for the tests in table 3.4 are that the slopes between predictors and sales are non-zero and that the intercept is non-zero. From this we would conclude that even if you do not advertise at all, you will make some sales (intercept $$0), that increasing TV sales by 1 unit will increase sales by 0.046 units.<br />
-#### 2 From what I can garner, there are two main differences between the KNN classifier and KNN regression. The first is simply that one deals with a categorical response and the other a continuous. The second difference is that the classifier takes the most common value among the neighbors and the regression takes the mean response of those neighbors.<br />
-#### 3 Suppose we have a regression estimate like this:</p>
+<p>The hypotheses for the tests in table 3.4 are that the slopes between predictors and sales are non-zero and that the intercept is non-zero. From this we would conclude that even if you do not advertise at all, you will make some sales (intercept $$0), that increasing TV sales by 1 unit will increase sales by 0.046 units.</p>
+</div>
+<div id="section-1" class="section level4">
+<h4>2</h4>
+<p>From what I can garner, there are two main differences between the KNN classifier and KNN regression. The first is simply that one deals with a categorical response and the other a continuous. The second difference is that the classifier takes the most common value among the neighbors and the regression takes the mean response of those neighbors.</p>
+</div>
+<div id="section-2" class="section level4">
+<h4>3</h4>
+<p>Suppose we have a regression estimate like this:</p>
 <p><span class="math display">\[\text{Salary} = 50+20\cdot\text{GPA}+0.07\cdot\text{IQ}+35\cdot\text{Female}+0.01\cdot\text{GPA}\cdot\text{IQ}-10\cdot\text{GPA}\cdot\text{Female}\]</span> The multiple choice answer is correct is that for a fixed IQ and GPA, males earn more than females provided the GPA is high enough. The reason for this is that the GPA slope is 20 for males and 10 for females but females start 35 above males. Eventually these lines will cross and males will earn more. The predicted salary of a female with a 4.0 GPA and 110 IQ would be :</p>
-<p><span class="math display">\[\text{Salary} = 50+20\cdot4+0.07\cdot110+35\cdot1+0.01\cdot4\cdot110-10\cdot4\cdot1=137,100\]</span> We’re also asked about the fact that the GPA*IQ term is very small and whether or not that is evidence of an interaction effect. The answer to this is no. The size of the coefficient does not tell you anything about whether or not there is strong evidence for an interaction. If the confidence interval is very small, then we could conclude there is an interaction even if the coefficient is small.<br />
-#### 4 Suppose we have a data set of 100 observations and a single predictor where we fit a model like this: <span class="math display">\[Y=\beta_0+\beta_1X_1+\beta_2X_1^2+\beta_3X_1^3+\epsilon\]</span> a. We’re asked about the training RSS of this model versus one that has no polynomial terms assuming that the true <span class="math inline">\(f\)</span> is linear. I believe that the full model should have a lower RSS because although the relationship is linear, there are going to be perturbations just due to chance. The more flexible model with quadratic and cubic terms will be able to hug the data more closely. That being said, we would expect the testing RSS to be lower for the model with only the first degree terms because the polynomial model will likely overfit the data. Let’s try it:</p>
+<p><span class="math display">\[\text{Salary} = 50+20\cdot4+0.07\cdot110+35\cdot1+0.01\cdot4\cdot110-10\cdot4\cdot1=137,100\]</span> We’re also asked about the fact that the GPA*IQ term is very small and whether or not that is evidence of an interaction effect. The answer to this is no. The size of the coefficient does not tell you anything about whether or not there is strong evidence for an interaction. If the confidence interval is very small, then we could conclude there is an interaction even if the coefficient is small.</p>
+</div>
+<div id="section-3" class="section level4">
+<h4>4</h4>
+<p>Suppose we have a data set of 100 observations and a single predictor where we fit a model like this: <span class="math display">\[Y=\beta_0+\beta_1X_1+\beta_2X_1^2+\beta_3X_1^3+\epsilon\]</span> a. We’re asked about the training RSS of this model versus one that has no polynomial terms assuming that the true <span class="math inline">\(f\)</span> is linear. I believe that the full model should have a lower RSS because although the relationship is linear, there are going to be perturbations just due to chance. The more flexible model with quadratic and cubic terms will be able to hug the data more closely. That being said, we would expect the testing RSS to be lower for the model with only the first degree terms because the polynomial model will likely overfit the data. Let’s try it:</p>
 <pre class="r"><code>set.seed(-1)
 # Think I&#39;ll just use the data we already made:
 poly_sample = population_table %&gt;% 
@@ -1067,7 +1079,7 @@ poly_sample3 %&gt;%
 ## 1    1.34     1.27</code></pre>
 <pre class="r"><code># does better in testing as well</code></pre>
 </div>
-<div id="section-1" class="section level4">
+<div id="section-4" class="section level4">
 <h4>5</h4>
 <p>Suppose the fitted values of a linear regression without an intercept look like this:</p>
 <p><span class="math display">\[\hat{y_i}=\hat{\beta_0}x_i\]</span> Where <span class="math display">\[\hat{\beta_0}=(\sum_{j=1}^nx_jy_j)/(\sum_{k=1}^nx_{k}^2)\]</span></p>
@@ -1076,14 +1088,14 @@ poly_sample3 %&gt;%
 <p>Well this is an awkwardly worded question but I’m guessing we can just substitute in the expanded definition of <span class="math inline">\(\hat{\beta_0}\)</span>: <span class="math display">\[\hat{y_i}=\frac{x_i(\sum_{j=1}^nx_jy_j)}{\sum_{k=1}^nx_{k}^2}\]</span> I guess we can just bring the other pieces inside the sum indexed by j since they’re constants: <span class="math display">\[\hat{y_i}=\sum_{j=1}^n(x_jx_i\frac{1}{\sum_{k=1}^nx_{k}^2}y_i)\]</span> So</p>
 <p><span class="math display">\[a_j=x_jx_i\frac{1}{\sum_{k=1}^nx_{k}^2}\]</span> Not entirely sure why this is relevant but okay. I mean linear combinations are cool and all but… I don’t see it yet.</p>
 </div>
-<div id="section-2" class="section level4">
+<div id="section-5" class="section level4">
 <h4>6</h4>
 <p>Provide an argument why simple linear regression always passes through the point <span class="math inline">\((\bar{x},\bar{y})\)</span>.</p>
 <p>I think there are multiple ways to do this but I think I’ll try to compute the slope between <span class="math inline">\((\bar{x},\bar{y})\)</span> and <span class="math inline">\((0,\hat{\beta_0})\)</span>.</p>
 <p><span class="math display">\[m=\frac{\bar{y}-\hat{\beta_0}}{\bar{x}-0} = \frac{\bar{y}-(\bar{y} -\hat{\beta_1}\bar{x})}{\hat{x}-0} = \hat{\beta_1}\]</span></p>
 <p>So the slope between this point and a known point on the regression line is the estimated regression slope, therefore <span class="math inline">\((\bar{x},\bar{y})\)</span> is on the line.</p>
 </div>
-<div id="section-3" class="section level4">
+<div id="section-6" class="section level4">
 <h4>7</h4>
 <p>Assume that <span class="math inline">\(\bar{x}=\bar{y}=0\)</span> for a simple linear regression model. Show that <span class="math inline">\(R^2=r^2\)</span>.</p>
 <p>Just so I know where I’m going, this is probably where we want to end up:</p>
@@ -1092,7 +1104,7 @@ poly_sample3 %&gt;%
 <p>So if we take the correlation and square it we get this: <span class="math display">\[r^2=\frac{(\sum_{i=0}^n(x_i-\bar{x})(y_i-\bar{y}))^2}{\sum_{i=0}^n(x_i-\bar{x})^2\sum_{i=0}^n(y_i-\bar{y})^2}\]</span></p>
 <p>Eh…. not sure if this is the best use of my time… Maybe will fill it out later.</p>
 </div>
-<div id="section-4" class="section level4">
+<div id="section-7" class="section level4">
 <h4>8</h4>
 <p>We’re asked to make a linear model, comment on it, plot it and also the residuals.</p>
 <pre class="r"><code>q8_mod = lm(
@@ -1137,7 +1149,7 @@ plot(q8_mod)</code></pre>
 <pre class="r"><code># Diagnostic plots are nnmot awful. The residuals look normal.
 # There is a bit of heterogeneity of variance </code></pre>
 </div>
-<div id="section-5" class="section level4">
+<div id="section-8" class="section level4">
 <h4>9</h4>
 <p>Question about multiple regression on this same data set:</p>
 <pre class="r"><code>par(mfrow = c(1,1))
@@ -1146,15 +1158,24 @@ plot(Auto)</code></pre>
 <pre class="r"><code># See some nice relationships between the aspects of the engine/performance
 
 cor(dplyr::select(Auto, -name))</code></pre>
-<pre><code>##                     mpg  cylinders displacement horsepower     weight acceleration       year     origin
-## mpg           1.0000000 -0.7776175   -0.8051269 -0.7784268 -0.8322442    0.4233285  0.5805410  0.5652088
-## cylinders    -0.7776175  1.0000000    0.9508233  0.8429834  0.8975273   -0.5046834 -0.3456474 -0.5689316
-## displacement -0.8051269  0.9508233    1.0000000  0.8972570  0.9329944   -0.5438005 -0.3698552 -0.6145351
-## horsepower   -0.7784268  0.8429834    0.8972570  1.0000000  0.8645377   -0.6891955 -0.4163615 -0.4551715
-## weight       -0.8322442  0.8975273    0.9329944  0.8645377  1.0000000   -0.4168392 -0.3091199 -0.5850054
-## acceleration  0.4233285 -0.5046834   -0.5438005 -0.6891955 -0.4168392    1.0000000  0.2903161  0.2127458
-## year          0.5805410 -0.3456474   -0.3698552 -0.4163615 -0.3091199    0.2903161  1.0000000  0.1815277
-## origin        0.5652088 -0.5689316   -0.6145351 -0.4551715 -0.5850054    0.2127458  0.1815277  1.0000000</code></pre>
+<pre><code>##                     mpg  cylinders displacement horsepower     weight acceleration       year
+## mpg           1.0000000 -0.7776175   -0.8051269 -0.7784268 -0.8322442    0.4233285  0.5805410
+## cylinders    -0.7776175  1.0000000    0.9508233  0.8429834  0.8975273   -0.5046834 -0.3456474
+## displacement -0.8051269  0.9508233    1.0000000  0.8972570  0.9329944   -0.5438005 -0.3698552
+## horsepower   -0.7784268  0.8429834    0.8972570  1.0000000  0.8645377   -0.6891955 -0.4163615
+## weight       -0.8322442  0.8975273    0.9329944  0.8645377  1.0000000   -0.4168392 -0.3091199
+## acceleration  0.4233285 -0.5046834   -0.5438005 -0.6891955 -0.4168392    1.0000000  0.2903161
+## year          0.5805410 -0.3456474   -0.3698552 -0.4163615 -0.3091199    0.2903161  1.0000000
+## origin        0.5652088 -0.5689316   -0.6145351 -0.4551715 -0.5850054    0.2127458  0.1815277
+##                  origin
+## mpg           0.5652088
+## cylinders    -0.5689316
+## displacement -0.6145351
+## horsepower   -0.4551715
+## weight       -0.5850054
+## acceleration  0.2127458
+## year          0.1815277
+## origin        1.0000000</code></pre>
 <pre class="r"><code>q9_mod = lm(
   mpg ~ .-name,
   data = Auto
@@ -1245,7 +1266,7 @@ q9_mod_poly = lm(
 
 # Displacement looked the most linear and we didn&#39;t see a significant square (or linear) term</code></pre>
 </div>
-<div id="section-6" class="section level4">
+<div id="section-9" class="section level4">
 <h4>10</h4>
 <p>Here we’ll make a model with some categorical predictors. I’ll skip the interpretation since it’s easy for me.</p>
 <pre class="r"><code>q10_mod = lm(
@@ -1303,7 +1324,7 @@ which(cooks.distance(q10_mod2) == max(cooks.distance(q10_mod2)))</code></pre>
 # and the price is not extremely low... but not sure quite what&#39;s going on here.
 # Definitely not an outlier but guess it could bbe a high leverage point</code></pre>
 </div>
-<div id="section-7" class="section level4">
+<div id="section-10" class="section level4">
 <h4>11</h4>
 <p>Next we’ll look at a t-test for the beta in a model with no-intercept</p>
 <pre class="r"><code>set.seed(1)
@@ -1375,7 +1396,7 @@ summary(q11_mod_rev)</code></pre>
 <p><span class="math display">\[t=\frac{\sqrt{(n-1)}\sum_{j=1}^nx_jy_j}{\sqrt{\sum_{k=1}^nx_{k}^2\sum_{i=1}^ny_i^2-(\sum_{j=1}^nx_jy_j)^2}}\]</span> Well wow. I don’t know if it was worth the time but there you go. Latex skills should be on my resume somewhere.</p>
 <p>Since this is symmetric in x and y, it doesn’t matter which direction we regress.</p>
 </div>
-<div id="section-8" class="section level4">
+<div id="section-11" class="section level4">
 <h4>12</h4>
 <p>We’re asked about when the estimate of <span class="math inline">\(\hat{\beta}\)</span> is the same for <span class="math inline">\(X \sim Y\)</span> and <span class="math inline">\(Y \sim X\)</span>. Graphically, this should be when the slope is 1. In terms of the formula, we find this when the sum of squares is the same for both <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. We already generated an example of where the estimates are different in question 11 so here is one where we should get <span class="math inline">\(\hat{\beta}\approx1\)</span></p>
 <pre class="r"><code>set.seed(1)
@@ -1440,7 +1461,7 @@ sum((q12_set$x)^2)</code></pre>
 <pre class="r"><code>sum((q12_set$y)^2)</code></pre>
 <pre><code>## [1] 86.49307</code></pre>
 </div>
-<div id="section-9" class="section level4">
+<div id="section-12" class="section level4">
 <h4>13</h4>
 <p>Here we’re asked to go through a simulation of the model:</p>
 <p><span class="math display">\[Y=-1+X+\epsilon\]</span></p>
@@ -1559,7 +1580,7 @@ confint(q13_mod)</code></pre>
 ## x            0.8517741  1.1781604</code></pre>
 <pre class="r"><code># Fair amount wider</code></pre>
 </div>
-<div id="section-10" class="section level4">
+<div id="section-13" class="section level4">
 <h4>14</h4>
 <p>Next we’re going to look at co-linearity. It seems like some of those side investigations I was doing as I read were kinda like the exercises. That’s okay though.</p>
 <p>We’ll make two highly correlated predictors and then an outcome is that is a function of them jointly.</p>
