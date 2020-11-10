@@ -372,7 +372,8 @@ summary {
 
 <div id="TOC">
 <ul>
-<li><a href="#definitions">Definitions</a><ul>
+<li><a href="#definitions">Definitions</a></li>
+<li><a href="#notes">Notes</a><ul>
 <li><a href="#why-not-linear-regression">4.2: Why not linear regression?</a></li>
 <li><a href="#logistic-regression">4.3: Logistic regression</a></li>
 <li><a href="#linear-discriminant-analysis">4.4 Linear discriminant analysis</a></li>
@@ -402,8 +403,11 @@ summary {
 <li><strong>Prior</strong>: Assumed probabilities made before modeling. Sometimes come from the data themselves, other data sources, or other studies.</li>
 <li><strong>Posterior probability</strong>: Modification made to the prior using the data.</li>
 <li><strong>Discriminant function</strong>: The function in LDA with which we use as our classifier. We assign an observation x to class k if <span class="math inline">\(\delta_k(x)&gt;\delta_l(x)\)</span> for all <span class="math inline">\(k\neq l\)</span>.</li>
-<li><strong>Multivariate Gaussian distribution</strong>: A distribution wherein observations have p attributes. Each atribute comes from a normal distribution but these may have different means and variances. ### Notes</li>
+<li><strong>Multivariate Gaussian distribution</strong>: A distribution wherein observations have p attributes. Each atribute comes from a normal distribution but these may have different means and variances.</li>
 </ul>
+</div>
+<div id="notes" class="section level3">
+<h3>Notes</h3>
 <div id="why-not-linear-regression" class="section level4">
 <h4>4.2: Why not linear regression?</h4>
 <p>With lots of classification problems, the reason why linear regression is not appropriate is that the coding schemes implicitly put distances between the different classes when there may be none at all. The example of mild, medium, and severe are ordered but it’s not clear that the distance between mild and medium is the same as medium to severe. The case of binary variables is closer to appropriate but linear regression will fail here in that it will sometimes predict values larger than 1 or less than zero.</p>
