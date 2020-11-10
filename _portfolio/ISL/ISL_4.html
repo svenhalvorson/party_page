@@ -375,6 +375,7 @@ summary {
 <li><a href="#definitions">Definitions</a><ul>
 <li><a href="#why-not-linear-regression">4.2: Why not linear regression?</a></li>
 <li><a href="#logistic-regression">4.3: Logistic regression</a></li>
+<li><a href="#linear-discriminant-analysis">4.4 Linear discriminant analysis</a></li>
 </ul></li>
 <li><a href="#lab">Lab</a></li>
 <li><a href="#exercises">Exercises</a></li>
@@ -386,12 +387,18 @@ summary {
 <u><span style="font-size: 18px">4.2</u>
 </style>
 <ul>
-<li><strong>Classification problem/classifier</strong>: When the response variable is categorical, a classifier is our estimate of <span class="math inline">\(f\)</span>. <u><span style="font-size: 18px">4.2</u>
-</style></li>
+<li><strong>Classification problem/classifier</strong>: When the response variable is categorical, a classifier is our estimate of <span class="math inline">\(f\)</span>.</li>
+</ul>
+<u><span style="font-size: 18px">4.3</u>
+</style>
+<ul>
 <li><strong>Logistic model</strong> Classification strategy where we model the probability of <span class="math inline">\(Y=1\)</span> with the logistic function.</li>
 <li><strong>Logit</strong>: Logarithm of an odds</li>
-<li><strong>Maximum likelihood estimation</strong>: A method of selecting parameters wherin we model the parameters as a function of the training data and then pick the parameter estimates based on maximizing the likelihood function. <u><span style="font-size: 18px">4.2</u>
-</style></li>
+<li><strong>Maximum likelihood estimation</strong>: A method of selecting parameters wherin we model the parameters as a function of the training data and then pick the parameter estimates based on maximizing the likelihood function.</li>
+</ul>
+<u><span style="font-size: 18px">4.4</u>
+</style>
+<ul>
 <li><strong>Prior</strong>: Assumed probabilities made before modeling. Sometimes come from the data themselves, other data sources, or other studies.</li>
 <li><strong>Posterior probability</strong>: Modification made to the prior using the data.</li>
 <li><strong>Discriminant function</strong>: The function in LDA with which we use as our classifier. We assign an observation x to class k if <span class="math inline">\(\delta_k(x)&gt;\delta_l(x)\)</span> for all <span class="math inline">\(k\neq l\)</span>.</li>
@@ -416,7 +423,9 @@ summary {
 <p><span class="math display">\[l(\beta_0,\beta_1) = \sum_{i:y_i=1}p(x_i)\sum_{j:y_j=0}(1-p(x_j))\]</span> In this case, we’re thinking of the data as fixed and we write a function that has the parameters as the only variables. Whatever the global maximum is for <span class="math inline">\(l\)</span>, this is which parameters we will choose. In the context of logistic regression it would look like this:</p>
 <p><span class="math display">\[l(\beta_0,\beta_1) = \sum_{i:y_i=1}\frac{e^{\beta_0+\beta_1x_i}}{1+e^{\beta_0+\beta_1x_i}}\sum_{j:y_j=0}(1-\frac{e^{\beta_0+\beta_1x_j}}{1+e^{\beta_0+\beta_1x_j}})\]</span> And then we would probably end up taking a log and turning this more into a polynomial in order to solve it.</p>
 <p>The authors then go into some discussion about how predictions are made, extensions to more than one predictor, and confounders that I will not repeat here. They also note that it is possible to extend logistic regression to more than two classes but that it is generally not very effective compared to other methods.</p>
-<p>####4.4 Linear discriminant analysis</p>
+</div>
+<div id="linear-discriminant-analysis" class="section level4">
+<h4>4.4 Linear discriminant analysis</h4>
 <p>An alternative to logistic regression is <em>linear discriminant analysis</em>. This method is new to me so I’m excited to get into more new material. In a broader sense, the method works somewhat in reverse of logistic regression. The reasons given that this method could be preferable to logistic regression are:</p>
 <ul>
 <li>In the case of highly separated levels of <span class="math inline">\(Y\)</span>, logistic regression can have unstable parameter estimates. I take this to mean that the standard error of the parameter estimates will be larger in the case that <span class="math inline">\(X\)</span> is highly predictive.</li>
