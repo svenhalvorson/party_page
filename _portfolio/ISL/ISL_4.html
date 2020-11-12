@@ -372,14 +372,18 @@ summary {
 
 <div id="TOC">
 <ul>
-<li><a href="#definitions">Definitions</a></li>
-<li><a href="#notes">Notes</a><ul>
+<li><a href="#definitions">Definitions</a><ul>
 <li><a href="#why-not-linear-regression">4.2: Why not linear regression?</a></li>
 <li><a href="#logistic-regression">4.3: Logistic regression</a></li>
 <li><a href="#linear-discriminant-analysis">4.4 Linear discriminant analysis</a></li>
+<li><a href="#comparison-of-classification-methods">4.5 Comparison of Classification Methods</a></li>
 </ul></li>
 <li><a href="#lab">Lab</a></li>
-<li><a href="#exercises">Exercises</a></li>
+<li><a href="#exercises">Exercises</a><ul>
+<li><a href="#section">1</a></li>
+<li><a href="#section-1">2</a></li>
+<li><a href="#section-2">3</a></li>
+</ul></li>
 </ul>
 </div>
 
@@ -402,12 +406,12 @@ summary {
 <ul>
 <li><strong>Prior</strong>: Assumed probabilities made before modeling. Sometimes come from the data themselves, other data sources, or other studies.</li>
 <li><strong>Posterior probability</strong>: Modification made to the prior using the data.</li>
+<li><strong>Linear discriminant analysis (LDA)</strong>: A method in which the density functions of the predictors are estimated for each class of outcome. Then, the probability of each outcome class is estimated from these densities and prior estimates of the outcome level frequencies. The class with the highest probablity is selected for classification of the observation.</li>
 <li><strong>Discriminant function</strong>: The function in LDA with which we use as our classifier. We assign an observation x to class k if <span class="math inline">\(\delta_k(x)&gt;\delta_l(x)\)</span> for all <span class="math inline">\(k\neq l\)</span>.</li>
 <li><strong>Multivariate Gaussian distribution</strong>: A distribution wherein observations have p attributes. Each atribute comes from a normal distribution but these may have different means and variances.</li>
+<li><strong>Null classifier</strong>: A very simple, even silly, classifier that serves as a comparison for other models. An example would be just classifying every observation as the class that is most common in the training data.</li>
+<li><strong>Variable standardization</strong>: Transforming variables so that they have a mean of 0 and a standard deviation of 1.r ### Notes</li>
 </ul>
-</div>
-<div id="notes" class="section level3">
-<h3>Notes</h3>
 <div id="why-not-linear-regression" class="section level4">
 <h4>4.2: Why not linear regression?</h4>
 <p>With lots of classification problems, the reason why linear regression is not appropriate is that the coding schemes implicitly put distances between the different classes when there may be none at all. The example of mild, medium, and severe are ordered but it’s not clear that the distance between mild and medium is the same as medium to severe. The case of binary variables is closer to appropriate but linear regression will fail here in that it will sometimes predict values larger than 1 or less than zero.</p>
@@ -424,8 +428,8 @@ summary {
 <p><span class="math display">\[\frac{p(X)}{1-p(X)} = e^{\beta_0+\beta_1}\]</span> By doing this, we can interpret the various betas as either odds, odds ratios, or changes in odds ratio for a given 1 unit change in a continuous predictor. A further transformation of this gets us to:</p>
 <p><span class="math display">\[log(\frac{p(X)}{1-p(X)}) = \beta_0+\beta_1\]</span> Which the left hand side is called the <em>logit</em> and logistic regression models this as a linear combination of predictors.</p>
 <p>The method of estimating the coefficients is done through <em>maximum likelihood</em> which is one of the few statistical concepts that I found to have interesting philosophical parallels. Essentially what we do is select the set of estimates that produces the highest probability of observing the given sample. To me this seems like ‘whatever you see, that should not be viewed as an outlier without additional information.’ Selecting the coefficients comes from the <em>likelihood function</em> which for a binary outcome and two coefficients would be:</p>
-<p><span class="math display">\[l(\beta_0,\beta_1) = \sum_{i:y_i=1}p(x_i)\sum_{j:y_j=0}(1-p(x_j))\]</span> In this case, we’re thinking of the data as fixed and we write a function that has the parameters as the only variables. Whatever the global maximum is for <span class="math inline">\(l\)</span>, this is which parameters we will choose. In the context of logistic regression it would look like this:</p>
-<p><span class="math display">\[l(\beta_0,\beta_1) = \sum_{i:y_i=1}\frac{e^{\beta_0+\beta_1x_i}}{1+e^{\beta_0+\beta_1x_i}}\sum_{j:y_j=0}(1-\frac{e^{\beta_0+\beta_1x_j}}{1+e^{\beta_0+\beta_1x_j}})\]</span> And then we would probably end up taking a log and turning this more into a polynomial in order to solve it.</p>
+<p><span class="math display">\[l(\beta_0,\beta_1|X) = \sum_{i:y_i=1}p(x_i)\sum_{j:y_j=0}(1-p(x_j))\]</span> In this case, we’re thinking of the data as fixed and we write a function that has the parameters as the only variables. Whatever the global maximum is for <span class="math inline">\(l\)</span>, this is which parameters we will choose. In the context of logistic regression it would look like this:</p>
+<p><span class="math display">\[l(\beta_0,\beta_1|X) = \sum_{i:y_i=1}\frac{e^{\beta_0+\beta_1x_i}}{1+e^{\beta_0+\beta_1x_i}}\sum_{j:y_j=0}(1-\frac{e^{\beta_0+\beta_1x_j}}{1+e^{\beta_0+\beta_1x_j}})\]</span> Then we would probably end up taking a log and turning this more into a polynomial in order to solve it.</p>
 <p>The authors then go into some discussion about how predictions are made, extensions to more than one predictor, and confounders that I will not repeat here. They also note that it is possible to extend logistic regression to more than two classes but that it is generally not very effective compared to other methods.</p>
 </div>
 <div id="linear-discriminant-analysis" class="section level4">
@@ -443,7 +447,8 @@ summary {
 </ol>
 <p>Let’s get into the details. First we start with a response, <span class="math inline">\(Y\)</span>, that can take one of <span class="math inline">\(K\geq2\)</span> classes. For each class, <span class="math inline">\(K=k\)</span>, we assume that <span class="math inline">\(\pi_k\)</span> is the unconditional probability <span class="math inline">\(P(Y=k)\)</span>. Frequently we would just use the observed frequency within the training data but if we had something like census information that could better inform our priors, that could be used. Then for each class, we define the density function as:</p>
 <p><span class="math display">\[f_k(x)=P(X=x|Y=k)\]</span> So this is the portion where we model the distribution of the predictors for each class. They mention that this is sort of symbolic in this case because the density function for a continuous variable (which is what is described for LDA here) would require a small region around <span class="math inline">\(x\)</span> and not equality. Then we use Bayes theorem to convert this back into a probability of <span class="math inline">\(Y\)</span> given <span class="math inline">\(X\)</span>:</p>
-<p><span class="math display">\[p_k(x)=P(Y=k|X=x)=\frac{P(Y=k \cap X=x)}{P(X=x)}=\frac{P(Y=k)P(X=x|Y=k)}{\sum_{l=1}^KP(X=x|Y=k)}=\frac{\pi_k\cdot f_k(x)}{\sum_{l=1}^K\pi_lf_l(x)}\]</span> So then once we have all our estimates of the <em>priors</em> (<span class="math inline">\(\pi_k\)</span>) and the <em>posteriors</em> (<span class="math inline">\(f_k(x)\)</span>), we can then compute the probabilities of each training observation being in each outcome class and select the most likely one. The prior probabilities are relatively easy and from my understanding, most Bayesian methods are relatively insensitive to poor choices of prior. The issue is more that computing the posteriors is hard without some assumptions. One method of doing this (I assume there you could use alternative distributions/assumptions depending on how the training data actually looks) is to just assume that you have a normal distribution for the predictor. In this case, we can use the density function (pdf) for the Gaussian distribution for <span class="math inline">\(f_k(x)\)</span>:</p>
+<p><span class="math display">\[p_k(x)=P(Y=k|X=x)=\frac{P(Y=k \cap X=x)}{P(X=x)}=\frac{P(Y=k)P(X=x|Y=k)}{\sum_{l=1}^KP(X=x|Y=k)}=\frac{\pi_k\cdot f_k(x)}{\sum_{l=1}^K\pi_lf_l(x)}\]</span> So then once we have all our estimates of the <em>priors</em> (<span class="math inline">\(\pi_k\)</span>) and the <em>posteriors</em> (<span class="math inline">\(f_k(x)\)</span>), we can then compute the probabilities of each training observation being in each outcome class and select the most likely one. The prior probabilities are relatively easy and from my understanding, most Bayesian methods are relatively insensitive to poor choices of prior. The issue is more that computing the posteriors is hard without some assumptions. One method of doing this (I assume there you could use alternative distributions/assumptions depending on how the training data actually looks) is to just assume that you have a normal distribution for the predictor.</p>
+<p>In this case, we can use the density function (pdf) for the Gaussian distribution for <span class="math inline">\(f_k(x)\)</span>:</p>
 <p><span class="math display">\[f_k(x)=\frac{1}{\sqrt{2\pi}\sigma_k}\cdot\text{exp}(-\frac{1}{2\sigma_k^2}(x-\mu_k)^2)\]</span> So this wildboy basically tells us what the probability is of having a predictor value within a narrow interval around <span class="math inline">\(x\)</span>. The authors suggest we assume the variance is the same for each response level for the moment. We can substitute the normal pdf in the formula for <span class="math inline">\(p_k(x)\)</span>:</p>
 <p><span class="math display">\[p_k(x)=\frac{\pi_k\cdot \frac{1}{\sqrt{2\pi}\sigma}\cdot\text{exp}(-\frac{1}{2\sigma^2}(x-\mu_k)^2)}{\sum_{l=1}^K\pi_l\frac{1}{\sqrt{2\pi}\sigma}\cdot\text{exp}(-\frac{1}{2\sigma^2}(x-\mu_l)^2)}\]</span> Then, for ease of computation and simplification, they suggest taking a log of this. Because logarithms are increasing, maximizing this will produce the same solution. Cancel the constant term first:</p>
 <p><span class="math display">\[\delta_k(x)=log(\pi_k\cdot\text{exp}(-\frac{1}{2\sigma^2}(x-\mu_k)^2))-log(\sum_{l=1}^K\pi_l\cdot\text{exp}(-\frac{1}{2\sigma^2}(x-\mu_l)^2))\]</span> <!-- So then we can expand out the square in the sum and factor out the constant part: --></p>
@@ -453,17 +458,423 @@ summary {
 <p>In this simple case, the most common paramater estimates needed to compute <span class="math inline">\(\delta_k(x)\)</span> are:</p>
 <p><span class="math display">\[\hat{\mu_k}=\frac{1}{n_k}\sum_{i:y_i=k}x_i\]</span></p>
 <p><span class="math display">\[\hat{\sigma}^2=\frac{1}{n-K}\sum_{k=1}^K\sum_{i:y_i=k}(x_i-\mu_k)^2\]</span> Here <span class="math inline">\(\hat{\mu_k}\)</span> is just the average of the predictor values when <span class="math inline">\(Y=k\)</span> and the authors say that <span class="math inline">\(\hat{\sigma}^2\)</span> is the ‘weighted average of the sample variances.’ This doesn’t seem quite right to me as they’re not being weighted by their relative frequencies. Rather, the variance is being computed across the entire sample but the mean used to compute it depends on the class of <span class="math inline">\(Y\)</span>. That seems reasonable if you assume homogeneity of variance but I would not call it a weighted average variances without using something like <span class="math inline">\(\pi_k\)</span> to weight.</p>
+<p>One thing to note here is that if the data is substantially not normal, the central limit theorem will not save us here. This is because we are not trying to estimate a mean, we’re using the literal PDF of the normal distribution. If we have predictors with substantially non-normal distributions, the values from <span class="math inline">\(f_k(x)\)</span> will be very unreliable and thus the LDA will be weak. I suspect that if we’re not using some other version of LDA, we will probably work to transform variables to look normal-ish when needed.</p>
 <p>Typically one predictor is not going to be sufficient so in order to extend this, we can move to a <em>multivariate Gaussian distribution</em> for the predictors where <span class="math inline">\(X = (x_1, X_2, ..., X_p)\)</span>. Hear, each <span class="math inline">\(X_i\)</span> a normal distribution but we allow different parameters as well as correlations within them. There are some nice 3D plots in the book that show these like hills. If they are independent, then the cross sections along each axis will look normal. Otherwise, the cross sections along some other vector will look normal.</p>
 <p>For a multivariate Gaussian distribution with p (components?), we will write <span class="math inline">\(X\sim N(\mu,\Sigma)\)</span> where</p>
 <p><span class="math display">\[E(X)=\mu=\begin{bmatrix}\mu_1\\\mu_2\\...\\\mu_p\end{bmatrix}\]</span> And <span class="math display">\[Cov(X)=\Sigma=\begin{bmatrix}\sigma_1^2&amp;\sigma_{1,2}&amp;...&amp;\sigma_p^2\\\ &amp;\sigma_2^2&amp;...&amp;\sigma_{2,p}\\ &amp; &amp; ...\\ &amp; &amp; &amp;\sigma_p^2\\\end{bmatrix}\]</span> Then the multivariate Gaussian density is :</p>
-<p><span class="math display">\[f(x)=\frac{1}{(2\pi)^{p/2}|\Sigma|^{1/2}}exp(-\frac{1}{2}(x-\mu)^T\Sigma^{-1}(x-\mu))\]</span></p>
+<p><span class="math display">\[f(x)=\frac{1}{(2\pi)^{p/2}|\Sigma|^{1/2}}exp(-\frac{1}{2}(x-\mu)^T\Sigma^{-1}(x-\mu))\]</span> It’s important to note that in this formulation, we’re assuming that the covariance structure is the same for all classes but this is later relaxed in QDA.<br />
+This can be simplified to a linear combination of the observation, the estimated mean and covariance, and the prior:</p>
+<p><span class="math display">\[\delta_k(x)=x^T\Sigma^{-1}\mu_k-\frac{1}{2}\mu_k^T\Sigma^{-1}\mu_k+log(\pi_k)\]</span> As with the case where <span class="math inline">\(p=1\)</span>, we would compute this quantity for each <span class="math inline">\(k\)</span> and classify <span class="math inline">\(x_i\)</span> to the class with the largest value of <span class="math inline">\(\delta_k(x_i)\)</span>. The Bayes decision boundary between classes <span class="math inline">\(Y=k\)</span> and <span class="math inline">\(Y=l\)</span> will be the values of <span class="math inline">\(X\)</span> such that <span class="math inline">\(\delta_k(X)=\delta_l(X)\)</span> for <span class="math inline">\(k\neq l\)</span>. In the case of <span class="math inline">\(k=3\)</span> levels of the outcome, we will have 3 Bayes decision boundaries although these do not need to be unique. I can imagine a situation in which we sampled the same class twice and labeled it as two different classes. In that case, each of these would have the same Bayes decision boundary with the third class.</p>
+<p>The authors then go into a somewhat lengthy discussion of confusion matrices and the various quantities that are often computed from them. Since I already <a href="https://svenhalvorson.github.io/party_page/portfolio/confusion_matrix">yammered on about this</a> previously, I’ll omit this from the notes.</p>
+<p>One thing that they mentioned here that I only touched on in the linked post is how different kinds of errors correspond to different subject matter problems. They give the example of the <em>default</em> data set in which a customer defaulting comes with an especially high price for the company. As a result, they may chose to select a decision rule other than that which produces the lowest overall error rate. Say that we have two classes and class <span class="math inline">\(k=1\)</span> is especially detrimental and we really do not want to miss observations that <em>could</em> be in that class (say defaulting on the loan). Then we might choose some other rule like classifying <span class="math inline">\(X\)</span> to <span class="math inline">\(Y=1\)</span> if:</p>
+<p><span class="math display">\[P_{k=1}(x)&lt;\alpha&lt;0.5\]</span> In which case, even if our LDA only gives say a 25% chance of <span class="math inline">\(Y=1\)</span> (and 75% chance of <span class="math inline">\(Y=0\)</span>), we may choose to assign the observation to <span class="math inline">\(Y=1\)</span> because the conseuqence of a false negative is so large.</p>
+<p>The last addition to this method that we relax the assumption that the the covariance matrix is the same for each class. This is called <em>quadratic discriminant analysis</em>. By doing this, we allow for more complicated relationships between the predictors as they do not need to be simple location shifts across the classes. Instead, an entirely unique multivariate Gaussian distribution can be chosen for each level of the outcome.</p>
+<p>The major benefit that this has is that we have a substantially more flexible method of modeling the data. The major drawback is that there are <em>many</em> more parameters to estimate. For LDA, we just need to estimate the mean for each class and the covariance matrix (<span class="math inline">\(kp + p(p+1)/2\)</span>); we estimate the mean of each predictor within each class (<span class="math inline">\(kp\)</span>) and then the upper triangle of one covariance matrix <span class="math inline">\(p(p+1)/2\)</span>. By contrast, QDA will need to estimate that covariance matrix for each class so the total number of parameters needed is <span class="math inline">\(k(p + p(p+1)/2)\)</span>. When the data set is small, the number of predictors is large, and/or the number of classes is large, this can become a problem. The estimates will be come unstable (high variance) and either LDA or logistic regression will become preferrable.</p>
+<p>For QDA, we can write the discriminant function like this:</p>
+<p><span class="math display">\[\delta_k(x)=-\frac{1}{2}x^T\Sigma_k^{-1}x+x^T\Sigma_k^{-1}\mu_k-\frac{1}{2}\mu_k^T\Sigma_k^{-1}\mu_k-\frac{1}{2}log(|\Sigma_k|)+log(\pi_k)\]</span> As with LDA, we would assign each observation t the class where <span class="math inline">\(\delta_k(x)\)</span> is largest.</p>
+</div>
+<div id="comparison-of-classification-methods" class="section level4">
+<h4>4.5 Comparison of Classification Methods</h4>
+<p>In the last section, we make some comparisons between methods. One important note that relates LDA and logistic regression is that they have similar formulations. It’s possible to write the log odds produced from an LDA as a linear combination in <span class="math inline">\(X\)</span>. If we have two classes of outcome and one predictor then</p>
+<p><span class="math display">\[\frac{p_1(x)}{p_2(x)}=\frac{\frac{\pi_1\cdot f_1(x)}{\sum_{l=1}^K\pi_lf_l(x)}}{\frac{\pi_0\cdot f_0(x)}{\sum_{l=1}^K\pi_lf_l(x)}}=\frac{\pi_1\cdot f_1(x)}{\pi_0\cdot f_0(x)}\]</span> And then the log odds would be</p>
+<p><span class="math display">\[log(\frac{p_1(x)}{p_2(x)})=log(\pi_1\cdot f_1(x))-log(\pi_0\cdot f_0(x))=log(f_1(x))/log(f_0(x))+log(\pi_1/\pi_2)\]</span> Substituting in the normal pdf:</p>
+<p><span class="math display">\[log(\frac{p_1(x)}{p_2(x)})=log(e^{-\frac{1}{\sqrt{2\pi}\sigma}[(x-\mu_1)^2-(x-\mu_0)^2]})+log(\pi_1/\pi_2)\]</span> Assuming we’ve estimated the variances, the first part of the first logarithm is just a constant (<span class="math inline">\(c_0\)</span>). Then we can unroll the other part:</p>
+<p><span class="math display">\[log(\frac{p_1(x)}{p_2(x)})=-2\mu_1x+2\mu_0x+\mu_1^2-\mu_0^2 +c_0 = c_1x+c_0&#39;\]</span> So basically what this shows is that both LDA and logistic regression model the log odds as a linear combination of <span class="math inline">\(X\)</span>. This means that in some sense they have a similar degree of flexibility. The methods of estimating the coefficients is done via maximum likelihood for logistic regression and via the joint normal distribution for LDA. To me, I kind of take this as evidence that logistic regression seems preferable when <span class="math inline">\(k=2\)</span> because it is more flexible in the types of predictors it can use. The scenarios detailed in this section don’t give a good example of when LDA is clearly superior to logistic regression although my impression is that this is likely to occur when <span class="math inline">\(k&gt;2\)</span>.</p>
+<p>Finally, the authors make some comparisons between the logistic regression, LDA, QDA, and KNN (2 formulations). They note that QDA is more flexible than either logistic regression and LDA but less flexible than KNN. The scenarios detailed at the end give these general points:</p>
+<ul>
+<li>When the assumptions of LDA or logistic regression are met, these methods outperform QDA and KNN. This is because the added flexibility ends up responding to noise more than true trends.</li>
+<li>If the underlying distributions of predictors are not normal (the example given is a t distribution), this does not affect logistic regression much but will worsen the performance of LDA. In this case, both still outperform KNN and QDA assuming that the covariance is equal across classes.</li>
+<li>If the underlying distributions of the predictors still look normal but there heterogeneous covariance structures between classes or nonlinear relationships with the outcomes (say quadratic or interactions), then the QDA will perform better than any other method. In this case, QDA will not be biased like LDA or logistic regression and will have lower variance than KNN. In the case of non-linear relationships between predictors and the response, it may be possible to remedy this using transformations of variables in a logistic regression model.</li>
+<li>In the case of distinctly not-normal predictors, highly complex relationships between predictors, and/or strongly non-linear/quadratic relationships between predictors and outcomes, the parametric methods will be too biased in comparison to KNN. The authors also note that there are a number of issues in selecting the K in KNN and in their examples, K=1, does quite badly under every scenario. Apparently there are methods of choosing this value wisely later in the book.</li>
+</ul>
 </div>
 </div>
 <div id="lab" class="section level3">
 <h3>Lab</h3>
+<p>The lab for this section comes from the data set <em>Smarket</em> which contains data about the S&amp;P 500. We have several lagged versions of the index. It looks like we have 252 days for most of the years. This looks like a weird data set to model with these methods as we have completely dependent variables.</p>
+<pre><code>##   Year   Lag1   Lag2   Lag3   Lag4   Lag5 Volume  Today Direction
+## 1 2001  0.381 -0.192 -2.624 -1.055  5.010 1.1913  0.959        Up
+## 2 2001  0.959  0.381 -0.192 -2.624 -1.055 1.2965  1.032        Up
+## 3 2001  1.032  0.959  0.381 -0.192 -2.624 1.4112 -0.623      Down
+## 4 2001 -0.623  1.032  0.959  0.381 -0.192 1.2760  0.614        Up
+## 5 2001  0.614 -0.623  1.032  0.959  0.381 1.2057  0.213        Up
+## 6 2001  0.213  0.614 -0.623  1.032  0.959 1.3491  1.392        Up</code></pre>
+<p>We have the volume of shares traded on that day, the percentage return on the day (<code>Today</code>), and whether the market is up or down. Can look at the correlations:</p>
+<pre><code>##              Year         Lag1         Lag2         Lag3         Lag4         Lag5      Volume
+## Year   1.00000000  0.029699649  0.030596422  0.033194581  0.035688718  0.029787995  0.53900647
+## Lag1   0.02969965  1.000000000 -0.026294328 -0.010803402 -0.002985911 -0.005674606  0.04090991
+## Lag2   0.03059642 -0.026294328  1.000000000 -0.025896670 -0.010853533 -0.003557949 -0.04338321
+## Lag3   0.03319458 -0.010803402 -0.025896670  1.000000000 -0.024051036 -0.018808338 -0.04182369
+## Lag4   0.03568872 -0.002985911 -0.010853533 -0.024051036  1.000000000 -0.027083641 -0.04841425
+## Lag5   0.02978799 -0.005674606 -0.003557949 -0.018808338 -0.027083641  1.000000000 -0.02200231
+## Volume 0.53900647  0.040909908 -0.043383215 -0.041823686 -0.048414246 -0.022002315  1.00000000
+## Today  0.03009523 -0.026155045 -0.010250033 -0.002447647 -0.006899527 -0.034860083  0.01459182
+##               Today
+## Year    0.030095229
+## Lag1   -0.026155045
+## Lag2   -0.010250033
+## Lag3   -0.002447647
+## Lag4   -0.006899527
+## Lag5   -0.034860083
+## Volume  0.014591823
+## Today   1.000000000</code></pre>
+<p>The dayu to day correlations are quite small but it’s not surprising that the correlations are a bit stronger between adjacent days and than for a few days apart. Quite low relationship between <code>Today</code> and <code>Volume</code> which makes me think people trade a lot of stocks in losing and winning environments.</p>
+<p>We can predict whether the market will go up with a logistc model:</p>
+<pre class="r"><code>smark_logistic = glm(
+  formula = Direction ~ Lag1 + Lag2 + Lag3 + Lag4 + Lag5 + Volume,
+  data = Smarket,
+  family = &#39;binomial&#39;
+)
+
+summary(smark_logistic)</code></pre>
+<pre><code>## 
+## Call:
+## glm(formula = Direction ~ Lag1 + Lag2 + Lag3 + Lag4 + Lag5 + 
+##     Volume, family = &quot;binomial&quot;, data = Smarket)
+## 
+## Deviance Residuals: 
+##    Min      1Q  Median      3Q     Max  
+## -1.446  -1.203   1.065   1.145   1.326  
+## 
+## Coefficients:
+##              Estimate Std. Error z value Pr(&gt;|z|)
+## (Intercept) -0.126000   0.240736  -0.523    0.601
+## Lag1        -0.073074   0.050167  -1.457    0.145
+## Lag2        -0.042301   0.050086  -0.845    0.398
+## Lag3         0.011085   0.049939   0.222    0.824
+## Lag4         0.009359   0.049974   0.187    0.851
+## Lag5         0.010313   0.049511   0.208    0.835
+## Volume       0.135441   0.158360   0.855    0.392
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 1731.2  on 1249  degrees of freedom
+## Residual deviance: 1727.6  on 1243  degrees of freedom
+## AIC: 1741.6
+## 
+## Number of Fisher Scoring iterations: 3</code></pre>
+<p>We can get some predictions in the form of probabilities (or log odds with a different value of <code>response</code>):</p>
+<pre class="r"><code>predict(smark_logistic, type = &#39;response&#39;)[1:10]</code></pre>
+<pre><code>##         1         2         3         4         5         6         7         8         9        10 
+## 0.5070841 0.4814679 0.4811388 0.5152224 0.5107812 0.5069565 0.4926509 0.5092292 0.5176135 0.4888378</code></pre>
+<pre class="r"><code>#  If you want to verify that the interpretation of the categorical variable
+# was as you expected:
+contrasts(Smarket$Direction)</code></pre>
+<pre><code>##      Up
+## Down  0
+## Up    1</code></pre>
+<p>If we want to make a confusion matrix, we can turn all the predicted values into up if P(Y == ‘up’) &gt; 0.5:</p>
+<pre class="r"><code>smark_predictions = ifelse(
+  predict(smark_logistic, type = &#39;response&#39;) &gt; 0.5,
+  &#39;Up&#39;,
+  &#39;Down&#39;
+)
+
+table(smark_predictions, Smarket$Direction)</code></pre>
+<pre><code>##                  
+## smark_predictions Down  Up
+##              Down  145 141
+##              Up    457 507</code></pre>
+<p>Then an example calculation here would be that the sensitivity is <span class="math inline">\(\frac{507}{507+141}=0.782\)</span>. Seems like we have a lot of false positives though. The overall error rate is 52.2% which is not much better than the approximately 50/50 split between up and down in the training set.</p>
+<p>To further investigate this model, they suggest that we train the model on the data pre-2005 and test on 2005’s data:</p>
+<pre class="r"><code>smark_train = Smarket %&gt;% 
+  filter(Year &lt; 2005)
+
+smark_test = Smarket %&gt;% 
+  filter(Year == 2005)
+
+smark_logistic2 = glm(
+  formula = Direction ~ Lag1 + Lag2 + Lag3 + Lag4 + Lag5 + Volume,
+  data = smark_train,
+  family = &#39;binomial&#39;
+)
+
+smark_test %&gt;% 
+  mutate(
+    pred = predict(smark_logistic2, smark_test, type = &#39;response&#39;),
+    pred_val = ifelse(
+     pred &gt; 0.5,
+     &#39;Up&#39;,
+     &#39;Down&#39;
+    )
+  ) %&gt;% 
+  count(
+    Direction,
+    pred_val
+  )</code></pre>
+<pre><code>##   Direction pred_val  n
+## 1      Down     Down 77
+## 2      Down       Up 34
+## 3        Up     Down 97
+## 4        Up       Up 44</code></pre>
+<p>The training error rate for this is <span class="math inline">\(\frac{34+97}{252} = 0.51\)</span> which is a bit worse than flipping a coin. The authors give this minor tweak: remove the unhelpful lag variables farther from the current date. Doing this will make the predictions based off more relevant variables only:</p>
+<pre class="r"><code>smark_logistic3 = glm(
+  formula = Direction ~ Lag1 + Lag2 ,
+  data = smark_train,
+  family = &#39;binomial&#39;
+)
+
+smark_test %&gt;% 
+  mutate(
+    pred = predict(smark_logistic3, smark_test, type = &#39;response&#39;),
+    pred_val = ifelse(
+     pred &gt; 0.5,
+     &#39;Up&#39;,
+     &#39;Down&#39;
+    )
+  ) %&gt;% 
+  count(
+    Direction,
+    pred_val
+  )</code></pre>
+<pre><code>##   Direction pred_val   n
+## 1      Down     Down  35
+## 2      Down       Up  76
+## 3        Up     Down  35
+## 4        Up       Up 106</code></pre>
+<p>Now we’re only making 111 mistakes instead of 131.</p>
+<p>Next we’ll give LDA a shot. Excited to do something new with the code:</p>
+<pre class="r"><code>library(&#39;MASS&#39;)
+
+smark_lda = lda(
+  formula = Direction ~ Lag1 + Lag2,
+  data = smark_train
+)
+
+smark_lda</code></pre>
+<pre><code>## Call:
+## lda(Direction ~ Lag1 + Lag2, data = smark_train)
+## 
+## Prior probabilities of groups:
+##     Down       Up 
+## 0.491984 0.508016 
+## 
+## Group means:
+##             Lag1        Lag2
+## Down  0.04279022  0.03389409
+## Up   -0.03954635 -0.03132544
+## 
+## Coefficients of linear discriminants:
+##             LD1
+## Lag1 -0.6420190
+## Lag2 -0.5135293</code></pre>
+<p>We can verify that some of these estimates are what we expected:</p>
+<pre class="r"><code># Priors:
+smark_train %&gt;% 
+  count(Direction) %&gt;% 
+  mutate(m = n/sum(n))</code></pre>
+<pre><code>##   Direction   n        m
+## 1      Down 491 0.491984
+## 2        Up 507 0.508016</code></pre>
+<pre class="r"><code>smark_train %&gt;% 
+  group_by(Direction) %&gt;% 
+  summarize(
+    Lag1_mean = mean(Lag1),
+    Lag2_mean = mean(Lag2)
+  )</code></pre>
+<pre><code>## # A tibble: 2 x 3
+##   Direction Lag1_mean Lag2_mean
+##   &lt;fct&gt;         &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Down         0.0428    0.0339
+## 2 Up          -0.0395   -0.0313</code></pre>
+<p>The predictions from this kind of model come in a few pieces. We can get the class predictions for each observations (class that maximizes <span class="math inline">\(\delta\)</span>)</p>
+<pre class="r"><code>smark_lda_pred = predict(smark_lda, newdata = smark_test)
+smark_lda_pred$class[1:5]</code></pre>
+<pre><code>## [1] Up Up Up Up Up
+## Levels: Down Up</code></pre>
+<p>The posterior estimates for each class*observation:</p>
+<pre class="r"><code>smark_lda_pred$posterior %&gt;% 
+  as_tibble() %&gt;% 
+  head()</code></pre>
+<pre><code>## # A tibble: 6 x 2
+##    Down    Up
+##   &lt;dbl&gt; &lt;dbl&gt;
+## 1 0.490 0.510
+## 2 0.479 0.521
+## 3 0.467 0.533
+## 4 0.474 0.526
+## 5 0.493 0.507
+## 6 0.494 0.506</code></pre>
+<p>And the linear discriminats:</p>
+<pre class="r"><code>smark_lda_pred$x[1:5]</code></pre>
+<pre><code>## [1]  0.08293096  0.59114102  1.16723063  0.83335022 -0.03792892</code></pre>
+<p>So from here we can check the accuracy of the LDA:</p>
+<pre class="r"><code>table(smark_lda_pred$class, smark_test$Direction)</code></pre>
+<pre><code>##       
+##        Down  Up
+##   Down   35  35
+##   Up     76 106</code></pre>
+<p>This is basically the same as what we got for the logistic regression. If we wanted to apply different classification thresholds, we would just apply them to the posterior estimates.</p>
+<p>Here’s the analogous code using QDA:</p>
+<pre class="r"><code>smark_qda = qda(
+  formula = Direction ~ Lag1 + Lag2,
+  data = smark_train
+)</code></pre>
+<p>The features of this are similar but now we get a covariance matrix for each level:</p>
+<pre class="r"><code>smark_qda$scaling</code></pre>
+<pre><code>## , , Down
+## 
+##            1           2
+## Lag1 -0.8147 -0.02102907
+## Lag2  0.0000 -0.80724672
+## 
+## , , Up
+## 
+##               1           2
+## Lag1 -0.8119072 -0.01505382
+## Lag2  0.0000000 -0.81929901</code></pre>
+<p>We can also create the confusion matrix and compute the accuracy:</p>
+<pre class="r"><code>smark_qda_pred = predict(
+  smark_qda,
+  newdata = smark_test
+)
+table(smark_qda_pred$class, smark_test$Direction)</code></pre>
+<pre><code>##       
+##        Down  Up
+##   Down   30  20
+##   Up     81 121</code></pre>
+<pre class="r"><code>mean(smark_qda_pred$class == smark_test$Direction)</code></pre>
+<pre><code>## [1] 0.5992063</code></pre>
+<p>This does a bit better than the other two methods.</p>
+<p>Finally, we can try this with KNN:</p>
+<pre class="r"><code>library(&#39;class&#39;)
+
+set.seed(1)
+smarket_knn = knn(
+  train = dplyr::select(smark_train, Lag1, Lag2),
+  test = dplyr::select(smark_test, Lag1, Lag2),
+  cl = smark_train$Direction,
+  k = 1
+)
+
+table(smarket_knn, smark_test$Direction)</code></pre>
+<pre><code>##            
+## smarket_knn Down Up
+##        Down   43 58
+##        Up     68 83</code></pre>
+<pre class="r"><code>mean(smarket_knn == smark_test$Direction)</code></pre>
+<pre><code>## [1] 0.5</code></pre>
+<p>I imagine you have to set the seed to reproduce your work because of some method it uses to deal with ties.</p>
+<p>Using <span class="math inline">\(K=1\)</span> gives us very poor accuracy. We can in crease K a bit though t see if that helps:</p>
+<pre class="r"><code>smarket_knn3 = knn(
+  train = dplyr::select(smark_train, Lag1, Lag2),
+  test = dplyr::select(smark_test, Lag1, Lag2),
+  cl = smark_train$Direction,
+  k = 3
+)
+
+table(smarket_knn3, smark_test$Direction)</code></pre>
+<pre><code>##             
+## smarket_knn3 Down Up
+##         Down   48 54
+##         Up     63 87</code></pre>
+<pre class="r"><code>mean(smarket_knn3 == smark_test$Direction)</code></pre>
+<pre><code>## [1] 0.5357143</code></pre>
+<p>The authors conclude this section by saying that QDA provides the best results here. Assuming that we’re okay with this method of validating our models, I agree.</p>
+<p>The last part of this lab has to do with using the <code>Caravan</code> data set. This has a ton of sociodemographic and product ownership variables that are all binary. We als have the record of whether they purchased insurance fr their caravan:</p>
+<pre class="r"><code>table(Caravan$Purchase)</code></pre>
+<pre><code>## 
+##   No  Yes 
+## 5474  348</code></pre>
+<p>Because KNN relies on distance (of some metric) it can be the case that the scale of certain variables causes them to have an outsized influence on the results. In order to change this, we can <em>standardize</em> continuous variables to avoid this. This function feels kinda old as it returns a matrix regardless of whether you feed it a vector or not. Anyways, you can do the whole data frame at once like this:</p>
+<pre class="r"><code>Caravan[,1:85] = scale(Caravan[,1:85])
+
+cara_test = Caravan %&gt;% 
+  slice(1:1000)  
+
+cara_train = Caravan %&gt;% 
+  slice(-(1:1000))</code></pre>
+<p>Make some KNN predictions:</p>
+<pre class="r"><code>set.seed(1)
+cara_knn1 = knn(
+  train = dplyr::select(cara_train, -Purchase),
+  test = dplyr::select(cara_test, -Purchase),
+  cl = cara_train$Purchase,
+  k = 1
+)
+
+mean(cara_knn1 == cara_test$Purchase)</code></pre>
+<pre><code>## [1] 0.882</code></pre>
+<pre class="r"><code>mean(cara_test$Purchase == &#39;Yes&#39;)</code></pre>
+<pre><code>## [1] 0.059</code></pre>
+<p>So with <span class="math inline">\(K=1\)</span> we’re worse than the null classifier by a bit. The authrs present a scenario in which we are trying to sell insurance and would like to target customers. If that’s the case, correctly identifying customers who will not purchase is not important and instead we want to maximize the positive predictive value. In this case we have:</p>
+<pre class="r"><code>table(cara_knn1, cara_test$Purchase)</code></pre>
+<pre><code>##          
+## cara_knn1  No Yes
+##       No  873  50
+##       Yes  68   9</code></pre>
+<p>From this we can see that the positive predictive value here is <span class="math inline">\(\frac{9}{77}=11.7\%\)</span> which is quite a bit better than the 6% we would achieve by guessing at random. Increasing <span class="math inline">\(K\)</span> improves this further:</p>
+<pre class="r"><code>cara_knn3 = knn(
+  train = dplyr::select(cara_train, -Purchase),
+  test = dplyr::select(cara_test, -Purchase),
+  cl = cara_train$Purchase,
+  k = 3
+)
+
+cara_knn5 = knn(
+  train = dplyr::select(cara_train, -Purchase),
+  test = dplyr::select(cara_test, -Purchase),
+  cl = cara_train$Purchase,
+  k = 5
+)
+
+table(cara_knn3, cara_test$Purchase)</code></pre>
+<pre><code>##          
+## cara_knn3  No Yes
+##       No  920  54
+##       Yes  21   5</code></pre>
+<pre class="r"><code>table(cara_knn5, cara_test$Purchase)</code></pre>
+<pre><code>##          
+## cara_knn5  No Yes
+##       No  930  55
+##       Yes  11   4</code></pre>
+<p>Compare with the logistic model. Our PPV depends on the threshold for selecting yes:</p>
+<pre class="r"><code>cara_logistic = glm(
+  Purchase ~ .,
+  data = cara_train,
+  family = &#39;binomial&#39;
+)</code></pre>
+<pre><code>## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred</code></pre>
+<pre class="r"><code>cara_logistic_pred = predict(
+  cara_logistic,
+  cara_test,
+  type = &#39;response&#39;
+)
+
+table(cara_logistic_pred &gt; 0.5, cara_test$Purchase)</code></pre>
+<pre><code>##        
+##          No Yes
+##   FALSE 934  59
+##   TRUE    7   0</code></pre>
+<pre class="r"><code>table(cara_logistic_pred &gt; 0.25, cara_test$Purchase)</code></pre>
+<pre><code>##        
+##          No Yes
+##   FALSE 919  48
+##   TRUE   22  11</code></pre>
+<p>So setting the threshold at 25% gives us a slightly worse PPV than the KNN with K=3</p>
 </div>
 <div id="exercises" class="section level3">
 <h3>Exercises</h3>
+<div id="section" class="section level4">
+<h4>1</h4>
+<p>We’re asked to show that the logistic function and logit representation are equivalent. Begin with:</p>
+<p><span class="math display">\[P(X) = \frac{e^{\beta_0+\beta_1X}}{1+e^{\beta_0+\beta_1X}}\]</span> Then if we convert this to an odds:</p>
+<p><span class="math display">\[\frac{P(X)}{1-P(X)} = \frac{\frac{e^{\beta_0+\beta_1X}}{1+e^{\beta_0+\beta_1X}}}{1-\frac{e^{\beta_0+\beta_1X}}{1+e^{\beta_0+\beta_1X}}}\]</span> Then combine the pieces of the denominator:</p>
+<p><span class="math display">\[\frac{P(X)}{1-P(X)} = \frac{\frac{e^{\beta_0+\beta_1X}}{1+e^{\beta_0+\beta_1X}}}{\frac{1}{1+e^{\beta_0+\beta_1X}}}=e^{\beta_0+\beta_1X} \]</span></p>
+</div>
+<div id="section-1" class="section level4">
+<h4>2</h4>
+<p>Next question is just to argue that maximizing the <span class="math inline">\(p_k(x)\)</span> is the same as maximizing the discriminat function. I didn’t go through all the algebra of this in my notes (yet) but I don’t think we even need that. Assuming we believe that the discriminant is indeed the log of <span class="math inline">\(p_k(x)\)</span>, it is clear that this is true because logarithm is an increasing function (<span class="math inline">\(A&gt;B\Rightarrow log(A)&gt;log(B)\)</span>).</p>
+</div>
+<div id="section-2" class="section level4">
+<h4>3</h4>
+<p>Assume that we are performing a QDA with p=1 predictors and class specific variances. Demonstrate that the Bayes decision boundary is not linear but instead is quadratic.<br />
+In this situation, we have a different variance for each class but no covariance to deal with. The probability that <span class="math inline">\(X\)</span> belongs to class <span class="math inline">\(k\)</span> is given by:</p>
+<p><span class="math display">\[p_k(x)=\frac{\pi_k\cdot \frac{1}{\sqrt{2\pi}\sigma_k}\cdot\text{exp}(-\frac{1}{2\sigma_k^2}(x-\mu_k)^2)}{\sum_{l=1}^K\pi_l\frac{1}{\sqrt{2\pi}\sigma_k}\cdot\text{exp}(-\frac{1}{2\sigma_k^2}(x-\mu_l)^2)}\]</span> Then converting this to the discriminant function we get:</p>
+<p><span class="math display">\[\delta_k(x)=x\cdot\frac{\mu_k}{\sigma_k^2}-\frac{\mu_k^2}{2\sigma_k^2}+log(\pi_k)\]</span> Now take two classes, <span class="math inline">\(k \neq l\)</span>, if we are looking for the Bayes decision boundary between these classes then:</p>
+<p><span class="math display">\[\delta_k(x) = \delta_l(x)\]</span> <span class="math display">\[x\cdot\frac{\mu_k}{\sigma_k^2}-\frac{\mu_k^2}{2\sigma_k^2}+log(\pi_k) = x\cdot\frac{\mu_l}{\sigma_l^2}-\frac{\mu_l^2}{2\sigma_l^2}+log(\pi_l)\]</span> <span class="math display">\[x (\frac{\mu_k}{\sigma_k^2}- \cdot\frac{\mu_l}{\sigma_l^2})=-\frac{\mu_l^2}{2\sigma_l^2}+\frac{\mu_k^2}{2\sigma_k^2}+log(\pi_l)-log(\pi_k)\]</span> I guess for simplicity let’s assume that the priors are equal although I do not believe this will make a difference.</p>
+<p><span class="math display">\[x \frac{\mu_k\sigma_l^2-\mu_l\sigma_k^2}{\sigma_k^2\sigma_l^2}=-\frac{1}{2}(\frac{\mu_k^2\sigma_l^2-\mu_l^2\sigma_k^2}{\sigma_k^2\sigma_l^2})\]</span> <span class="math display">\[x =-\frac{1}{2}\cdot\frac{\mu_k^2\sigma_l^2-\mu_l^2\sigma_k^2}{\mu_k\sigma_l^2-\mu_l\sigma_k^2}\]</span></p>
+</div>
 </div>
 
 
