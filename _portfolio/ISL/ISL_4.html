@@ -372,7 +372,8 @@ summary {
 
 <div id="TOC">
 <ul>
-<li><a href="#definitions">Definitions</a><ul>
+<li><a href="#definitions">Definitions</a></li>
+<li><a href="#notes">Notes</a><ul>
 <li><a href="#why-not-linear-regression">4.2: Why not linear regression?</a></li>
 <li><a href="#logistic-regression">4.3: Logistic regression</a></li>
 <li><a href="#linear-discriminant-analysis">4.4 Linear discriminant analysis</a></li>
@@ -383,6 +384,9 @@ summary {
 <li><a href="#section">1</a></li>
 <li><a href="#section-1">2</a></li>
 <li><a href="#section-2">3</a></li>
+<li><a href="#section-3">4</a></li>
+<li><a href="#section-4">5</a></li>
+<li><a href="#section-5">6</a></li>
 </ul></li>
 </ul>
 </div>
@@ -410,8 +414,12 @@ summary {
 <li><strong>Discriminant function</strong>: The function in LDA with which we use as our classifier. We assign an observation x to class k if <span class="math inline">\(\delta_k(x)&gt;\delta_l(x)\)</span> for all <span class="math inline">\(k\neq l\)</span>.</li>
 <li><strong>Multivariate Gaussian distribution</strong>: A distribution wherein observations have p attributes. Each atribute comes from a normal distribution but these may have different means and variances.</li>
 <li><strong>Null classifier</strong>: A very simple, even silly, classifier that serves as a comparison for other models. An example would be just classifying every observation as the class that is most common in the training data.</li>
-<li><strong>Variable standardization</strong>: Transforming variables so that they have a mean of 0 and a standard deviation of 1.r ### Notes</li>
+<li><strong>Variable standardization</strong>: Transforming variables so that they have a mean of 0 and a standard deviation of 1.</li>
+<li><strong>Curse of dimensionality</strong>: When the number of predictors becomes large, non-parametrice methods often tend to respond too heavily to factors that are not strongly related to the outcome.</li>
 </ul>
+</div>
+<div id="notes" class="section level3">
+<h3>Notes</h3>
 <div id="why-not-linear-regression" class="section level4">
 <h4>4.2: Why not linear regression?</h4>
 <p>With lots of classification problems, the reason why linear regression is not appropriate is that the coding schemes implicitly put distances between the different classes when there may be none at all. The example of mild, medium, and severe are ordered but it’s not clear that the distance between mild and medium is the same as medium to severe. The case of binary variables is closer to appropriate but linear regression will fail here in that it will sometimes predict values larger than 1 or less than zero.</p>
@@ -870,10 +878,58 @@ table(cara_logistic_pred &gt; 0.5, cara_test$Purchase)</code></pre>
 <h4>3</h4>
 <p>Assume that we are performing a QDA with p=1 predictors and class specific variances. Demonstrate that the Bayes decision boundary is not linear but instead is quadratic.<br />
 In this situation, we have a different variance for each class but no covariance to deal with. The probability that <span class="math inline">\(X\)</span> belongs to class <span class="math inline">\(k\)</span> is given by:</p>
-<p><span class="math display">\[p_k(x)=\frac{\pi_k\cdot \frac{1}{\sqrt{2\pi}\sigma_k}\cdot\text{exp}(-\frac{1}{2\sigma_k^2}(x-\mu_k)^2)}{\sum_{l=1}^K\pi_l\frac{1}{\sqrt{2\pi}\sigma_k}\cdot\text{exp}(-\frac{1}{2\sigma_k^2}(x-\mu_l)^2)}\]</span> Then converting this to the discriminant function we get:</p>
-<p><span class="math display">\[\delta_k(x)=x\cdot\frac{\mu_k}{\sigma_k^2}-\frac{\mu_k^2}{2\sigma_k^2}+log(\pi_k)\]</span> Now take two classes, <span class="math inline">\(k \neq l\)</span>, if we are looking for the Bayes decision boundary between these classes then:</p>
-<p><span class="math display">\[\delta_k(x) = \delta_l(x)\]</span> <span class="math display">\[x\cdot\frac{\mu_k}{\sigma_k^2}-\frac{\mu_k^2}{2\sigma_k^2}+log(\pi_k) = x\cdot\frac{\mu_l}{\sigma_l^2}-\frac{\mu_l^2}{2\sigma_l^2}+log(\pi_l)\]</span> <span class="math display">\[x (\frac{\mu_k}{\sigma_k^2}- \cdot\frac{\mu_l}{\sigma_l^2})=-\frac{\mu_l^2}{2\sigma_l^2}+\frac{\mu_k^2}{2\sigma_k^2}+log(\pi_l)-log(\pi_k)\]</span> I guess for simplicity let’s assume that the priors are equal although I do not believe this will make a difference.</p>
-<p><span class="math display">\[x \frac{\mu_k\sigma_l^2-\mu_l\sigma_k^2}{\sigma_k^2\sigma_l^2}=-\frac{1}{2}(\frac{\mu_k^2\sigma_l^2-\mu_l^2\sigma_k^2}{\sigma_k^2\sigma_l^2})\]</span> <span class="math display">\[x =-\frac{1}{2}\cdot\frac{\mu_k^2\sigma_l^2-\mu_l^2\sigma_k^2}{\mu_k\sigma_l^2-\mu_l\sigma_k^2}\]</span></p>
+<p><span class="math display">\[p_k(x)=\frac{\pi_k\cdot \frac{1}{\sqrt{2\pi}\sigma_k}\cdot\text{exp}(-\frac{1}{2\sigma_k^2}(x-\mu_k)^2)}{\sum_{l=1}^K\pi_l\frac{1}{\sqrt{2\pi}\sigma_k}\cdot\text{exp}(-\frac{1}{2\sigma_k^2}(x-\mu_l)^2)}\]</span> If we have two classes, <span class="math inline">\(k\neq j\)</span>, then the Bayes decision boundary is:</p>
+<p><span class="math display">\[p_k(x)=p_j(x)\]</span></p>
+<p><span class="math display">\[\frac{\pi_k\cdot \frac{1}{\sqrt{2\pi}\sigma_k}\cdot\text{exp}(-\frac{1}{2\sigma_k^2}(x-\mu_k)^2)}{\sum_{l=1}^K\pi_l\frac{1}{\sqrt{2\pi}\sigma_k}\cdot\text{exp}(-\frac{1}{2\sigma_k^2}(x-\mu_l)^2)}=\frac{\pi_j\cdot \frac{1}{\sqrt{2\pi}\sigma_j}\cdot\text{exp}(-\frac{1}{2\sigma_j^2}(x-\mu_j)^2)}{\sum_{l=1}^K\pi_l\frac{1}{\sqrt{2\pi}\sigma_k}\cdot\text{exp}(-\frac{1}{2\sigma_k^2}(x-\mu_l)^2)}\]</span> Dropping the denominators and taking log gives: <span class="math display">\[log(\pi_k)- log(\sqrt{2\pi}\sigma_k)-\frac{1}{2\sigma_k^2}(x-\mu_k)^2=log(\pi_j)- log(\sqrt{2\pi}\sigma_j)-\frac{1}{2\sigma_j^2}(x-\mu_j)^2\]</span> And then from here we can see that solving this will be some quadratic equation since unlike the case where <span class="math inline">\(\sigma^2_k=\sigma^2_j\)</span>, the coefficients of <span class="math inline">\(x^2\)</span> differ and not cancel out.</p>
+</div>
+<div id="section-3" class="section level4">
+<h4>4</h4>
+<p>This question has several parts and asks us to look at <em>the curse of dimensionality</em>. We’ll start by looking at a few scenarios:</p>
+<ol style="list-style-type: decimal">
+<li>Assume we have only one feature, <span class="math inline">\(X\)</span>, and it comes from a uniform distribution U(0,1). We use the observations within 10 percentage points of an observation to classify test observation <span class="math inline">\(x_i\)</span>. We’re asked what fraction of the test observations we’ll use on average to make a prediction. Well it’s quite close to 10% however the ends of the distribution use less than 10% so the expected proportion of observations used is:</li>
+</ol>
+<p><span class="math display">\[E(\text{prop used})=\frac{1}{100}\Big[2\int_{0}^{5}(5+x)dx+10*90\Big]= \frac{1}{100}\Big[\left. 10x-x^2\right|_{0}^5)dx+10*90\Big] = 9.25\%\]</span> Guess I could have just done that with geometry but I wanted to write the fancy integral sign.<br />
+2. Now extend this to two predictors, <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span>, both uniformally distributed on [0,1]. The text doesn’t say they’re indepenedent but let’s assume they are. What proportion of observations will we use now?<br />
+In the previous one I had scaled this to 100 but I think it’s more intuitive to just think about cube with volume 1. It’s been about 12 years since I took multivariable calculus and it wasn’t a great subject for me then so hopefully I don’t botch these calculations too badly. In any case, our intuition should be that for one dimension, we use a bit less than 10% of the data, for two we use about 10%<span class="math inline">\(^2\)</span>, ect.</p>
+<p>The volume of the sample space used is</p>
+$$ V(X,Y)=
+<span class="math display">\[\begin{cases}
+0.01, &amp; X, Y \in [0.05,0.95] \\.
+0.1(0.1-X), &amp; Y \in [0.05,0.95] \text{ and }X \notin [0.05,0.95]\\
+0.1(0.1-Y), &amp; Y \notin [0.05,0.95] \text{ and }X \in [0.05,0.95]\\
+(0.1-X)(0.1-Y), &amp; Y \notin [0.05,0.95] \text{ and }X \notin [0.05,0.95]\\
+
+\end{cases}\]</span>
+<p>$$</p>
+<p>So… I think to compute this we can do three cases? i. The first case is just the center of the cube where we have 0.1x0.1 cubes as our sample space. This total is <span class="math inline">\(V_1=0.9\cdot 0.9\cdot (0.1)^2 = 0.0081\)</span> ii. The second scenario is where we are in the middle 90% of one variable and the extreme 5% of the other. There are four faces of the cube that represent this so</p>
+<p><span class="math display">\[V_2 = 4\int_{0.05}^{0.95}\int_{0}^{0.05}0.1(0.05+x)dxdy=0.4\int_{0.05}^{0.95}\left. 0.05x+\frac{x^2}{2}\right|_{0}^{0.05}=0.4\cdot 0.9\cdot 0.00\bar{3}=0.0012\]</span></p>
+<ol start="3" style="list-style-type: lower-roman">
+<li>The last part is the corners of which there are 8. The volumes of the rectangular prisms are:</li>
+</ol>
+<p><span class="math display">\[V_3 = 8\int_{0}^{0.05}\int_{0}^{0.05}(y+0.05)(x+0.05)dxdy=8\int_{0}^{0.05}\int_{0}^{0.05}x(y+0.05)+0.05y+0.0025\cdot dxdy\]</span> <span class="math display">\[V_3 =8\int_{0}^{0.05}\left. \frac{x^2}{2}(y+0.05)+0.05yx+0.0025x\right|_{0}^{0.05} dy=8\int_{0}^{0.05} 0.00125(y+0.05)+0.025y+0.00125\cdot dy\]</span> <span class="math display">\[V_3 =8\int_{0}^{0.05} 0.02625y+0.0013\cdot dy\approx0.0001\]</span> So then <span class="math display">\[V_{total}=.0081+.0012+.0001=0.0094\]</span> That seems pretty reasonable given what I expected to find.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Now if we have 100 predictors, we expect to use about <span class="math inline">\(100\cdot0.1^{100}\)</span> percent of the data.</li>
+<li>The above example imagined using a fixed ‘distance’ of within 0.05 of the observation. As the number of predictors grows, the proportion of observations within that that ‘distance’ shrinks. As a result, when we fix our <span class="math inline">\(K\)</span>, the odds of an element of <span class="math inline">\(\mathcal{N}_0\)</span> being within that threshold start to drop i.e. the distance between the test observation and each of its nearest neighbors grows. If the training set is not particularly large, then this problem will only be exacerbated.</li>
+<li>Now imagine that we are going to make a <span class="math inline">\(p\)</span> dimensional hypercube about a test observation. If we want that cube to contain 10% of the total observations, what does the length of the cube have to be? Assuming we stick with the same independent uniform distributions, then the total ‘volume’ would still be 1. Then for the cube to be 10% of this volume we need <span class="math inline">\(0.1 = l^p\Rightarrow l = \sqrt[p]{0.1}\)</span>. Say <span class="math inline">\(p=5\)</span>, then <span class="math inline">\(l=0.63\)</span> which means that with respect to each variable, we will be associating more dissimilar values in order to make the set <span class="math inline">\(\mathcal{N}_0\)</span>.</li>
+</ol>
+<p>I feel like this was a very well done question. I think that I understood the problems of dimensionality only in that some variables would have an equal gravitational pull but simply not be associated with the outcome. This shows that even if all of the inputs are good predictors in their own right, having a lot of them with a small training set will cause us to associate distant values when using KNN.</p>
+</div>
+<div id="section-4" class="section level4">
+<h4>5</h4>
+<p>These questions are about differences between LDA and QDA.<br />
+i. If the Bayes decision is linear, we would probably still expect QDA to perform better on the training set but worse on the testing set. This is because more flexible models just generally have lower training error but QDA probably pick up on non-existent patterns and thus underperform in the testing set.<br />
+ii. In the case of a non-linear boundary, we should expect QDA to perform better in both the training and test sets.<br />
+iii. As we increase the sample size, we should expect QDA to improve its accuracy rate relative to LDA. This is for two reasons. One is that we have to estimate many more parameters for QDA and this penalty will represent a smaller fraction of the total sample as N increases. Additionally, frivolous patterns that QDA picks up on in a small data set are less likely to appear in a larger training set. If we have more data to train on, QDA will be able to pick up on larger non-linear patterns that are not determined by only a few points.<br />
+iv. Given that the Bayes decision boundary is linear, is it true that QDA will still have a lower test error rate because a flexible model can still model a linear relationship? I do not think this is true. If we have a large sample, I believe that the models will perform similarly but the LDA will still outperform because the additional flexibility will only pick up on noise.</p>
+</div>
+<div id="section-5" class="section level4">
+<h4>6</h4>
+<p>Suppose we are modeling the chance a student gets an A in a course as a function of hours studied <span class="math inline">\(X_1\)</span> and their GPA <span class="math inline">\(X_2\)</span>. Estimated regression model is:</p>
+<p><span class="math display">\[\hat{Y}=-6+0.05X_1+X2\]</span></p>
+<ol style="list-style-type: lower-alpha">
+<li>The log odds that a student that studied for 40 hours with a 3.5 gpa gets an A is <span class="math display">\[\hat{Y}=-6+0.05\cdot 40+3.5=-0.5\]</span> And the associated probability is 0.377</li>
+<li>In order to have a 50% chance of getting an A, this student would have to study for: <span class="math display">\[0=-6+0.05\cdot X1+3.5\Rightarrow X_1=120\]</span></li>
+</ol>
 </div>
 </div>
 
