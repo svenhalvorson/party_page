@@ -387,6 +387,10 @@ summary {
 <li><a href="#section-3">4</a></li>
 <li><a href="#section-4">5</a></li>
 <li><a href="#section-5">6</a></li>
+<li><a href="#section-6">7</a></li>
+<li><a href="#section-7">8</a></li>
+<li><a href="#section-8">9</a></li>
+<li><a href="#section-9">10</a></li>
 </ul></li>
 </ul>
 </div>
@@ -508,24 +512,15 @@ This can be simplified to a linear combination of the observation, the estimated
 ## 5 2001  0.614 -0.623  1.032  0.959  0.381 1.2057  0.213        Up
 ## 6 2001  0.213  0.614 -0.623  1.032  0.959 1.3491  1.392        Up</code></pre>
 <p>We have the volume of shares traded on that day, the percentage return on the day (<code>Today</code>), and whether the market is up or down. Can look at the correlations:</p>
-<pre><code>##              Year         Lag1         Lag2         Lag3         Lag4         Lag5      Volume
-## Year   1.00000000  0.029699649  0.030596422  0.033194581  0.035688718  0.029787995  0.53900647
-## Lag1   0.02969965  1.000000000 -0.026294328 -0.010803402 -0.002985911 -0.005674606  0.04090991
-## Lag2   0.03059642 -0.026294328  1.000000000 -0.025896670 -0.010853533 -0.003557949 -0.04338321
-## Lag3   0.03319458 -0.010803402 -0.025896670  1.000000000 -0.024051036 -0.018808338 -0.04182369
-## Lag4   0.03568872 -0.002985911 -0.010853533 -0.024051036  1.000000000 -0.027083641 -0.04841425
-## Lag5   0.02978799 -0.005674606 -0.003557949 -0.018808338 -0.027083641  1.000000000 -0.02200231
-## Volume 0.53900647  0.040909908 -0.043383215 -0.041823686 -0.048414246 -0.022002315  1.00000000
-## Today  0.03009523 -0.026155045 -0.010250033 -0.002447647 -0.006899527 -0.034860083  0.01459182
-##               Today
-## Year    0.030095229
-## Lag1   -0.026155045
-## Lag2   -0.010250033
-## Lag3   -0.002447647
-## Lag4   -0.006899527
-## Lag5   -0.034860083
-## Volume  0.014591823
-## Today   1.000000000</code></pre>
+<pre><code>##              Year         Lag1         Lag2         Lag3         Lag4         Lag5      Volume        Today
+## Year   1.00000000  0.029699649  0.030596422  0.033194581  0.035688718  0.029787995  0.53900647  0.030095229
+## Lag1   0.02969965  1.000000000 -0.026294328 -0.010803402 -0.002985911 -0.005674606  0.04090991 -0.026155045
+## Lag2   0.03059642 -0.026294328  1.000000000 -0.025896670 -0.010853533 -0.003557949 -0.04338321 -0.010250033
+## Lag3   0.03319458 -0.010803402 -0.025896670  1.000000000 -0.024051036 -0.018808338 -0.04182369 -0.002447647
+## Lag4   0.03568872 -0.002985911 -0.010853533 -0.024051036  1.000000000 -0.027083641 -0.04841425 -0.006899527
+## Lag5   0.02978799 -0.005674606 -0.003557949 -0.018808338 -0.027083641  1.000000000 -0.02200231 -0.034860083
+## Volume 0.53900647  0.040909908 -0.043383215 -0.041823686 -0.048414246 -0.022002315  1.00000000  0.014591823
+## Today  0.03009523 -0.026155045 -0.010250033 -0.002447647 -0.006899527 -0.034860083  0.01459182  1.000000000</code></pre>
 <p>The dayu to day correlations are quite small but it’s not surprising that the correlations are a bit stronger between adjacent days and than for a few days apart. Quite low relationship between <code>Today</code> and <code>Volume</code> which makes me think people trade a lot of stocks in losing and winning environments.</p>
 <p>We can predict whether the market will go up with a logistc model:</p>
 <pre class="r"><code>smark_logistic = glm(
@@ -888,25 +883,23 @@ In this situation, we have a different variance for each class but no covariance
 <ol style="list-style-type: decimal">
 <li>Assume we have only one feature, <span class="math inline">\(X\)</span>, and it comes from a uniform distribution U(0,1). We use the observations within 10 percentage points of an observation to classify test observation <span class="math inline">\(x_i\)</span>. We’re asked what fraction of the test observations we’ll use on average to make a prediction. Well it’s quite close to 10% however the ends of the distribution use less than 10% so the expected proportion of observations used is:</li>
 </ol>
-<p><span class="math display">\[E(\text{prop used})=\frac{1}{100}\Big[2\int_{0}^{5}(5+x)dx+10*90\Big]= \frac{1}{100}\Big[\left. 10x-x^2\right|_{0}^5)dx+10*90\Big] = 9.25\%\]</span> Guess I could have just done that with geometry but I wanted to write the fancy integral sign.<br />
+<p><span class="math display">\[E(\text{prop used})=\frac{1}{100}\Big[2\int_{0}^{5}(5+x)dx+10*90\Big]= \frac{1}{100}\Big[\left. 10x+x^2\right|_{0}^5)dx+10*90\Big] = 9.75\%\]</span> Guess I could have just done that with geometry but I wanted to write the fancy integral sign.<br />
 2. Now extend this to two predictors, <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span>, both uniformally distributed on [0,1]. The text doesn’t say they’re indepenedent but let’s assume they are. What proportion of observations will we use now?<br />
 In the previous one I had scaled this to 100 but I think it’s more intuitive to just think about cube with volume 1. It’s been about 12 years since I took multivariable calculus and it wasn’t a great subject for me then so hopefully I don’t botch these calculations too badly. In any case, our intuition should be that for one dimension, we use a bit less than 10% of the data, for two we use about 10%<span class="math inline">\(^2\)</span>, ect.</p>
 <p>The volume of the sample space used is</p>
-$$ V(X,Y)=
-<span class="math display">\[\begin{cases}
-0.01, &amp; X, Y \in [0.05,0.95] \\.
-0.1(0.1-X), &amp; Y \in [0.05,0.95] \text{ and }X \notin [0.05,0.95]\\
-0.1(0.1-Y), &amp; Y \notin [0.05,0.95] \text{ and }X \in [0.05,0.95]\\
-(0.1-X)(0.1-Y), &amp; Y \notin [0.05,0.95] \text{ and }X \notin [0.05,0.95]\\
-
-\end{cases}\]</span>
-<p>$$</p>
-<p>So… I think to compute this we can do three cases? i. The first case is just the center of the cube where we have 0.1x0.1 cubes as our sample space. This total is <span class="math inline">\(V_1=0.9\cdot 0.9\cdot (0.1)^2 = 0.0081\)</span> ii. The second scenario is where we are in the middle 90% of one variable and the extreme 5% of the other. There are four faces of the cube that represent this so</p>
-<p><span class="math display">\[V_2 = 4\int_{0.05}^{0.95}\int_{0}^{0.05}0.1(0.05+x)dxdy=0.4\int_{0.05}^{0.95}\left. 0.05x+\frac{x^2}{2}\right|_{0}^{0.05}=0.4\cdot 0.9\cdot 0.00\bar{3}=0.0012\]</span></p>
-<ol start="3" style="list-style-type: lower-roman">
-<li>The last part is the corners of which there are 8. The volumes of the rectangular prisms are:</li>
+<p><span class="math display">\[V(X,Y)=\begin{cases}0.01, &amp; X, Y \in [0.05,0.95] \\0.1(0.1-X), &amp; Y \in [0.05,0.95] \text{ and }X \notin [0.05,0.95]\\0.1(0.1-Y), &amp; Y \notin [0.05,0.95] \text{ and }X \in [0.05,0.95]\\(0.1-X)(0.1-Y), &amp; Y \notin [0.05,0.95] \text{ and }X \notin [0.05,0.95]\\ \end{cases}\]</span></p>
+<p>So… I think to compute this we can do three cases?</p>
+<ol style="list-style-type: lower-roman">
+<li>The first case is just the center of the square where we have 0.1x0.1 proportion of sample used This total is <span class="math inline">\(V_1=0.9\cdot 0.9\cdot (0.1)^2 = 0.0081\)</span><br />
+</li>
+<li>The second scenario is where we are in the middle 90% of one variable and the extreme 5% of the other. These are like the four edges, not corners, of the square. There are 4 of these so</li>
 </ol>
-<p><span class="math display">\[V_3 = 8\int_{0}^{0.05}\int_{0}^{0.05}(y+0.05)(x+0.05)dxdy=8\int_{0}^{0.05}\int_{0}^{0.05}x(y+0.05)+0.05y+0.0025\cdot dxdy\]</span> <span class="math display">\[V_3 =8\int_{0}^{0.05}\left. \frac{x^2}{2}(y+0.05)+0.05yx+0.0025x\right|_{0}^{0.05} dy=8\int_{0}^{0.05} 0.00125(y+0.05)+0.025y+0.00125\cdot dy\]</span> <span class="math display">\[V_3 =8\int_{0}^{0.05} 0.02625y+0.0013\cdot dy\approx0.0001\]</span> So then <span class="math display">\[V_{total}=.0081+.0012+.0001=0.0094\]</span> That seems pretty reasonable given what I expected to find.</p>
+<p><span class="math display">\[V_2 = 4\int_{0.05}^{0.95}\int_{0}^{0.05}0.1(0.05+x)dxdy=0.4\int_{0.05}^{0.95}\left. 0.05x+\frac{x^2}{2}\right|_{0}^{0.05}=0.4\cdot 0.9\cdot 0.00\cdot0.00375=0.00135\]</span></p>
+<ol start="3" style="list-style-type: lower-roman">
+<li>The third part is the four corners:</li>
+</ol>
+<p><span class="math display">\[V_3 = 4\int_{0}^{0.05}\int_{0}^{0.05}(y+0.05)(x+0.05)dxdy=4\int_{0}^{0.05}\int_{0}^{0.05}x(y+0.05)+0.05y+0.0025\cdot dxdy\]</span> <span class="math display">\[V_3 =4\int_{0}^{0.05}\left. \frac{x^2}{2}(y+0.05)+0.05yx+0.0025x\right|_{0}^{0.05} dy=4\int_{0}^{0.05} 0.00125(y+0.05)+0.025y+0.000125\cdot dy\]</span> <span class="math display">\[V_3 =4\int_{0}^{0.05} 0.02625y+0.0019\cdot dy\approx0.00005\]</span></p>
+<p>So then <span class="math display">\[V_{total}=.0081+0.00135+0.00005=0.0095\]</span> We did a little rounding but it’s approximately <span class="math inline">\(\frac{1}{10}\)</span> of the answer from part a so that seems right.</p>
 <ol start="3" style="list-style-type: decimal">
 <li>Now if we have 100 predictors, we expect to use about <span class="math inline">\(100\cdot0.1^{100}\)</span> percent of the data.</li>
 <li>The above example imagined using a fixed ‘distance’ of within 0.05 of the observation. As the number of predictors grows, the proportion of observations within that that ‘distance’ shrinks. As a result, when we fix our <span class="math inline">\(K\)</span>, the odds of an element of <span class="math inline">\(\mathcal{N}_0\)</span> being within that threshold start to drop i.e. the distance between the test observation and each of its nearest neighbors grows. If the training set is not particularly large, then this problem will only be exacerbated.</li>
@@ -930,6 +923,117 @@ iv. Given that the Bayes decision boundary is linear, is it true that QDA will s
 <li>The log odds that a student that studied for 40 hours with a 3.5 gpa gets an A is <span class="math display">\[\hat{Y}=-6+0.05\cdot 40+3.5=-0.5\]</span> And the associated probability is 0.377</li>
 <li>In order to have a 50% chance of getting an A, this student would have to study for: <span class="math display">\[0=-6+0.05\cdot X1+3.5\Rightarrow X_1=120\]</span></li>
 </ol>
+</div>
+<div id="section-6" class="section level4">
+<h4>7</h4>
+<p>Now we have a situation where we’re going to use LDA to predict the probability of a company turning a profit based on their percent profit from the previous year. We assume that the variances are equal (<span class="math inline">\(\sigma^2=36\)</span>), that 80% of companies made profits, and that the mean profit percents for companies who did and did not make profits were 10% and 0% respectively.</p>
+<p>Let’s call <span class="math inline">\(Y=0\)</span> the class for non-profitable companies and <span class="math inline">\(Y=1\)</span> for profitable ones. Then using the Gaussian density function we have:</p>
+<p><span class="math display">\[p_1(x)=\frac{\pi_1\cdot \frac{1}{\sqrt{2\pi}\sigma}\cdot\text{exp}(-\frac{1}{2\sigma^2}(x-\mu_1)^2)}{\sum_{l=1}^2\pi_l\frac{1}{\sqrt{2\pi}\sigma}\cdot\text{exp}(-\frac{1}{2\sigma^2}(x-\mu_l)^2)}=\frac{0.8\cdot \frac{1}{\sqrt{2\pi}\cdot6}\cdot\text{exp}(-\frac{1}{2\cdot36}(4-10)^2)}{0.8\cdot \frac{1}{\sqrt{2\pi}\cdot6}\cdot\text{exp}(-\frac{1}{2\cdot36}(4-10)^2)+0.2\cdot \frac{1}{\sqrt{2\pi}\cdot6}\cdot\text{exp}(-\frac{1}{2\cdot36}(4-0)^2)}=\]</span> This is a lot easier to do with an r command:</p>
+<pre class="r"><code>p1 = 0.8*dnorm(x = 4, mean = 10, sd = 6)/(0.8*dnorm(x = 4, mean = 10, sd = 6) + 0.2*dnorm(x = 4, mean = 0, sd = 6))
+round(p1, 3)</code></pre>
+<pre><code>## [1] 0.752</code></pre>
+</div>
+<div id="section-7" class="section level4">
+<h4>8</h4>
+<p>We’re given a scenario where we divide the data into equal sized training and testing sets. A logistic model gives 20% error rate with the training data and 30% with the testing. A KNN model with K=1 gives an average error rate of 18% across the two samples. Which should we use? I had to look at another solution for this since my initial impression was way off. The key is that the KNN with K=1 always has a zero percent error rate. As a result, the test error rate for that KNN would be 36% and thus worse than the logistic method. If K&gt;1, it is not possible to actually tell because one possibility is that the error rate of the KNN train is 4% in the training data and 32% in the testing set in which case we would want the logistic model. On the other hand, if the training error rate was 16% in the training and 20% in the testing, we would want the KNN model.</p>
+</div>
+<div id="section-8" class="section level4">
+<h4>9</h4>
+<p>Last question is very easy. Just converting odds to probabilities. An odds of 0.37 corresponds to a probability of <span class="math inline">\(\frac{0.37}{1+0.37} = 27\%\)</span>. A 16% probability corresponds to an odds of <span class="math inline">\(\frac{0.16}{1+0.16} = 0.19\)</span></p>
+</div>
+<div id="section-9" class="section level4">
+<h4>10</h4>
+<p>Here we’re going to start out with the <code>Weekly</code> data set. This has 20 years of returns.</p>
+<ol style="list-style-type: decimal">
+<li>Investigate the data set for patterns</li>
+</ol>
+<pre class="r"><code>Weekly = ISLR::Weekly
+
+head(Weekly)</code></pre>
+<pre><code>##   Year   Lag1   Lag2   Lag3   Lag4   Lag5    Volume  Today Direction
+## 1 1990  0.816  1.572 -3.936 -0.229 -3.484 0.1549760 -0.270      Down
+## 2 1990 -0.270  0.816  1.572 -3.936 -0.229 0.1485740 -2.576      Down
+## 3 1990 -2.576 -0.270  0.816  1.572 -3.936 0.1598375  3.514        Up
+## 4 1990  3.514 -2.576 -0.270  0.816  1.572 0.1616300  0.712        Up
+## 5 1990  0.712  3.514 -2.576 -0.270  0.816 0.1537280  1.178        Up
+## 6 1990  1.178  0.712  3.514 -2.576 -0.270 0.1544440 -1.372      Down</code></pre>
+<pre class="r"><code># basically the same thing as prior
+cor(dplyr::select(Weekly,-Direction))</code></pre>
+<pre><code>##               Year         Lag1        Lag2        Lag3         Lag4         Lag5      Volume        Today
+## Year    1.00000000 -0.032289274 -0.03339001 -0.03000649 -0.031127923 -0.030519101  0.84194162 -0.032459894
+## Lag1   -0.03228927  1.000000000 -0.07485305  0.05863568 -0.071273876 -0.008183096 -0.06495131 -0.075031842
+## Lag2   -0.03339001 -0.074853051  1.00000000 -0.07572091  0.058381535 -0.072499482 -0.08551314  0.059166717
+## Lag3   -0.03000649  0.058635682 -0.07572091  1.00000000 -0.075395865  0.060657175 -0.06928771 -0.071243639
+## Lag4   -0.03112792 -0.071273876  0.05838153 -0.07539587  1.000000000 -0.075675027 -0.06107462 -0.007825873
+## Lag5   -0.03051910 -0.008183096 -0.07249948  0.06065717 -0.075675027  1.000000000 -0.05851741  0.011012698
+## Volume  0.84194162 -0.064951313 -0.08551314 -0.06928771 -0.061074617 -0.058517414  1.00000000 -0.033077783
+## Today  -0.03245989 -0.075031842  0.05916672 -0.07124364 -0.007825873  0.011012698 -0.03307778  1.000000000</code></pre>
+<p>Very similar to the other stock data set. Small relationships between days and a large relationship between year &amp; volume.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Here’s a logistic model using everything except year:</li>
+</ol>
+<pre class="r"><code>weekly_logistic = glm(
+  formula = Direction ~ . - Year -Today,
+  data = Weekly,
+  family = &#39;binomial&#39;
+)
+
+summary(weekly_logistic)</code></pre>
+<pre><code>## 
+## Call:
+## glm(formula = Direction ~ . - Year - Today, family = &quot;binomial&quot;, 
+##     data = Weekly)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.6949  -1.2565   0.9913   1.0849   1.4579  
+## 
+## Coefficients:
+##             Estimate Std. Error z value Pr(&gt;|z|)   
+## (Intercept)  0.26686    0.08593   3.106   0.0019 **
+## Lag1        -0.04127    0.02641  -1.563   0.1181   
+## Lag2         0.05844    0.02686   2.175   0.0296 * 
+## Lag3        -0.01606    0.02666  -0.602   0.5469   
+## Lag4        -0.02779    0.02646  -1.050   0.2937   
+## Lag5        -0.01447    0.02638  -0.549   0.5833   
+## Volume      -0.02274    0.03690  -0.616   0.5377   
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 1496.2  on 1088  degrees of freedom
+## Residual deviance: 1486.4  on 1082  degrees of freedom
+## AIC: 1500.4
+## 
+## Number of Fisher Scoring iterations: 4</code></pre>
+<pre class="r"><code>weekly_logistic$deviance/weekly_logistic$null.deviance</code></pre>
+<pre><code>## [1] 0.9934198</code></pre>
+<p>Very few relationships between predictors and outcomes. We see that two days before is a positive predictor for having a positive outcome for the day.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>The confusion matrix looks like this:</li>
+</ol>
+<pre class="r"><code>weekly_logistic_pred = predict(
+  weekly_logistic,
+  type = &#39;response&#39;
+)
+
+table(
+  weekly_logistic_pred &gt; 0.5,
+  Weekly$Direction
+)</code></pre>
+<pre><code>##        
+##         Down  Up
+##   FALSE   54  48
+##   TRUE   430 557</code></pre>
+<p>The logistic errors are heavily concentrated in false positives. The sensitivity is 92% but the specificity is only 11%.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Set the data prior to 2009 as the training set and the rest of the data as the test set. Use only lag2 as a predictor and report the confusion matrix:</li>
+</ol>
+<pre class="r"><code>weekly_train = Weekly %&gt;% 
+  filter(Year &lt; 2009)
+weekly_test = Weekly %&gt;% 
+  filter(Year &gt;= 2009)</code></pre>
 </div>
 </div>
 
