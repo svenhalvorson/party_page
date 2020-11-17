@@ -883,9 +883,11 @@ In this situation, we have a different variance for each class but no covariance
 <ol style="list-style-type: decimal">
 <li>Assume we have only one feature, <span class="math inline">\(X\)</span>, and it comes from a uniform distribution U(0,1). We use the observations within 10 percentage points of an observation to classify test observation <span class="math inline">\(x_i\)</span>. We’re asked what fraction of the test observations we’ll use on average to make a prediction. Well it’s quite close to 10% however the ends of the distribution use less than 10% so the expected proportion of observations used is:</li>
 </ol>
-<p><span class="math display">\[E(\text{prop used})=\frac{1}{100}\Big[2\int_{0}^{5}(5+x)dx+10*90\Big]= \frac{1}{100}\Big[\left. 10x+x^2\right|_{0}^5)dx+10*90\Big] = 9.75\%\]</span> Guess I could have just done that with geometry but I wanted to write the fancy integral sign.<br />
-2. Now extend this to two predictors, <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span>, both uniformally distributed on [0,1]. The text doesn’t say they’re indepenedent but let’s assume they are. What proportion of observations will we use now?<br />
-In the previous one I had scaled this to 100 but I think it’s more intuitive to just think about cube with volume 1. It’s been about 12 years since I took multivariable calculus and it wasn’t a great subject for me then so hopefully I don’t botch these calculations too badly. In any case, our intuition should be that for one dimension, we use a bit less than 10% of the data, for two we use about 10%<span class="math inline">\(^2\)</span>, ect.</p>
+<p><span class="math display">\[E(\text{prop used})=\frac{1}{100}\Big[2\int_{0}^{5}(5+x)dx+10*90\Big]= \frac{1}{100}\Big[\left. 10x+x^2\right|_{0}^5)dx+10*90\Big] = 9.75\%\]</span> Guess I could have just done that with geometry but I wanted to write the fancy integral sign.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Now extend this to two predictors, <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span>, both uniformally distributed on [0,1]. The text doesn’t say they’re indepenedent but let’s assume they are. What proportion of observations will we use now?<br />
+In the previous one I had scaled this to 100 but I think it’s more intuitive to just think about cube with volume 1. It’s been about 12 years since I took multivariable calculus and it wasn’t a great subject for me then so hopefully I don’t botch these calculations too badly. In any case, our intuition should be that for one dimension, we use a bit less than 10% of the data, for two we use about 10%<span class="math inline">\(^2\)</span>, ect.</li>
+</ol>
 <p>The volume of the sample space used is</p>
 <p><span class="math display">\[V(X,Y)=\begin{cases}0.01, &amp; X, Y \in [0.05,0.95] \\0.1(0.1-X), &amp; Y \in [0.05,0.95] \text{ and }X \notin [0.05,0.95]\\0.1(0.1-Y), &amp; Y \notin [0.05,0.95] \text{ and }X \in [0.05,0.95]\\(0.1-X)(0.1-Y), &amp; Y \notin [0.05,0.95] \text{ and }X \notin [0.05,0.95]\\ \end{cases}\]</span></p>
 <p>So… I think to compute this we can do three cases?</p>
@@ -909,16 +911,21 @@ In the previous one I had scaled this to 100 but I think it’s more intuitive t
 </div>
 <div id="section-4" class="section level4">
 <h4>5</h4>
-<p>These questions are about differences between LDA and QDA.<br />
-i. If the Bayes decision is linear, we would probably still expect QDA to perform better on the training set but worse on the testing set. This is because more flexible models just generally have lower training error but QDA probably pick up on non-existent patterns and thus underperform in the testing set.<br />
-ii. In the case of a non-linear boundary, we should expect QDA to perform better in both the training and test sets.<br />
-iii. As we increase the sample size, we should expect QDA to improve its accuracy rate relative to LDA. This is for two reasons. One is that we have to estimate many more parameters for QDA and this penalty will represent a smaller fraction of the total sample as N increases. Additionally, frivolous patterns that QDA picks up on in a small data set are less likely to appear in a larger training set. If we have more data to train on, QDA will be able to pick up on larger non-linear patterns that are not determined by only a few points.<br />
-iv. Given that the Bayes decision boundary is linear, is it true that QDA will still have a lower test error rate because a flexible model can still model a linear relationship? I do not think this is true. If we have a large sample, I believe that the models will perform similarly but the LDA will still outperform because the additional flexibility will only pick up on noise.</p>
+<p>These questions are about differences between LDA and QDA.</p>
+<ol style="list-style-type: lower-roman">
+<li>If the Bayes decision is linear, we would probably still expect QDA to perform better on the training set but worse on the testing set. This is because more flexible models just generally have lower training error but QDA probably pick up on non-existent patterns and thus underperform in the testing set.<br />
+</li>
+<li>In the case of a non-linear boundary, we should expect QDA to perform better in both the training and test sets.<br />
+</li>
+<li>As we increase the sample size, we should expect QDA to improve its accuracy rate relative to LDA. This is for two reasons. One is that we have to estimate many more parameters for QDA and this penalty will represent a smaller fraction of the total sample as N increases. Additionally, frivolous patterns that QDA picks up on in a small data set are less likely to appear in a larger training set. If we have more data to train on, QDA will be able to pick up on larger non-linear patterns that are not determined by only a few points.<br />
+</li>
+<li>Given that the Bayes decision boundary is linear, is it true that QDA will still have a lower test error rate because a flexible model can still model a linear relationship? I do not think this is true. If we have a large sample, I believe that the models will perform similarly but the LDA will still outperform because the additional flexibility will only pick up on noise.</li>
+</ol>
 </div>
 <div id="section-5" class="section level4">
 <h4>6</h4>
 <p>Suppose we are modeling the chance a student gets an A in a course as a function of hours studied <span class="math inline">\(X_1\)</span> and their GPA <span class="math inline">\(X_2\)</span>. Estimated regression model is:</p>
-<p><span class="math display">\[\hat{Y}=-6+0.05X_1+X2\]</span></p>
+<p><span class="math display">\[\hat{Y}=-6+0.05X_1+X_2\]</span></p>
 <ol style="list-style-type: lower-alpha">
 <li>The log odds that a student that studied for 40 hours with a 3.5 gpa gets an A is <span class="math display">\[\hat{Y}=-6+0.05\cdot 40+3.5=-0.5\]</span> And the associated probability is 0.377</li>
 <li>In order to have a 50% chance of getting an A, this student would have to study for: <span class="math display">\[0=-6+0.05\cdot X1+3.5\Rightarrow X_1=120\]</span></li>
@@ -928,14 +935,14 @@ iv. Given that the Bayes decision boundary is linear, is it true that QDA will s
 <h4>7</h4>
 <p>Now we have a situation where we’re going to use LDA to predict the probability of a company turning a profit based on their percent profit from the previous year. We assume that the variances are equal (<span class="math inline">\(\sigma^2=36\)</span>), that 80% of companies made profits, and that the mean profit percents for companies who did and did not make profits were 10% and 0% respectively.</p>
 <p>Let’s call <span class="math inline">\(Y=0\)</span> the class for non-profitable companies and <span class="math inline">\(Y=1\)</span> for profitable ones. Then using the Gaussian density function we have:</p>
-<p><span class="math display">\[p_1(x)=\frac{\pi_1\cdot \frac{1}{\sqrt{2\pi}\sigma}\cdot\text{exp}(-\frac{1}{2\sigma^2}(x-\mu_1)^2)}{\sum_{l=1}^2\pi_l\frac{1}{\sqrt{2\pi}\sigma}\cdot\text{exp}(-\frac{1}{2\sigma^2}(x-\mu_l)^2)}=\frac{0.8\cdot \frac{1}{\sqrt{2\pi}\cdot6}\cdot\text{exp}(-\frac{1}{2\cdot36}(4-10)^2)}{0.8\cdot \frac{1}{\sqrt{2\pi}\cdot6}\cdot\text{exp}(-\frac{1}{2\cdot36}(4-10)^2)+0.2\cdot \frac{1}{\sqrt{2\pi}\cdot6}\cdot\text{exp}(-\frac{1}{2\cdot36}(4-0)^2)}=\]</span> This is a lot easier to do with an r command:</p>
+<p><span class="math display">\[p_1(x)=\frac{\pi_1\cdot \frac{1}{\sqrt{2\pi}\sigma}\cdot\text{exp}(-\frac{1}{2\sigma^2}(x-\mu_1)^2)}{\sum_{l=1}^2\pi_l\frac{1}{\sqrt{2\pi}\sigma}\cdot\text{exp}(-\frac{1}{2\sigma^2}(x-\mu_l)^2)}=\frac{0.8\cdot \frac{1}{\sqrt{2\pi}\cdot6}\cdot\text{exp}(-\frac{1}{2\cdot36}(4-10)^2)}{0.8\cdot \frac{1}{\sqrt{2\pi}\cdot6}\cdot\text{exp}(-\frac{1}{2\cdot36}(4-10)^2)+0.2\cdot \frac{1}{\sqrt{2\pi}\cdot6}\cdot\text{exp}(-\frac{1}{2\cdot36}(4-0)^2)}\]</span> This is a lot easier to do with an r command:</p>
 <pre class="r"><code>p1 = 0.8*dnorm(x = 4, mean = 10, sd = 6)/(0.8*dnorm(x = 4, mean = 10, sd = 6) + 0.2*dnorm(x = 4, mean = 0, sd = 6))
 round(p1, 3)</code></pre>
 <pre><code>## [1] 0.752</code></pre>
 </div>
 <div id="section-7" class="section level4">
 <h4>8</h4>
-<p>We’re given a scenario where we divide the data into equal sized training and testing sets. A logistic model gives 20% error rate with the training data and 30% with the testing. A KNN model with K=1 gives an average error rate of 18% across the two samples. Which should we use? I had to look at another solution for this since my initial impression was way off. The key is that the KNN with K=1 always has a zero percent error rate. As a result, the test error rate for that KNN would be 36% and thus worse than the logistic method. If K&gt;1, it is not possible to actually tell because one possibility is that the error rate of the KNN train is 4% in the training data and 32% in the testing set in which case we would want the logistic model. On the other hand, if the training error rate was 16% in the training and 20% in the testing, we would want the KNN model.</p>
+<p>We’re given a scenario where we divide the data into equal sized training and testing sets. A logistic model gives 20% error rate with the training data and 30% with the testing. A KNN model with K=1 gives an average error rate of 18% across the two samples. Which should we use? I had to look at another solution for this since my initial impression was way off. The key is that the KNN with K=1 always has a zero percent training error rate. As a result, the test error rate for that KNN would be 36% and thus worse than the logistic method. If K&gt;1, it is not possible to actually tell because one possibility is that the error rate of the KNN train is 4% in the training data and 32% in the testing set in which case we would want the logistic model. On the other hand, if the training error rate was 16% in the training and 20% in the testing, we would want the KNN model.</p>
 </div>
 <div id="section-8" class="section level4">
 <h4>9</h4>
@@ -957,7 +964,7 @@ head(Weekly)</code></pre>
 ## 4 1990  3.514 -2.576 -0.270  0.816  1.572 0.1616300  0.712        Up
 ## 5 1990  0.712  3.514 -2.576 -0.270  0.816 0.1537280  1.178        Up
 ## 6 1990  1.178  0.712  3.514 -2.576 -0.270 0.1544440 -1.372      Down</code></pre>
-<pre class="r"><code># basically the same thing as prior
+<pre class="r"><code># basically the same thing as the Smarket data set
 cor(dplyr::select(Weekly,-Direction))</code></pre>
 <pre><code>##               Year         Lag1        Lag2        Lag3         Lag4         Lag5      Volume        Today
 ## Year    1.00000000 -0.032289274 -0.03339001 -0.03000649 -0.031127923 -0.030519101  0.84194162 -0.032459894
@@ -970,7 +977,7 @@ cor(dplyr::select(Weekly,-Direction))</code></pre>
 ## Today  -0.03245989 -0.075031842  0.05916672 -0.07124364 -0.007825873  0.011012698 -0.03307778  1.000000000</code></pre>
 <p>Very similar to the other stock data set. Small relationships between days and a large relationship between year &amp; volume.</p>
 <ol start="2" style="list-style-type: decimal">
-<li>Here’s a logistic model using everything except year:</li>
+<li>Here’s a logistic model using everything except <code>Year</code> &amp; <code>Today</code>:</li>
 </ol>
 <pre class="r"><code>weekly_logistic = glm(
   formula = Direction ~ . - Year -Today,
@@ -1007,8 +1014,8 @@ summary(weekly_logistic)</code></pre>
 ## AIC: 1500.4
 ## 
 ## Number of Fisher Scoring iterations: 4</code></pre>
-<pre class="r"><code>weekly_logistic$deviance/weekly_logistic$null.deviance</code></pre>
-<pre><code>## [1] 0.9934198</code></pre>
+<pre class="r"><code>1-weekly_logistic$deviance/weekly_logistic$null.deviance</code></pre>
+<pre><code>## [1] 0.00658015</code></pre>
 <p>Very few relationships between predictors and outcomes. We see that two days before is a positive predictor for having a positive outcome for the day.</p>
 <ol start="3" style="list-style-type: decimal">
 <li>The confusion matrix looks like this:</li>
