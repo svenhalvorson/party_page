@@ -386,13 +386,25 @@ summary {
 <u><span style="font-size: 18px">5.1</u>
 </style>
 <ul>
-<li>** **:</li>
+<li><strong>Resampling methods</strong>: Statistical techniques derived from drawing random samples with replacement from the training data.</li>
+<li><strong>Model assessment</strong>: Evaluating the performance of a model.</li>
+<li><strong>Model selection</strong>: Process of comparing various statistical learning methods and selecting one (or maybe several).</li>
 </ul>
 </div>
 <div id="notes" class="section level3">
 <h3>Notes</h3>
 <div id="cross-validation" class="section level4">
 <h4>5.1: Cross-Validation</h4>
+<p>Despite its importance, the first section is not overly complicated so I will try to give a more holistic summary instead of linearly moving through the chapter.</p>
+<p>The major concept here is <em>cross-validation</em> which broadly encompasses the idea of comparing performance on the training and testing data sets. Most statistical learning techniques minimize the training error rate but this is not a sufficient metric to declare the model successful or select one technique over another. Our ultimate goal for predictive modeling is to have a low test error rate. Cross validation methods attempt to help us quantify the test error rate as well as compare the test error between multiple models.</p>
+<p>At the heart of this topic is a tension between wanting to use as much data as possible to training our learning method and also wanting to test it on fresh data. If we apportion all of the data for training, we will not have a good estimate of the training error rate. Conversely, if we sacrifice a large portion of our data to test the model, the model fit may not be as good due to a smaller sample size. This will overestimate the testing error rate. While the way I described this is a bit of a false dichotomy, it exemplifies the competing interests of a tight model fit and the ability to test it.</p>
+<p>There are three methods described in the book about how to go about validating models and/or selecting among them. From my reading, the authors clearly prefer the third method, but they present the others for intuition and comparison purposes. Here I will outline them:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Validation set approach:</strong> In this method, we randomly select a subset of our data to be left out from the training process. The authors give an example of leaving out half although I have more frequently seen a ratio of 4:1, train to test, used in other materials. Once the training is done, we compute the MSE, test error rate, or any other metrics of fit on the data that was left out. In this way, we allow the model to be tested on data that it has not seen before which simulates the idea of applying this in the wild. While this makes intuitive sense, there are two major drawbacks:</li>
+</ol>
+<ol style="list-style-type: lower-roman">
+<li>The exact partition of data into training and testing sets can have a dramatic effect on the statistics of model fit. If we happen to select a training set that does not have a good representation of the patterns in the broader population, we can end up having a very poor estimate of the training error rate.</li>
+</ol>
 </div>
 <div id="the-bootstrap" class="section level4">
 <h4>5.2: The Bootstrap</h4>
