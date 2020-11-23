@@ -371,13 +371,15 @@ summary {
 
 <div id="TOC">
 <ul>
-<li><a href="#definitions">Definitions</a></li>
-<li><a href="#notes">Notes</a><ul>
+<li><a href="#definitions">Definitions</a><ul>
 <li><a href="#cross-validation">5.1: Cross-Validation</a></li>
 <li><a href="#the-bootstrap">5.2: The Bootstrap</a></li>
 </ul></li>
 <li><a href="#lab">Lab</a></li>
-<li><a href="#exercises">Exercises</a></li>
+<li><a href="#exercises">Exercises</a><ul>
+<li><a href="#section">1</a></li>
+<li><a href="#section-1">3</a></li>
+</ul></li>
 </ul>
 </div>
 
@@ -389,10 +391,13 @@ summary {
 <li><strong>Resampling methods</strong>: Statistical techniques derived from drawing random samples with replacement from the training data.</li>
 <li><strong>Model assessment</strong>: Evaluating the performance of a model.</li>
 <li><strong>Model selection</strong>: Process of comparing various statistical learning methods and selecting one (or maybe several).</li>
+<li><strong>Validation set approach</strong>: Setting aside a portion of the data as a test set</li>
+<li><strong>Leave on out cross validation (LOOCV)</strong>: Fitting the statistical method repeatedly each with a different observation excluded as a test set. Test summary statistics are averaged across the 1 observation test sets.</li>
+<li><strong>K-fold cross validation</strong>: Method of cross validation in which we divide the data into k equally sized sets. Repeatedly fit the statistical learning method into <u><span style="font-size: 18px">5.2</u>
+</style></li>
+<li><strong>Bootstrap</strong>: A method of quantifying variation or uncertainty of a statistic or model by repeatedly sampling the training data with replacement.<br />
+### Notes</li>
 </ul>
-</div>
-<div id="notes" class="section level3">
-<h3>Notes</h3>
 <div id="cross-validation" class="section level4">
 <h4>5.1: Cross-Validation</h4>
 <p>Despite its importance, the first section is not overly complicated so I will try to give a more holistic summary instead of linearly moving through the chapter.</p>
@@ -400,21 +405,236 @@ summary {
 <p>At the heart of this topic is a tension between wanting to use as much data as possible to training our learning method and also wanting to test it on fresh data. If we apportion all of the data for training, we will not have a good estimate of the training error rate. Conversely, if we sacrifice a large portion of our data to test the model, the model fit may not be as good due to a smaller sample size. This will overestimate the testing error rate. While the way I described this is a bit of a false dichotomy, it exemplifies the competing interests of a tight model fit and the ability to test it.</p>
 <p>There are three methods described in the book about how to go about validating models and/or selecting among them. From my reading, the authors clearly prefer the third method, but they present the others for intuition and comparison purposes. Here I will outline them:</p>
 <ol style="list-style-type: decimal">
-<li><strong>Validation set approach:</strong> In this method, we randomly select a subset of our data to be left out from the training process. The authors give an example of leaving out half although I have more frequently seen a ratio of 4:1, train to test, used in other materials. Once the training is done, we compute the MSE, test error rate, or any other metrics of fit on the data that was left out. In this way, we allow the model to be tested on data that it has not seen before which simulates the idea of applying this in the wild. While this makes intuitive sense, there are two major drawbacks:</li>
+<li><strong>Validation set approach</strong>: In this method, we randomly select a subset of our data to be left out from the training process. The authors give an example of leaving out half although I have more frequently seen a ratio of 4:1, train to test, used in other materials. Once the training is done, we compute the MSE, test error rate, or any other metrics of fit on the data that was left out. In this way, we allow the model to be tested on data that it has not seen before which simulates the idea of applying this in the wild. While this makes intuitive sense, there are two major drawbacks:</li>
 </ol>
 <ol style="list-style-type: lower-roman">
-<li>The exact partition of data into training and testing sets can have a dramatic effect on the statistics of model fit. If we happen to select a training set that does not have a good representation of the patterns in the broader population, we can end up having a very poor estimate of the training error rate.</li>
+<li>The exact partition of data into training and testing sets can have a dramatic effect on the statistics of model fit. If we happen to select a training set that does not have a good representation of the patterns in the broader population, we can end up having a very poor estimate of the training error rate.<br />
+</li>
+<li>Because we set aside a chunk of the data, the training set will necessarily be smaller and thus the fit may be poorer. As a result, the testing error rate may be overestimated due to a less tuned model.<br />
+</li>
 </ol>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Leave one out cross validation (LOOCV)</strong>: Alternatively, we could leave a single observation out of the model and use this as a test set. Doing this once would be a highly volatile method but if we do it with every observation in the data set, we can average these errors to estimate the testing error rate. The error for a continuous response could be estimated like this: <span class="math display">\[CV_{(n)}=\frac{1}{n}\sum_{i=1}^n\text{MSE}_i\]</span> Where <span class="math inline">\(\text{MSE_i}\)</span> is <span class="math inline">\((y_i-\hat{y_i})^2\)</span>. Here we’re computing N models and computing one unbiased estimate of the testing MSE from each. Then averaging these gives a more robust estimate of the testing MSE. By doing this, we avoid the two problems mentioned with the validation set approach. First, we will be using <em>almost</em> all the data so we will not inflate the test error rate by using an arbitrarily small data set to training our learning method. Secondly, possible bias from selecting a particular subset of the data will not matter because LOOCV does the same thing for every observation. The major drawback of this method is that it’s very computationally expensive. Until recently, this would not be possible with many large data sets and/or complex models but now we can try it. Even so, I suspect that you would not want to use this method as any kind of preliminary step. Perhaps once you’ve found a model that you’re overall pleased with, you could set this to run overnight in order to get a more accurate estimate of the training MSE/error rate. One other thing to mention here is that there is a nice closed form for linear regression (even with polynomial terms) that uses the converse of the leverage as a weight.<br />
+</li>
+<li><strong>k-fold cross validation</strong>: This last method is a bit between the other two and definitely seems to be preferred by the authors. Instead of just picking on subset/observation to leave out, we partition the data into <span class="math inline">\(k\)</span> subsets. Then we apply the validation set approach <span class="math inline">\(k\)</span> times where each time we’re using <span class="math inline">\(\frac{1}{k}^{th}\)</span> of the data as a validation set. We then compute the estimate of the test error way in a similar fashion as the LOOCV method: <span class="math display">\[CV_{(k)}=\frac{1}{k}\sum_{i=1}^k\text{MSE}_i\]</span> By doing this, we are able to partially solve the problems of each of the previous methods. We are not nearly as reliant on the exact subset we pick as the first method and we will use a larger portion of the data to fit the models. We’re told that typically people choose <span class="math inline">\(k=5\)</span> or <span class="math inline">\(k=10\)</span> but in general, <span class="math inline">\(k &lt;&lt; N\)</span>, so the number of models that will need to be fit is quite a bit smaller than for LOOCV meaning this can be done more quickly.</li>
+</ol>
+<p>There are a couple of other notes given to us here. One is that it is generally quite difficult to estimate the true test MSE/error rate. While these methods can be shown to be effective in simulations, real data may be more heterogeneous and wild than your simulation could account for. Another important note is that sometimes we’re less interested in estimating the actual test MSE but rather we want to compare the estimated test MSE between several models in order to select a ‘best’ one. An example of this would be selecting <span class="math inline">\(K\)</span> in the KNN method.<br />
+Anther point made here, that I think is not obvious, is that the LOOCV is not strictly better than k-fold method. It would seem that doing all those models would only provide less variance but this is only partly true. The LOOCV has the lowest bias of these three methods since there is absolutely no luck involved in the sets partitioned for testing however it actually has a potential for higher variance than the k-fold classification. The reason for this is that the models that we create with LOOCV are almost identical and thus the errors they produce are highly correlated. Averaging these will produce a higher variance than that number of uncorrelated observations. This is (at least one of the ?) reason why <span class="math inline">\(k\)</span> is typically chosen as a relatively small integer such as five or ten. If there isn’t a good example in the lab or exercises, I’ll simulate this later.<br />
+The final thing to note here is that although these examples were given with continuous responses, it’s easy to translate this to a classification problem. Instead we compute the k-fold error rate as:</p>
+<p><span class="math display">\[CV_{(k)}=\frac{1}{k}\sum_{i=1}^k\frac{1}{n_i}\text{Err}_i\]</span> Where <span class="math inline">\(n_i\)</span> is the number of observations in the <span class="math inline">\(i^{th}\)</span> fold and <span class="math inline">\(\text{Err}_i=\sum_{i=1}^{n_k}I(y_i\neq\hat{y_i})\)</span> is the number of observations that were misclassified. I intuitioned this formula as the example given in the book is for the LOOCV but I believe it should be the same idea. For each fold, we just find the proportion of observations that are misclassified and then average these proportions to estimate the testing error rate. There are some very nice examples given at the end where they show selecting the maximum power of terms for a logistic regression model as well as values of <span class="math inline">\(K\)</span> for KNN. In these cases, choosing the appropriate parameters based off the minimum k-fold testing error rate provides good guidance as to the best fitting model.</p>
 </div>
 <div id="the-bootstrap" class="section level4">
 <h4>5.2: The Bootstrap</h4>
+<p>The second portion of this chapter is dedicated to <em>the bootstrap</em> or <em>bootstrapping</em> methods. These are ways of estimating uncertainty or variability in summary quantities or learning models that are derived from sampling the training data with replacement repeatedly. I like these methods a lot and would really like to learn more about them. One of my former stats teachers told us that if we’re mediocre at math, we can usually simulate our way out of a lot of problems. This is the primary use case for bootstraps; sometimes it’s too much effort/impossible to find a closed form for estimates such as standard error so we just make a simulation of sorts with our data and estimate it that way.<br />
+Much of this chapter is an example so I’ll go through it. Suppose we have an amount of money and are going to invest <span class="math inline">\(\alpha\)</span> proportion of it into a fund with <span class="math inline">\(X\)</span> return and <span class="math inline">\(1-\alpha\)</span> into a fund with return <span class="math inline">\(Y\)</span>. Our goal is to minimize the variability of the joint returns:</p>
+<p><span class="math display">\[\sigma^2=Var(\alpha X+(1-\alpha)Y)\]</span> <span class="math display">\[\sigma^2=\alpha^2Var(X)+(1-\alpha)^2Var(Y) + 2\alpha(1-\alpha)Cov(X,Y)\]</span> Now we assume that <span class="math inline">\(Var(X), Var(Y), \&amp;\text{ } Cov(X,Y)\)</span> are fixed so we can take a derivative with respect to <span class="math inline">\(\alpha\)</span>: <span class="math display">\[\frac{d\sigma^2}{d\alpha}=2\alpha Var(X)-2(1-\alpha)Var(Y) + (2-4\alpha)Cov(X,Y)\]</span> Setting to zero and solving: <span class="math display">\[2\alpha Var(X)-2Var(Y) +2\alpha Var(Y) + 2Cov(X,Y)-4\alpha Cov(X,Y)=0\]</span> <span class="math display">\[\alpha=\frac{Var(Y)-Cov(X,Y)}{Var(X)+Var(Y)-2Cov(X,Y)}\]</span> So if we are able to estimate the variability of each fund and their covariance, we can figure out which <span class="math inline">\(\alpha\)</span> provides the most stable return:</p>
+<p><span class="math display">\[\hat{\alpha}=\frac{\hat{\sigma}_Y^2-\hat{\sigma}_{X,Y}}{\hat{\sigma}_X^2+\hat{\sigma}_Y^2-2\hat{\sigma}_{X,Y}}\]</span> Here is where we would apply the bootstrap; estimate each of the quantities on the RHS by repeatedly sampling the training data with replacement and computing sample variances and covariance. The more specific language that they use to describe the bootstrap is as follows. For some large number, <span class="math inline">\(B\)</span>, we draw that many samples, <span class="math inline">\(Z^{*1},Z^{*2},...,Z^{*B}\)</span>, where each <span class="math inline">\(Z^{*i}\)</span> is a sample of size <span class="math inline">\(N\)</span> drawn with replacement. After drawing these samples, we can compute whatever measurement we want such as the standard error of <span class="math inline">\(\alpha\)</span> in the previous example:</p>
+<p><span class="math display">\[S.E._B(\hat{\alpha})=\sqrt{\frac{1}{B-1}\sum_{r=1}^B(\hat{\alpha}^{*r}-\frac{1}{B}\sum_{s=1}^B\hat{\alpha}^{*s})^2}\]</span> So this is just computing the sample standard deviation of <span class="math inline">\(\alpha\)</span>.</p>
 </div>
 </div>
 <div id="lab" class="section level3">
 <h3>Lab</h3>
+<p>So for this, we’re going to go through the three cross validation methods and then do an example of the bootstrap with a linear model as the example. The first example will simply be predicting the <code>mpg</code> of the cars in the <code>auto</code> data set via their <code>horsepower</code>.</p>
+<p>First, the validation set approach:</p>
+<pre class="r"><code>set.seed(1)
+# Select half the rows of the auto set for training
+auto_train = Auto %&gt;%
+  slice(
+    sample.int(392, 196)
+  )
+auto_test = Auto %&gt;%
+  anti_join(auto_train)
+
+# Here&#39;s our training model:
+auto_vset_mod = lm(
+  formula = mpg ~ horsepower,
+  data = auto_train
+)
+
+# Compute the testing set MSE
+auto_vset_test_mse = predict(
+  auto_vset_mod,
+  auto_test
+)
+auto_vset_test_mse = mean((auto_vset_test_mse - auto_test$mpg)^2)
+auto_vset_test_mse</code></pre>
+<pre><code>## [1] 23.26601</code></pre>
+<p>So the estimated MSE is about 23 which is somewhat large considering that the middle half of the entire Auto mpg range is [17,29]. The value shown in the book is about 26 but I was not able to replicated this, even by copying their code exactly in a new session so…. not sure what’s going on there.</p>
+<p>We also can compare this to the model with a square term:</p>
+<pre class="r"><code># Train again with a square term:
+auto_vset_mod_sq = lm(
+  formula = mpg ~ poly(horsepower, degree = 2),
+  data = auto_train
+)
+
+# Compute the testing set MSE
+auto_vset_sq_test_mse = predict(
+  auto_vset_mod_sq,
+  auto_test
+)
+auto_vset_sq_test_mse = mean((auto_vset_sq_test_mse - auto_test$mpg)^2)
+auto_vset_sq_test_mse</code></pre>
+<pre><code>## [1] 18.71646</code></pre>
+<p>So with the square term we get a significantly lower test error rate. We can test with a different training set. Here we just set the seed to 2 instead of 1:</p>
+<pre><code>## [1] 25.72651</code></pre>
+<p>This shows us the variability in these estimates just due to the exact validation set we choose.<br />
+Let’s move on to the LOOCV method. Here we’ll fit the same model and use the <code>boot</code> library to compute some of the CV statistics:</p>
+<pre class="r"><code>auto_full_mod = glm(
+  formula = mpg ~ horsepower,
+  data = Auto
+)
+auto_full_cv = cv.glm(
+  data = Auto,
+  glmfit = auto_full_mod
+)
+names(auto_full_cv)</code></pre>
+<pre><code>## [1] &quot;call&quot;  &quot;K&quot;     &quot;delta&quot; &quot;seed&quot;</code></pre>
+<pre class="r"><code>auto_full_cv$delta</code></pre>
+<pre><code>## [1] 24.23151 24.23114</code></pre>
+<p>The values in <code>delta</code> are the estimate of the MSE and the ‘adjusted’ version that attempts to compensate for bias when <span class="math inline">\(K&lt;N\)</span>. I guess we’ll get to exactly what that means soon. In any case, this function is nice because it can do the LOOCV quickly. I’d be surprised if it doesn’t use the closed form version instead of fitting all the models.<br />
+We can test the various degrees of <code>horsepower</code> and see how they compare in the testing MSE using LOOCV:</p>
+<pre class="r"><code>auto_poly = function(deg){
+  cv.glm(
+    data = Auto,
+    glmfit = glm(
+      formula = mpg ~ poly(horsepower, degree = deg),
+      data = Auto
+    )
+  )$delta[1]
+}
+
+vapply(1:5, auto_poly, numeric(1))</code></pre>
+<pre><code>## [1] 24.23151 19.24821 19.33498 19.42443 19.03321</code></pre>
+<p>Here we see a large decline in test MSE and then little change after that.</p>
+<p>Lastly, we can try the k-fold method. First, observe that there is some randomness in the statistics we get:</p>
+<pre class="r"><code>set.seed(17)
+kfold_mses = rep(NA, length = 5)
+
+for(i in 1:5){
+  kfold_mses[i] = cv.glm(
+    data = Auto,
+    glmfit = auto_full_mod,
+    K = 10
+  )$delta[1]
+}
+kfold_mses</code></pre>
+<pre><code>## [1] 24.27207 24.08261 24.29863 24.25307 24.22995</code></pre>
+<p>For the second part of the lab, we’ll look at implementing the example previously given where we’re apportioning an investment between two funds. There is a data set for this:</p>
+<pre class="r"><code>dim(Portfolio)</code></pre>
+<pre><code>## [1] 100   2</code></pre>
+<pre class="r"><code>head(Portfolio)</code></pre>
+<pre><code>##            X          Y
+## 1 -0.8952509 -0.2349235
+## 2 -1.5624543 -0.8851760
+## 3 -0.4170899  0.2718880
+## 4  1.0443557 -0.7341975
+## 5 -0.3155684  0.8419834
+## 6 -1.7371238 -2.0371910</code></pre>
+<p>We will write a function that computes the proporiton we should allocate to fund X first:</p>
+<pre class="r"><code>compute_alpha = function(df, indices){
+  sub_df = df %&gt;% 
+    slice(indices)
+  with(
+    data = sub_df,
+    (var(Y) - cov(X,Y))/(var(X) + var(Y) -2*cov(X, Y))
+  )
+  
+}
+compute_alpha(Portfolio, 1:100)</code></pre>
+<pre><code>## [1] 0.5758321</code></pre>
+<p>Then, we can use the bootstrap library to compute one thousand re-samplings of this statistic:</p>
+<pre class="r"><code>boot(
+  data = Portfolio,
+  statistic = compute_alpha,
+  R = 1000
+)</code></pre>
+<pre><code>## 
+## ORDINARY NONPARAMETRIC BOOTSTRAP
+## 
+## 
+## Call:
+## boot(data = Portfolio, statistic = compute_alpha, R = 1000)
+## 
+## 
+## Bootstrap Statistics :
+##      original      bias    std. error
+## t1* 0.5758321 0.006376356  0.08992828</code></pre>
+<p>Here we get the point estimate and standard error for this statistic. I rather like this library and I think next time I’m approached with one of these problems I’ll consider looking deeper into it. The few times I’ve done this before, I’ve just written the simulation myself in full. Kinda curious what they mean by bias in this context. It’s not entirely clear what’s going on with the arguments of this function at the moment. It looks like it’s calculating <code>statistic(data, indices)</code> each time. Here’s another example: we’ll compute the coefficients for the linear model by bootstrapping and then compare with the given standard error:</p>
+<pre class="r"><code>set.seed(1)
+get_coef = function(df, indices){
+  lm(
+    mpg ~ horsepower,
+    data = df,
+    subset = indices
+  ) %&gt;% 
+    coef()
+}
+
+boot(
+  data = Auto,
+  statistic = get_coef,
+  R = 1000
+)</code></pre>
+<pre><code>## 
+## ORDINARY NONPARAMETRIC BOOTSTRAP
+## 
+## 
+## Call:
+## boot(data = Auto, statistic = get_coef, R = 1000)
+## 
+## 
+## Bootstrap Statistics :
+##       original        bias    std. error
+## t1* 39.9358610  0.0553942585 0.843931305
+## t2* -0.1578447 -0.0006285291 0.007367396</code></pre>
+<p>Then if we compare it to the output of the linear model in full, it’s similar but a bit off:</p>
+<pre><code>## 
+## Call:
+## lm(formula = mpg ~ horsepower, data = Auto)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -13.5710  -3.2592  -0.3435   2.7630  16.9240 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 39.935861   0.717499   55.66   &lt;2e-16 ***
+## horsepower  -0.157845   0.006446  -24.49   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 4.906 on 390 degrees of freedom
+## Multiple R-squared:  0.6059, Adjusted R-squared:  0.6049 
+## F-statistic: 599.7 on 1 and 390 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>The linear model is computing these standard errors based off the assumptions that the trend is indeed linear and that the coefficients have a normal sampling distribution. Because the relationship is somewhat non-linear, the bootstrap estimates a higher (and more accurate) variance than the plain linear model.</p>
 </div>
 <div id="exercises" class="section level3">
 <h3>Exercises</h3>
+<div id="section" class="section level4">
+<h4>1</h4>
+<p>They ask to derive the formulation of <span class="math inline">\(\alpha\)</span> in the bootstrapping example and I did this in the text.<br />
+#### 2<br />
+What is the probability that a particular bootstrap sample where the sample size is N? Well the probability that the observation is not the first observation is <span class="math inline">\(1-\frac{1}{N}\)</span>. Then the probability that the specific observation is none of the observations in the bootstrap sample is <span class="math inline">\(1-(1-\frac{1}{N})^N\)</span>. Here’s a graph of what that looks like as we increase the sample size.</p>
+<p><img src="data:image/png;base64,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" width="672" /> We can do a little simulation:</p>
+<pre class="r"><code>one_in = function(x){
+  1 %in% sample(1:100, replace = TRUE)
+}
+
+vapply(
+  1:10000, 
+  one_in,
+  logical(1)
+) %&gt;% 
+  mean()</code></pre>
+<pre><code>## [1] 0.6442</code></pre>
+<p>I wonder if there is some intuitive way we could have known this. We could go through figuring out what the limit is but I was kind of hoping to knwo why there is abut a 62% chance of this happening.</p>
+</div>
+<div id="section-1" class="section level4">
+<h4>3</h4>
+<p>I made nice notes comparing k-fold classification with the other two already<br />
+#### 4 Suppose we use a statistical learning method to make a prediction about <span class="math inline">\(Y\)</span> for some value of <span class="math inline">\(X\)</span>. If we want to estimate the the sample standard deviation of these, we could use a bootstrap. A plausible method could be to sample the data with replacement, fit the statistical learning method, and then make a prediction at <span class="math inline">\(X\)</span>. After repeating this many times, we could compute the sample standard deviation from these predictions and use it as an estimate for the general standard deviation about the prediction.<br />
+#### 4</p>
+</div>
 </div>
 
 
