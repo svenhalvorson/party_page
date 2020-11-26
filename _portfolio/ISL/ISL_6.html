@@ -12,7 +12,7 @@
 <meta name="author" content="Sven Halvorson" />
 
 
-<title>Chapter 5: Resampling Methods</title>
+<title>Chapter 6: Linear Model Selection &amp; Regularization</title>
 
 <script>/*! jQuery v1.11.3 | (c) 2005, 2015 jQuery Foundation, Inc. | jquery.org/license */
 !function(a,b){"object"==typeof module&&"object"==typeof module.exports?module.exports=a.document?b(a,!0):function(a){if(!a.document)throw new Error("jQuery requires a window with a document");return b(a)}:b(a)}("undefined"!=typeof window?window:this,function(a,b){var c=[],d=c.slice,e=c.concat,f=c.push,g=c.indexOf,h={},i=h.toString,j=h.hasOwnProperty,k={},l="1.11.3",m=function(a,b){return new m.fn.init(a,b)},n=/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,o=/^-ms-/,p=/-([\da-z])/gi,q=function(a,b){return b.toUpperCase()};m.fn=m.prototype={jquery:l,constructor:m,selector:"",length:0,toArray:function(){return d.call(this)},get:function(a){return null!=a?0>a?this[a+this.length]:this[a]:d.call(this)},pushStack:function(a){var b=m.merge(this.constructor(),a);return b.prevObject=this,b.context=this.context,b},each:function(a,b){return m.each(this,a,b)},map:function(a){return this.pushStack(m.map(this,function(b,c){return a.call(b,c,b)}))},slice:function(){return this.pushStack(d.apply(this,arguments))},first:function(){return this.eq(0)},last:function(){return this.eq(-1)},eq:function(a){var b=this.length,c=+a+(0>a?b:0);return this.pushStack(c>=0&&b>c?[this[c]]:[])},end:function(){return this.prevObject||this.constructor(null)},push:f,sort:c.sort,splice:c.splice},m.extend=m.fn.extend=function(){var a,b,c,d,e,f,g=arguments[0]||{},h=1,i=arguments.length,j=!1;for("boolean"==typeof g&&(j=g,g=arguments[h]||{},h++),"object"==typeof g||m.isFunction(g)||(g={}),h===i&&(g=this,h--);i>h;h++)if(null!=(e=arguments[h]))for(d in e)a=g[d],c=e[d],g!==c&&(j&&c&&(m.isPlainObject(c)||(b=m.isArray(c)))?(b?(b=!1,f=a&&m.isArray(a)?a:[]):f=a&&m.isPlainObject(a)?a:{},g[d]=m.extend(j,f,c)):void 0!==c&&(g[d]=c));return g},m.extend({expando:"jQuery"+(l+Math.random()).replace(/\D/g,""),isReady:!0,error:function(a){throw new Error(a)},noop:function(){},isFunction:function(a){return"function"===m.type(a)},isArray:Array.isArray||function(a){return"array"===m.type(a)},isWindow:function(a){return null!=a&&a==a.window},isNumeric:function(a){return!m.isArray(a)&&a-parseFloat(a)+1>=0},isEmptyObject:function(a){var b;for(b in a)return!1;return!0},isPlainObject:function(a){var b;if(!a||"object"!==m.type(a)||a.nodeType||m.isWindow(a))return!1;try{if(a.constructor&&!j.call(a,"constructor")&&!j.call(a.constructor.prototype,"isPrototypeOf"))return!1}catch(c){return!1}if(k.ownLast)for(b in a)return j.call(a,b);for(b in a);return void 0===b||j.call(a,b)},type:function(a){return null==a?a+"":"object"==typeof a||"function"==typeof a?h[i.call(a)]||"object":typeof a},globalEval:function(b){b&&m.trim(b)&&(a.execScript||function(b){a.eval.call(a,b)})(b)},camelCase:function(a){return a.replace(o,"ms-").replace(p,q)},nodeName:function(a,b){return a.nodeName&&a.nodeName.toLowerCase()===b.toLowerCase()},each:function(a,b,c){var d,e=0,f=a.length,g=r(a);if(c){if(g){for(;f>e;e++)if(d=b.apply(a[e],c),d===!1)break}else for(e in a)if(d=b.apply(a[e],c),d===!1)break}else if(g){for(;f>e;e++)if(d=b.call(a[e],e,a[e]),d===!1)break}else for(e in a)if(d=b.call(a[e],e,a[e]),d===!1)break;return a},trim:function(a){return null==a?"":(a+"").replace(n,"")},makeArray:function(a,b){var c=b||[];return null!=a&&(r(Object(a))?m.merge(c,"string"==typeof a?[a]:a):f.call(c,a)),c},inArray:function(a,b,c){var d;if(b){if(g)return g.call(b,a,c);for(d=b.length,c=c?0>c?Math.max(0,d+c):c:0;d>c;c++)if(c in b&&b[c]===a)return c}return-1},merge:function(a,b){var c=+b.length,d=0,e=a.length;while(c>d)a[e++]=b[d++];if(c!==c)while(void 0!==b[d])a[e++]=b[d++];return a.length=e,a},grep:function(a,b,c){for(var d,e=[],f=0,g=a.length,h=!c;g>f;f++)d=!b(a[f],f),d!==h&&e.push(a[f]);return e},map:function(a,b,c){var d,f=0,g=a.length,h=r(a),i=[];if(h)for(;g>f;f++)d=b(a[f],f,c),null!=d&&i.push(d);else for(f in a)d=b(a[f],f,c),null!=d&&i.push(d);return e.apply([],i)},guid:1,proxy:function(a,b){var c,e,f;return"string"==typeof b&&(f=a[b],b=a,a=f),m.isFunction(a)?(c=d.call(arguments,2),e=function(){return a.apply(b||this,c.concat(d.call(arguments)))},e.guid=a.guid=a.guid||m.guid++,e):void 0},now:function(){return+new Date},support:k}),m.each("Boolean Number String Function Array Date RegExp Object Error".split(" "),function(a,b){h["[object "+b+"]"]=b.toLowerCase()});function r(a){var b="length"in a&&a.length,c=m.type(a);return"function"===c||m.isWindow(a)?!1:1===a.nodeType&&b?!0:"array"===c||0===b||"number"==typeof b&&b>0&&b-1 in a}var s=function(a){var b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u="sizzle"+1*new Date,v=a.document,w=0,x=0,y=ha(),z=ha(),A=ha(),B=function(a,b){return a===b&&(l=!0),0},C=1<<31,D={}.hasOwnProperty,E=[],F=E.pop,G=E.push,H=E.push,I=E.slice,J=function(a,b){for(var c=0,d=a.length;d>c;c++)if(a[c]===b)return c;return-1},K="checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped",L="[\\x20\\t\\r\\n\\f]",M="(?:\\\\.|[\\w-]|[^\\x00-\\xa0])+",N=M.replace("w","w#"),O="\\["+L+"*("+M+")(?:"+L+"*([*^$|!~]?=)"+L+"*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|("+N+"))|)"+L+"*\\]",P=":("+M+")(?:\\((('((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\")|((?:\\\\.|[^\\\\()[\\]]|"+O+")*)|.*)\\)|)",Q=new RegExp(L+"+","g"),R=new RegExp("^"+L+"+|((?:^|[^\\\\])(?:\\\\.)*)"+L+"+$","g"),S=new RegExp("^"+L+"*,"+L+"*"),T=new RegExp("^"+L+"*([>+~]|"+L+")"+L+"*"),U=new RegExp("="+L+"*([^\\]'\"]*?)"+L+"*\\]","g"),V=new RegExp(P),W=new RegExp("^"+N+"$"),X={ID:new RegExp("^#("+M+")"),CLASS:new RegExp("^\\.("+M+")"),TAG:new RegExp("^("+M.replace("w","w*")+")"),ATTR:new RegExp("^"+O),PSEUDO:new RegExp("^"+P),CHILD:new RegExp("^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\("+L+"*(even|odd|(([+-]|)(\\d*)n|)"+L+"*(?:([+-]|)"+L+"*(\\d+)|))"+L+"*\\)|)","i"),bool:new RegExp("^(?:"+K+")$","i"),needsContext:new RegExp("^"+L+"*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\("+L+"*((?:-\\d)?\\d*)"+L+"*\\)|)(?=[^-]|$)","i")},Y=/^(?:input|select|textarea|button)$/i,Z=/^h\d$/i,$=/^[^{]+\{\s*\[native \w/,_=/^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/,aa=/[+~]/,ba=/'|\\/g,ca=new RegExp("\\\\([\\da-f]{1,6}"+L+"?|("+L+")|.)","ig"),da=function(a,b,c){var d="0x"+b-65536;return d!==d||c?b:0>d?String.fromCharCode(d+65536):String.fromCharCode(d>>10|55296,1023&d|56320)},ea=function(){m()};try{H.apply(E=I.call(v.childNodes),v.childNodes),E[v.childNodes.length].nodeType}catch(fa){H={apply:E.length?function(a,b){G.apply(a,I.call(b))}:function(a,b){var c=a.length,d=0;while(a[c++]=b[d++]);a.length=c-1}}}function ga(a,b,d,e){var f,h,j,k,l,o,r,s,w,x;if((b?b.ownerDocument||b:v)!==n&&m(b),b=b||n,d=d||[],k=b.nodeType,"string"!=typeof a||!a||1!==k&&9!==k&&11!==k)return d;if(!e&&p){if(11!==k&&(f=_.exec(a)))if(j=f[1]){if(9===k){if(h=b.getElementById(j),!h||!h.parentNode)return d;if(h.id===j)return d.push(h),d}else if(b.ownerDocument&&(h=b.ownerDocument.getElementById(j))&&t(b,h)&&h.id===j)return d.push(h),d}else{if(f[2])return H.apply(d,b.getElementsByTagName(a)),d;if((j=f[3])&&c.getElementsByClassName)return H.apply(d,b.getElementsByClassName(j)),d}if(c.qsa&&(!q||!q.test(a))){if(s=r=u,w=b,x=1!==k&&a,1===k&&"object"!==b.nodeName.toLowerCase()){o=g(a),(r=b.getAttribute("id"))?s=r.replace(ba,"\\$&"):b.setAttribute("id",s),s="[id='"+s+"'] ",l=o.length;while(l--)o[l]=s+ra(o[l]);w=aa.test(a)&&pa(b.parentNode)||b,x=o.join(",")}if(x)try{return H.apply(d,w.querySelectorAll(x)),d}catch(y){}finally{r||b.removeAttribute("id")}}}return i(a.replace(R,"$1"),b,d,e)}function ha(){var a=[];function b(c,e){return a.push(c+" ")>d.cacheLength&&delete b[a.shift()],b[c+" "]=e}return b}function ia(a){return a[u]=!0,a}function ja(a){var b=n.createElement("div");try{return!!a(b)}catch(c){return!1}finally{b.parentNode&&b.parentNode.removeChild(b),b=null}}function ka(a,b){var c=a.split("|"),e=a.length;while(e--)d.attrHandle[c[e]]=b}function la(a,b){var c=b&&a,d=c&&1===a.nodeType&&1===b.nodeType&&(~b.sourceIndex||C)-(~a.sourceIndex||C);if(d)return d;if(c)while(c=c.nextSibling)if(c===b)return-1;return a?1:-1}function ma(a){return function(b){var c=b.nodeName.toLowerCase();return"input"===c&&b.type===a}}function na(a){return function(b){var c=b.nodeName.toLowerCase();return("input"===c||"button"===c)&&b.type===a}}function oa(a){return ia(function(b){return b=+b,ia(function(c,d){var e,f=a([],c.length,b),g=f.length;while(g--)c[e=f[g]]&&(c[e]=!(d[e]=c[e]))})})}function pa(a){return a&&"undefined"!=typeof a.getElementsByTagName&&a}c=ga.support={},f=ga.isXML=function(a){var b=a&&(a.ownerDocument||a).documentElement;return b?"HTML"!==b.nodeName:!1},m=ga.setDocument=function(a){var b,e,g=a?a.ownerDocument||a:v;return g!==n&&9===g.nodeType&&g.documentElement?(n=g,o=g.documentElement,e=g.defaultView,e&&e!==e.top&&(e.addEventListener?e.addEventListener("unload",ea,!1):e.attachEvent&&e.attachEvent("onunload",ea)),p=!f(g),c.attributes=ja(function(a){return a.className="i",!a.getAttribute("className")}),c.getElementsByTagName=ja(function(a){return a.appendChild(g.createComment("")),!a.getElementsByTagName("*").length}),c.getElementsByClassName=$.test(g.getElementsByClassName),c.getById=ja(function(a){return o.appendChild(a).id=u,!g.getElementsByName||!g.getElementsByName(u).length}),c.getById?(d.find.ID=function(a,b){if("undefined"!=typeof b.getElementById&&p){var c=b.getElementById(a);return c&&c.parentNode?[c]:[]}},d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){return a.getAttribute("id")===b}}):(delete d.find.ID,d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){var c="undefined"!=typeof a.getAttributeNode&&a.getAttributeNode("id");return c&&c.value===b}}),d.find.TAG=c.getElementsByTagName?function(a,b){return"undefined"!=typeof b.getElementsByTagName?b.getElementsByTagName(a):c.qsa?b.querySelectorAll(a):void 0}:function(a,b){var c,d=[],e=0,f=b.getElementsByTagName(a);if("*"===a){while(c=f[e++])1===c.nodeType&&d.push(c);return d}return f},d.find.CLASS=c.getElementsByClassName&&function(a,b){return p?b.getElementsByClassName(a):void 0},r=[],q=[],(c.qsa=$.test(g.querySelectorAll))&&(ja(function(a){o.appendChild(a).innerHTML="<a id='"+u+"'></a><select id='"+u+"-\f]' msallowcapture=''><option selected=''></option></select>",a.querySelectorAll("[msallowcapture^='']").length&&q.push("[*^$]="+L+"*(?:''|\"\")"),a.querySelectorAll("[selected]").length||q.push("\\["+L+"*(?:value|"+K+")"),a.querySelectorAll("[id~="+u+"-]").length||q.push("~="),a.querySelectorAll(":checked").length||q.push(":checked"),a.querySelectorAll("a#"+u+"+*").length||q.push(".#.+[+~]")}),ja(function(a){var b=g.createElement("input");b.setAttribute("type","hidden"),a.appendChild(b).setAttribute("name","D"),a.querySelectorAll("[name=d]").length&&q.push("name"+L+"*[*^$|!~]?="),a.querySelectorAll(":enabled").length||q.push(":enabled",":disabled"),a.querySelectorAll("*,:x"),q.push(",.*:")})),(c.matchesSelector=$.test(s=o.matches||o.webkitMatchesSelector||o.mozMatchesSelector||o.oMatchesSelector||o.msMatchesSelector))&&ja(function(a){c.disconnectedMatch=s.call(a,"div"),s.call(a,"[s!='']:x"),r.push("!=",P)}),q=q.length&&new RegExp(q.join("|")),r=r.length&&new RegExp(r.join("|")),b=$.test(o.compareDocumentPosition),t=b||$.test(o.contains)?function(a,b){var c=9===a.nodeType?a.documentElement:a,d=b&&b.parentNode;return a===d||!(!d||1!==d.nodeType||!(c.contains?c.contains(d):a.compareDocumentPosition&&16&a.compareDocumentPosition(d)))}:function(a,b){if(b)while(b=b.parentNode)if(b===a)return!0;return!1},B=b?function(a,b){if(a===b)return l=!0,0;var d=!a.compareDocumentPosition-!b.compareDocumentPosition;return d?d:(d=(a.ownerDocument||a)===(b.ownerDocument||b)?a.compareDocumentPosition(b):1,1&d||!c.sortDetached&&b.compareDocumentPosition(a)===d?a===g||a.ownerDocument===v&&t(v,a)?-1:b===g||b.ownerDocument===v&&t(v,b)?1:k?J(k,a)-J(k,b):0:4&d?-1:1)}:function(a,b){if(a===b)return l=!0,0;var c,d=0,e=a.parentNode,f=b.parentNode,h=[a],i=[b];if(!e||!f)return a===g?-1:b===g?1:e?-1:f?1:k?J(k,a)-J(k,b):0;if(e===f)return la(a,b);c=a;while(c=c.parentNode)h.unshift(c);c=b;while(c=c.parentNode)i.unshift(c);while(h[d]===i[d])d++;return d?la(h[d],i[d]):h[d]===v?-1:i[d]===v?1:0},g):n},ga.matches=function(a,b){return ga(a,null,null,b)},ga.matchesSelector=function(a,b){if((a.ownerDocument||a)!==n&&m(a),b=b.replace(U,"='$1']"),!(!c.matchesSelector||!p||r&&r.test(b)||q&&q.test(b)))try{var d=s.call(a,b);if(d||c.disconnectedMatch||a.document&&11!==a.document.nodeType)return d}catch(e){}return ga(b,n,null,[a]).length>0},ga.contains=function(a,b){return(a.ownerDocument||a)!==n&&m(a),t(a,b)},ga.attr=function(a,b){(a.ownerDocument||a)!==n&&m(a);var e=d.attrHandle[b.toLowerCase()],f=e&&D.call(d.attrHandle,b.toLowerCase())?e(a,b,!p):void 0;return void 0!==f?f:c.attributes||!p?a.getAttribute(b):(f=a.getAttributeNode(b))&&f.specified?f.value:null},ga.error=function(a){throw new Error("Syntax error, unrecognized expression: "+a)},ga.uniqueSort=function(a){var b,d=[],e=0,f=0;if(l=!c.detectDuplicates,k=!c.sortStable&&a.slice(0),a.sort(B),l){while(b=a[f++])b===a[f]&&(e=d.push(f));while(e--)a.splice(d[e],1)}return k=null,a},e=ga.getText=function(a){var b,c="",d=0,f=a.nodeType;if(f){if(1===f||9===f||11===f){if("string"==typeof a.textContent)return a.textContent;for(a=a.firstChild;a;a=a.nextSibling)c+=e(a)}else if(3===f||4===f)return a.nodeValue}else while(b=a[d++])c+=e(b);return c},d=ga.selectors={cacheLength:50,createPseudo:ia,match:X,attrHandle:{},find:{},relative:{">":{dir:"parentNode",first:!0}," ":{dir:"parentNode"},"+":{dir:"previousSibling",first:!0},"~":{dir:"previousSibling"}},preFilter:{ATTR:function(a){return a[1]=a[1].replace(ca,da),a[3]=(a[3]||a[4]||a[5]||"").replace(ca,da),"~="===a[2]&&(a[3]=" "+a[3]+" "),a.slice(0,4)},CHILD:function(a){return a[1]=a[1].toLowerCase(),"nth"===a[1].slice(0,3)?(a[3]||ga.error(a[0]),a[4]=+(a[4]?a[5]+(a[6]||1):2*("even"===a[3]||"odd"===a[3])),a[5]=+(a[7]+a[8]||"odd"===a[3])):a[3]&&ga.error(a[0]),a},PSEUDO:function(a){var b,c=!a[6]&&a[2];return X.CHILD.test(a[0])?null:(a[3]?a[2]=a[4]||a[5]||"":c&&V.test(c)&&(b=g(c,!0))&&(b=c.indexOf(")",c.length-b)-c.length)&&(a[0]=a[0].slice(0,b),a[2]=c.slice(0,b)),a.slice(0,3))}},filter:{TAG:function(a){var b=a.replace(ca,da).toLowerCase();return"*"===a?function(){return!0}:function(a){return a.nodeName&&a.nodeName.toLowerCase()===b}},CLASS:function(a){var b=y[a+" "];return b||(b=new RegExp("(^|"+L+")"+a+"("+L+"|$)"))&&y(a,function(a){return b.test("string"==typeof a.className&&a.className||"undefined"!=typeof a.getAttribute&&a.getAttribute("class")||"")})},ATTR:function(a,b,c){return function(d){var e=ga.attr(d,a);return null==e?"!="===b:b?(e+="","="===b?e===c:"!="===b?e!==c:"^="===b?c&&0===e.indexOf(c):"*="===b?c&&e.indexOf(c)>-1:"$="===b?c&&e.slice(-c.length)===c:"~="===b?(" "+e.replace(Q," ")+" ").indexOf(c)>-1:"|="===b?e===c||e.slice(0,c.length+1)===c+"-":!1):!0}},CHILD:function(a,b,c,d,e){var f="nth"!==a.slice(0,3),g="last"!==a.slice(-4),h="of-type"===b;return 1===d&&0===e?function(a){return!!a.parentNode}:function(b,c,i){var j,k,l,m,n,o,p=f!==g?"nextSibling":"previousSibling",q=b.parentNode,r=h&&b.nodeName.toLowerCase(),s=!i&&!h;if(q){if(f){while(p){l=b;while(l=l[p])if(h?l.nodeName.toLowerCase()===r:1===l.nodeType)return!1;o=p="only"===a&&!o&&"nextSibling"}return!0}if(o=[g?q.firstChild:q.lastChild],g&&s){k=q[u]||(q[u]={}),j=k[a]||[],n=j[0]===w&&j[1],m=j[0]===w&&j[2],l=n&&q.childNodes[n];while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if(1===l.nodeType&&++m&&l===b){k[a]=[w,n,m];break}}else if(s&&(j=(b[u]||(b[u]={}))[a])&&j[0]===w)m=j[1];else while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if((h?l.nodeName.toLowerCase()===r:1===l.nodeType)&&++m&&(s&&((l[u]||(l[u]={}))[a]=[w,m]),l===b))break;return m-=e,m===d||m%d===0&&m/d>=0}}},PSEUDO:function(a,b){var c,e=d.pseudos[a]||d.setFilters[a.toLowerCase()]||ga.error("unsupported pseudo: "+a);return e[u]?e(b):e.length>1?(c=[a,a,"",b],d.setFilters.hasOwnProperty(a.toLowerCase())?ia(function(a,c){var d,f=e(a,b),g=f.length;while(g--)d=J(a,f[g]),a[d]=!(c[d]=f[g])}):function(a){return e(a,0,c)}):e}},pseudos:{not:ia(function(a){var b=[],c=[],d=h(a.replace(R,"$1"));return d[u]?ia(function(a,b,c,e){var f,g=d(a,null,e,[]),h=a.length;while(h--)(f=g[h])&&(a[h]=!(b[h]=f))}):function(a,e,f){return b[0]=a,d(b,null,f,c),b[0]=null,!c.pop()}}),has:ia(function(a){return function(b){return ga(a,b).length>0}}),contains:ia(function(a){return a=a.replace(ca,da),function(b){return(b.textContent||b.innerText||e(b)).indexOf(a)>-1}}),lang:ia(function(a){return W.test(a||"")||ga.error("unsupported lang: "+a),a=a.replace(ca,da).toLowerCase(),function(b){var c;do if(c=p?b.lang:b.getAttribute("xml:lang")||b.getAttribute("lang"))return c=c.toLowerCase(),c===a||0===c.indexOf(a+"-");while((b=b.parentNode)&&1===b.nodeType);return!1}}),target:function(b){var c=a.location&&a.location.hash;return c&&c.slice(1)===b.id},root:function(a){return a===o},focus:function(a){return a===n.activeElement&&(!n.hasFocus||n.hasFocus())&&!!(a.type||a.href||~a.tabIndex)},enabled:function(a){return a.disabled===!1},disabled:function(a){return a.disabled===!0},checked:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&!!a.checked||"option"===b&&!!a.selected},selected:function(a){return a.parentNode&&a.parentNode.selectedIndex,a.selected===!0},empty:function(a){for(a=a.firstChild;a;a=a.nextSibling)if(a.nodeType<6)return!1;return!0},parent:function(a){return!d.pseudos.empty(a)},header:function(a){return Z.test(a.nodeName)},input:function(a){return Y.test(a.nodeName)},button:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&"button"===a.type||"button"===b},text:function(a){var b;return"input"===a.nodeName.toLowerCase()&&"text"===a.type&&(null==(b=a.getAttribute("type"))||"text"===b.toLowerCase())},first:oa(function(){return[0]}),last:oa(function(a,b){return[b-1]}),eq:oa(function(a,b,c){return[0>c?c+b:c]}),even:oa(function(a,b){for(var c=0;b>c;c+=2)a.push(c);return a}),odd:oa(function(a,b){for(var c=1;b>c;c+=2)a.push(c);return a}),lt:oa(function(a,b,c){for(var d=0>c?c+b:c;--d>=0;)a.push(d);return a}),gt:oa(function(a,b,c){for(var d=0>c?c+b:c;++d<b;)a.push(d);return a})}},d.pseudos.nth=d.pseudos.eq;for(b in{radio:!0,checkbox:!0,file:!0,password:!0,image:!0})d.pseudos[b]=ma(b);for(b in{submit:!0,reset:!0})d.pseudos[b]=na(b);function qa(){}qa.prototype=d.filters=d.pseudos,d.setFilters=new qa,g=ga.tokenize=function(a,b){var c,e,f,g,h,i,j,k=z[a+" "];if(k)return b?0:k.slice(0);h=a,i=[],j=d.preFilter;while(h){(!c||(e=S.exec(h)))&&(e&&(h=h.slice(e[0].length)||h),i.push(f=[])),c=!1,(e=T.exec(h))&&(c=e.shift(),f.push({value:c,type:e[0].replace(R," ")}),h=h.slice(c.length));for(g in d.filter)!(e=X[g].exec(h))||j[g]&&!(e=j[g](e))||(c=e.shift(),f.push({value:c,type:g,matches:e}),h=h.slice(c.length));if(!c)break}return b?h.length:h?ga.error(a):z(a,i).slice(0)};function ra(a){for(var b=0,c=a.length,d="";c>b;b++)d+=a[b].value;return d}function sa(a,b,c){var d=b.dir,e=c&&"parentNode"===d,f=x++;return b.first?function(b,c,f){while(b=b[d])if(1===b.nodeType||e)return a(b,c,f)}:function(b,c,g){var h,i,j=[w,f];if(g){while(b=b[d])if((1===b.nodeType||e)&&a(b,c,g))return!0}else while(b=b[d])if(1===b.nodeType||e){if(i=b[u]||(b[u]={}),(h=i[d])&&h[0]===w&&h[1]===f)return j[2]=h[2];if(i[d]=j,j[2]=a(b,c,g))return!0}}}function ta(a){return a.length>1?function(b,c,d){var e=a.length;while(e--)if(!a[e](b,c,d))return!1;return!0}:a[0]}function ua(a,b,c){for(var d=0,e=b.length;e>d;d++)ga(a,b[d],c);return c}function va(a,b,c,d,e){for(var f,g=[],h=0,i=a.length,j=null!=b;i>h;h++)(f=a[h])&&(!c||c(f,d,e))&&(g.push(f),j&&b.push(h));return g}function wa(a,b,c,d,e,f){return d&&!d[u]&&(d=wa(d)),e&&!e[u]&&(e=wa(e,f)),ia(function(f,g,h,i){var j,k,l,m=[],n=[],o=g.length,p=f||ua(b||"*",h.nodeType?[h]:h,[]),q=!a||!f&&b?p:va(p,m,a,h,i),r=c?e||(f?a:o||d)?[]:g:q;if(c&&c(q,r,h,i),d){j=va(r,n),d(j,[],h,i),k=j.length;while(k--)(l=j[k])&&(r[n[k]]=!(q[n[k]]=l))}if(f){if(e||a){if(e){j=[],k=r.length;while(k--)(l=r[k])&&j.push(q[k]=l);e(null,r=[],j,i)}k=r.length;while(k--)(l=r[k])&&(j=e?J(f,l):m[k])>-1&&(f[j]=!(g[j]=l))}}else r=va(r===g?r.splice(o,r.length):r),e?e(null,g,r,i):H.apply(g,r)})}function xa(a){for(var b,c,e,f=a.length,g=d.relative[a[0].type],h=g||d.relative[" "],i=g?1:0,k=sa(function(a){return a===b},h,!0),l=sa(function(a){return J(b,a)>-1},h,!0),m=[function(a,c,d){var e=!g&&(d||c!==j)||((b=c).nodeType?k(a,c,d):l(a,c,d));return b=null,e}];f>i;i++)if(c=d.relative[a[i].type])m=[sa(ta(m),c)];else{if(c=d.filter[a[i].type].apply(null,a[i].matches),c[u]){for(e=++i;f>e;e++)if(d.relative[a[e].type])break;return wa(i>1&&ta(m),i>1&&ra(a.slice(0,i-1).concat({value:" "===a[i-2].type?"*":""})).replace(R,"$1"),c,e>i&&xa(a.slice(i,e)),f>e&&xa(a=a.slice(e)),f>e&&ra(a))}m.push(c)}return ta(m)}function ya(a,b){var c=b.length>0,e=a.length>0,f=function(f,g,h,i,k){var l,m,o,p=0,q="0",r=f&&[],s=[],t=j,u=f||e&&d.find.TAG("*",k),v=w+=null==t?1:Math.random()||.1,x=u.length;for(k&&(j=g!==n&&g);q!==x&&null!=(l=u[q]);q++){if(e&&l){m=0;while(o=a[m++])if(o(l,g,h)){i.push(l);break}k&&(w=v)}c&&((l=!o&&l)&&p--,f&&r.push(l))}if(p+=q,c&&q!==p){m=0;while(o=b[m++])o(r,s,g,h);if(f){if(p>0)while(q--)r[q]||s[q]||(s[q]=F.call(i));s=va(s)}H.apply(i,s),k&&!f&&s.length>0&&p+b.length>1&&ga.uniqueSort(i)}return k&&(w=v,j=t),r};return c?ia(f):f}return h=ga.compile=function(a,b){var c,d=[],e=[],f=A[a+" "];if(!f){b||(b=g(a)),c=b.length;while(c--)f=xa(b[c]),f[u]?d.push(f):e.push(f);f=A(a,ya(e,d)),f.selector=a}return f},i=ga.select=function(a,b,e,f){var i,j,k,l,m,n="function"==typeof a&&a,o=!f&&g(a=n.selector||a);if(e=e||[],1===o.length){if(j=o[0]=o[0].slice(0),j.length>2&&"ID"===(k=j[0]).type&&c.getById&&9===b.nodeType&&p&&d.relative[j[1].type]){if(b=(d.find.ID(k.matches[0].replace(ca,da),b)||[])[0],!b)return e;n&&(b=b.parentNode),a=a.slice(j.shift().value.length)}i=X.needsContext.test(a)?0:j.length;while(i--){if(k=j[i],d.relative[l=k.type])break;if((m=d.find[l])&&(f=m(k.matches[0].replace(ca,da),aa.test(j[0].type)&&pa(b.parentNode)||b))){if(j.splice(i,1),a=f.length&&ra(j),!a)return H.apply(e,f),e;break}}}return(n||h(a,o))(f,b,!p,e,aa.test(a)&&pa(b.parentNode)||b),e},c.sortStable=u.split("").sort(B).join("")===u,c.detectDuplicates=!!l,m(),c.sortDetached=ja(function(a){return 1&a.compareDocumentPosition(n.createElement("div"))}),ja(function(a){return a.innerHTML="<a href='#'></a>","#"===a.firstChild.getAttribute("href")})||ka("type|href|height|width",function(a,b,c){return c?void 0:a.getAttribute(b,"type"===b.toLowerCase()?1:2)}),c.attributes&&ja(function(a){return a.innerHTML="<input/>",a.firstChild.setAttribute("value",""),""===a.firstChild.getAttribute("value")})||ka("value",function(a,b,c){return c||"input"!==a.nodeName.toLowerCase()?void 0:a.defaultValue}),ja(function(a){return null==a.getAttribute("disabled")})||ka(K,function(a,b,c){var d;return c?void 0:a[b]===!0?b.toLowerCase():(d=a.getAttributeNode(b))&&d.specified?d.value:null}),ga}(a);m.find=s,m.expr=s.selectors,m.expr[":"]=m.expr.pseudos,m.unique=s.uniqueSort,m.text=s.getText,m.isXMLDoc=s.isXML,m.contains=s.contains;var t=m.expr.match.needsContext,u=/^<(\w+)\s*\/?>(?:<\/\1>|)$/,v=/^.[^:#\[\.,]*$/;function w(a,b,c){if(m.isFunction(b))return m.grep(a,function(a,d){return!!b.call(a,d,a)!==c});if(b.nodeType)return m.grep(a,function(a){return a===b!==c});if("string"==typeof b){if(v.test(b))return m.filter(b,a,c);b=m.filter(b,a)}return m.grep(a,function(a){return m.inArray(a,b)>=0!==c})}m.filter=function(a,b,c){var d=b[0];return c&&(a=":not("+a+")"),1===b.length&&1===d.nodeType?m.find.matchesSelector(d,a)?[d]:[]:m.find.matches(a,m.grep(b,function(a){return 1===a.nodeType}))},m.fn.extend({find:function(a){var b,c=[],d=this,e=d.length;if("string"!=typeof a)return this.pushStack(m(a).filter(function(){for(b=0;e>b;b++)if(m.contains(d[b],this))return!0}));for(b=0;e>b;b++)m.find(a,d[b],c);return c=this.pushStack(e>1?m.unique(c):c),c.selector=this.selector?this.selector+" "+a:a,c},filter:function(a){return this.pushStack(w(this,a||[],!1))},not:function(a){return this.pushStack(w(this,a||[],!0))},is:function(a){return!!w(this,"string"==typeof a&&t.test(a)?m(a):a||[],!1).length}});var x,y=a.document,z=/^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]*))$/,A=m.fn.init=function(a,b){var c,d;if(!a)return this;if("string"==typeof a){if(c="<"===a.charAt(0)&&">"===a.charAt(a.length-1)&&a.length>=3?[null,a,null]:z.exec(a),!c||!c[1]&&b)return!b||b.jquery?(b||x).find(a):this.constructor(b).find(a);if(c[1]){if(b=b instanceof m?b[0]:b,m.merge(this,m.parseHTML(c[1],b&&b.nodeType?b.ownerDocument||b:y,!0)),u.test(c[1])&&m.isPlainObject(b))for(c in b)m.isFunction(this[c])?this[c](b[c]):this.attr(c,b[c]);return this}if(d=y.getElementById(c[2]),d&&d.parentNode){if(d.id!==c[2])return x.find(a);this.length=1,this[0]=d}return this.context=y,this.selector=a,this}return a.nodeType?(this.context=this[0]=a,this.length=1,this):m.isFunction(a)?"undefined"!=typeof x.ready?x.ready(a):a(m):(void 0!==a.selector&&(this.selector=a.selector,this.context=a.context),m.makeArray(a,this))};A.prototype=m.fn,x=m(y);var B=/^(?:parents|prev(?:Until|All))/,C={children:!0,contents:!0,next:!0,prev:!0};m.extend({dir:function(a,b,c){var d=[],e=a[b];while(e&&9!==e.nodeType&&(void 0===c||1!==e.nodeType||!m(e).is(c)))1===e.nodeType&&d.push(e),e=e[b];return d},sibling:function(a,b){for(var c=[];a;a=a.nextSibling)1===a.nodeType&&a!==b&&c.push(a);return c}}),m.fn.extend({has:function(a){var b,c=m(a,this),d=c.length;return this.filter(function(){for(b=0;d>b;b++)if(m.contains(this,c[b]))return!0})},closest:function(a,b){for(var c,d=0,e=this.length,f=[],g=t.test(a)||"string"!=typeof a?m(a,b||this.context):0;e>d;d++)for(c=this[d];c&&c!==b;c=c.parentNode)if(c.nodeType<11&&(g?g.index(c)>-1:1===c.nodeType&&m.find.matchesSelector(c,a))){f.push(c);break}return this.pushStack(f.length>1?m.unique(f):f)},index:function(a){return a?"string"==typeof a?m.inArray(this[0],m(a)):m.inArray(a.jquery?a[0]:a,this):this[0]&&this[0].parentNode?this.first().prevAll().length:-1},add:function(a,b){return this.pushStack(m.unique(m.merge(this.get(),m(a,b))))},addBack:function(a){return this.add(null==a?this.prevObject:this.prevObject.filter(a))}});function D(a,b){do a=a[b];while(a&&1!==a.nodeType);return a}m.each({parent:function(a){var b=a.parentNode;return b&&11!==b.nodeType?b:null},parents:function(a){return m.dir(a,"parentNode")},parentsUntil:function(a,b,c){return m.dir(a,"parentNode",c)},next:function(a){return D(a,"nextSibling")},prev:function(a){return D(a,"previousSibling")},nextAll:function(a){return m.dir(a,"nextSibling")},prevAll:function(a){return m.dir(a,"previousSibling")},nextUntil:function(a,b,c){return m.dir(a,"nextSibling",c)},prevUntil:function(a,b,c){return m.dir(a,"previousSibling",c)},siblings:function(a){return m.sibling((a.parentNode||{}).firstChild,a)},children:function(a){return m.sibling(a.firstChild)},contents:function(a){return m.nodeName(a,"iframe")?a.contentDocument||a.contentWindow.document:m.merge([],a.childNodes)}},function(a,b){m.fn[a]=function(c,d){var e=m.map(this,b,c);return"Until"!==a.slice(-5)&&(d=c),d&&"string"==typeof d&&(e=m.filter(d,e)),this.length>1&&(C[a]||(e=m.unique(e)),B.test(a)&&(e=e.reverse())),this.pushStack(e)}});var E=/\S+/g,F={};function G(a){var b=F[a]={};return m.each(a.match(E)||[],function(a,c){b[c]=!0}),b}m.Callbacks=function(a){a="string"==typeof a?F[a]||G(a):m.extend({},a);var b,c,d,e,f,g,h=[],i=!a.once&&[],j=function(l){for(c=a.memory&&l,d=!0,f=g||0,g=0,e=h.length,b=!0;h&&e>f;f++)if(h[f].apply(l[0],l[1])===!1&&a.stopOnFalse){c=!1;break}b=!1,h&&(i?i.length&&j(i.shift()):c?h=[]:k.disable())},k={add:function(){if(h){var d=h.length;!function f(b){m.each(b,function(b,c){var d=m.type(c);"function"===d?a.unique&&k.has(c)||h.push(c):c&&c.length&&"string"!==d&&f(c)})}(arguments),b?e=h.length:c&&(g=d,j(c))}return this},remove:function(){return h&&m.each(arguments,function(a,c){var d;while((d=m.inArray(c,h,d))>-1)h.splice(d,1),b&&(e>=d&&e--,f>=d&&f--)}),this},has:function(a){return a?m.inArray(a,h)>-1:!(!h||!h.length)},empty:function(){return h=[],e=0,this},disable:function(){return h=i=c=void 0,this},disabled:function(){return!h},lock:function(){return i=void 0,c||k.disable(),this},locked:function(){return!i},fireWith:function(a,c){return!h||d&&!i||(c=c||[],c=[a,c.slice?c.slice():c],b?i.push(c):j(c)),this},fire:function(){return k.fireWith(this,arguments),this},fired:function(){return!!d}};return k},m.extend({Deferred:function(a){var b=[["resolve","done",m.Callbacks("once memory"),"resolved"],["reject","fail",m.Callbacks("once memory"),"rejected"],["notify","progress",m.Callbacks("memory")]],c="pending",d={state:function(){return c},always:function(){return e.done(arguments).fail(arguments),this},then:function(){var a=arguments;return m.Deferred(function(c){m.each(b,function(b,f){var g=m.isFunction(a[b])&&a[b];e[f[1]](function(){var a=g&&g.apply(this,arguments);a&&m.isFunction(a.promise)?a.promise().done(c.resolve).fail(c.reject).progress(c.notify):c[f[0]+"With"](this===d?c.promise():this,g?[a]:arguments)})}),a=null}).promise()},promise:function(a){return null!=a?m.extend(a,d):d}},e={};return d.pipe=d.then,m.each(b,function(a,f){var g=f[2],h=f[3];d[f[1]]=g.add,h&&g.add(function(){c=h},b[1^a][2].disable,b[2][2].lock),e[f[0]]=function(){return e[f[0]+"With"](this===e?d:this,arguments),this},e[f[0]+"With"]=g.fireWith}),d.promise(e),a&&a.call(e,e),e},when:function(a){var b=0,c=d.call(arguments),e=c.length,f=1!==e||a&&m.isFunction(a.promise)?e:0,g=1===f?a:m.Deferred(),h=function(a,b,c){return function(e){b[a]=this,c[a]=arguments.length>1?d.call(arguments):e,c===i?g.notifyWith(b,c):--f||g.resolveWith(b,c)}},i,j,k;if(e>1)for(i=new Array(e),j=new Array(e),k=new Array(e);e>b;b++)c[b]&&m.isFunction(c[b].promise)?c[b].promise().done(h(b,k,c)).fail(g.reject).progress(h(b,j,i)):--f;return f||g.resolveWith(k,c),g.promise()}});var H;m.fn.ready=function(a){return m.ready.promise().done(a),this},m.extend({isReady:!1,readyWait:1,holdReady:function(a){a?m.readyWait++:m.ready(!0)},ready:function(a){if(a===!0?!--m.readyWait:!m.isReady){if(!y.body)return setTimeout(m.ready);m.isReady=!0,a!==!0&&--m.readyWait>0||(H.resolveWith(y,[m]),m.fn.triggerHandler&&(m(y).triggerHandler("ready"),m(y).off("ready")))}}});function I(){y.addEventListener?(y.removeEventListener("DOMContentLoaded",J,!1),a.removeEventListener("load",J,!1)):(y.detachEvent("onreadystatechange",J),a.detachEvent("onload",J))}function J(){(y.addEventListener||"load"===event.type||"complete"===y.readyState)&&(I(),m.ready())}m.ready.promise=function(b){if(!H)if(H=m.Deferred(),"complete"===y.readyState)setTimeout(m.ready);else if(y.addEventListener)y.addEventListener("DOMContentLoaded",J,!1),a.addEventListener("load",J,!1);else{y.attachEvent("onreadystatechange",J),a.attachEvent("onload",J);var c=!1;try{c=null==a.frameElement&&y.documentElement}catch(d){}c&&c.doScroll&&!function e(){if(!m.isReady){try{c.doScroll("left")}catch(a){return setTimeout(e,50)}I(),m.ready()}}()}return H.promise(b)};var K="undefined",L;for(L in m(k))break;k.ownLast="0"!==L,k.inlineBlockNeedsLayout=!1,m(function(){var a,b,c,d;c=y.getElementsByTagName("body")[0],c&&c.style&&(b=y.createElement("div"),d=y.createElement("div"),d.style.cssText="position:absolute;border:0;width:0;height:0;top:0;left:-9999px",c.appendChild(d).appendChild(b),typeof b.style.zoom!==K&&(b.style.cssText="display:inline;margin:0;border:0;padding:1px;width:1px;zoom:1",k.inlineBlockNeedsLayout=a=3===b.offsetWidth,a&&(c.style.zoom=1)),c.removeChild(d))}),function(){var a=y.createElement("div");if(null==k.deleteExpando){k.deleteExpando=!0;try{delete a.test}catch(b){k.deleteExpando=!1}}a=null}(),m.acceptData=function(a){var b=m.noData[(a.nodeName+" ").toLowerCase()],c=+a.nodeType||1;return 1!==c&&9!==c?!1:!b||b!==!0&&a.getAttribute("classid")===b};var M=/^(?:\{[\w\W]*\}|\[[\w\W]*\])$/,N=/([A-Z])/g;function O(a,b,c){if(void 0===c&&1===a.nodeType){var d="data-"+b.replace(N,"-$1").toLowerCase();if(c=a.getAttribute(d),"string"==typeof c){try{c="true"===c?!0:"false"===c?!1:"null"===c?null:+c+""===c?+c:M.test(c)?m.parseJSON(c):c}catch(e){}m.data(a,b,c)}else c=void 0}return c}function P(a){var b;for(b in a)if(("data"!==b||!m.isEmptyObject(a[b]))&&"toJSON"!==b)return!1;
@@ -362,7 +362,7 @@ summary {
 
 
 
-<h1 class="title toc-ignore">Chapter 5: Resampling Methods</h1>
+<h1 class="title toc-ignore">Chapter 6: Linear Model Selection &amp; Regularization</h1>
 <h3 class="subtitle"><span style="font-size: 20px">Notes from ISL
 </style></h3>
 <h4 class="author">Sven Halvorson</h4>
@@ -373,618 +373,53 @@ summary {
 <ul>
 <li><a href="#definitions">Definitions</a></li>
 <li><a href="#notes">Notes</a><ul>
-<li><a href="#cross-validation">5.1: Cross-Validation</a></li>
-<li><a href="#the-bootstrap">5.2: The Bootstrap</a></li>
+<li><a href="#subset-selection">6.1: Subset Selection</a></li>
+<li><a href="#shrinkage-methods">6.2: Shrinkage Methods</a></li>
+<li><a href="#dimension-reduction-methods">6.3: Dimension Reduction Methods</a></li>
+<li><a href="#considerations-in-high-dimensions">6.4: Considerations in High Dimensions</a></li>
 </ul></li>
 <li><a href="#lab">Lab</a></li>
 <li><a href="#exercises">Exercises</a><ul>
 <li><a href="#section">1</a></li>
-<li><a href="#section-1">2</a></li>
-<li><a href="#section-2">3</a></li>
-<li><a href="#section-3">4</a></li>
-<li><a href="#section-4">5</a></li>
-<li><a href="#section-5">6</a></li>
-<li><a href="#section-6">7</a></li>
-<li><a href="#section-7">8</a></li>
-<li><a href="#section-8">9</a></li>
 </ul></li>
 </ul>
 </div>
 
 <div id="definitions" class="section level3">
 <h3>Definitions</h3>
-<u><span style="font-size: 18px">5.1</u>
+<u><span style="font-size: 18px">6.1</u>
 </style>
 <ul>
-<li><strong>Resampling methods</strong>: Statistical techniques derived from drawing random samples with replacement from the training data.</li>
-<li><strong>Model assessment</strong>: Evaluating the performance of a model.</li>
-<li><strong>Model selection</strong>: Process of comparing various statistical learning methods and selecting one (or maybe several).</li>
-<li><strong>Validation set approach</strong>: Setting aside a portion of the data as a test set</li>
-<li><strong>Leave on out cross validation (LOOCV)</strong>: Fitting the statistical method repeatedly each with a different observation excluded as a test set. Test summary statistics are averaged across the 1 observation test sets.</li>
-<li><strong>K-fold cross validation</strong>: Method of cross validation in which we divide the data into k equally sized sets. Repeatedly fit the statistical learning method into</li>
-</ul>
-<u><span style="font-size: 18px">5.2</u>
+<li>** **: <u><span style="font-size: 18px">6.2</u>
 </style>
-<ul>
-<li><strong>Bootstrap</strong>: A method of quantifying variation or uncertainty of a statistic or model by repeatedly sampling the training data with replacement.</li>
+<u><span style="font-size: 18px">6.3</u>
+</style>
+<u><span style="font-size: 18px">6.4</u>
+</style></li>
 </ul>
 </div>
 <div id="notes" class="section level3">
 <h3>Notes</h3>
-<div id="cross-validation" class="section level4">
-<h4>5.1: Cross-Validation</h4>
-<p>Despite its importance, the first section is not overly complicated so I will try to give a more holistic summary instead of linearly moving through the chapter.</p>
-<p>The major concept here is <em>cross-validation</em> which broadly encompasses the idea of comparing performance on the training and testing data sets. Most statistical learning techniques minimize the training error rate but this is not a sufficient metric to declare the model successful or select one technique over another. Our ultimate goal for predictive modeling is to have a low test error rate. Cross validation methods attempt to help us quantify the test error rate as well as compare the test error between multiple models.</p>
-<p>At the heart of this topic is a tension between wanting to use as much data as possible to training our learning method and also wanting to test it on fresh data. If we apportion all of the data for training, we will not have a good estimate of the testing error rate. Conversely, if we sacrifice a large portion of our data to test the model, the model fit may not be as good due to a smaller sample size. This will overestimate the testing error rate. While the way I described this is a bit of a false dichotomy, it exemplifies the competing interests of a tight model fit and the ability to test it.</p>
-<p>There are three methods described in the book about how to go about validating models and/or selecting among them. From my reading, the authors clearly prefer the third method, but they present the others for intuition and comparison purposes. Here I will outline them:</p>
-<ol style="list-style-type: decimal">
-<li><strong>Validation set approach</strong>: In this method, we randomly select a subset of our data to be left out from the training process. The authors give an example of leaving out half although I have more frequently seen a ratio of 4:1, train to test, used in other materials. Once the training is done, we compute the MSE, test error rate, or any other metrics of fit on the data that was left out. In this way, we allow the model to be tested on data that it has not seen before which simulates the idea of applying this in the wild. While this makes intuitive sense, there are two major drawbacks:</li>
-</ol>
-<ol style="list-style-type: lower-roman">
-<li>The exact partition of data into training and testing sets can have a dramatic effect on the statistics of model fit. If we happen to select a training set that does not have a good representation of the patterns in the broader population, we can end up having a very poor estimate of the training error rate.<br />
-</li>
-<li>Because we set aside a chunk of the data, the training set will necessarily be smaller and thus the fit may be poorer. As a result, the testing error rate may be overestimated due to a less tuned model.<br />
-</li>
-</ol>
-<ol start="2" style="list-style-type: decimal">
-<li><strong>Leave one out cross validation (LOOCV)</strong>: Alternatively, we could leave a single observation out of the model and use this as a test set. Doing this once would be a highly volatile method but if we do it with every observation in the data set, we can average these errors to estimate the testing error rate. The error for a continuous response could be estimated like this: <span class="math display">\[CV_{(n)}=\frac{1}{n}\sum_{i=1}^n\text{MSE}_i\]</span> Where <span class="math inline">\(\text{MSE}_i\)</span> is <span class="math inline">\((y_i-\hat{y_i})^2\)</span>. Here we’re computing N models and computing one unbiased estimate of the testing MSE from each. Then averaging these gives a more robust estimate of the testing MSE. By doing this, we avoid the two problems mentioned with the validation set approach. First, we will be using <em>almost</em> all the data in each model fit so we will not inflate the test error rate by using an arbitrarily small data set to train our learning method. Secondly, possible bias from selecting a particular subset of the data will not matter because LOOCV does the same thing for every observation. The major drawback of this method is that it’s very computationally expensive. Until recently, this would not be possible with many large data sets and/or complex models but now we can try it. Even so, I suspect that you would not want to use this method as any kind of preliminary step. Perhaps once you’ve found a model that you’re overall pleased with, you could set this to run overnight in order to get a more accurate estimate of the training MSE/error rate. One other thing to mention here is that there is a nice closed form for linear regression (even with polynomial terms) that uses the converse of the leverage as a weight.<br />
-</li>
-<li><strong>k-fold cross validation</strong>: This last method is a bit between the other two and definitely seems to be preferred by the authors. Instead of just picking on subset/observation to leave out, we partition the data into <span class="math inline">\(k\)</span> subsets. Then we apply the validation set approach <span class="math inline">\(k\)</span> times where each time we’re using <span class="math inline">\(\frac{1}{k}^{th}\)</span> of the data as a validation set. We then compute the estimate of the test error way in a similar fashion as the LOOCV method: <span class="math display">\[CV_{(k)}=\frac{1}{k}\sum_{i=1}^k\text{MSE}_i\]</span> By doing this, we are able to partially solve the problems of each of the previous methods. We are not nearly as reliant on the exact subset we pick as the first method and we will use a larger portion of the data to fit the models. We’re told that typically people choose <span class="math inline">\(k=5\)</span> or <span class="math inline">\(k=10\)</span> but in general, <span class="math inline">\(k &lt;&lt; N\)</span>, so the number of models that will need to be fit is quite a bit smaller than for LOOCV meaning this can be done more quickly.</li>
-</ol>
-<p>There are a couple of other notes given to us here. One is that it is generally quite difficult to estimate the true test MSE/error rate. While these methods can be shown to be effective in simulations, real data may be more heterogeneous and wild than your simulation could account for. Another important note is that sometimes we’re less interested in estimating the actual test MSE but rather we want to compare the estimated test MSE between several models in order to select a ‘best’ one. An example of this would be selecting <span class="math inline">\(K\)</span> in the KNN method.<br />
-Anther point made here, that I think is not obvious, is that the LOOCV is not strictly better than k-fold method. It would seem that doing all those models would only provide less variance but this is only partly true. The LOOCV has the lowest bias of these three methods since there is absolutely no luck involved in the sets partitioned for testing however it actually has a potential for higher variance than the k-fold classification. The reason for this is that the models that we create with LOOCV are almost identical and thus the errors they produce are highly correlated. Averaging these will produce a higher variance than that number of uncorrelated observations. This is (at least one of the ?) reason why <span class="math inline">\(k\)</span> is typically chosen as a relatively small integer such as five or ten. If there isn’t a good example in the lab or exercises, I’ll simulate this later.<br />
-The final thing to note here is that although these examples were given with continuous responses, it’s easy to translate this to a classification problem. Instead we compute the k-fold error rate as:</p>
-<p><span class="math display">\[CV_{(k)}=\frac{1}{k}\sum_{i=1}^k\frac{1}{n_i}\text{Err}_i\]</span> Where <span class="math inline">\(n_i\)</span> is the number of observations in the <span class="math inline">\(i^{th}\)</span> fold and <span class="math inline">\(\text{Err}_i=\sum_{i=1}^{n_k}I(y_i\neq\hat{y_i})\)</span> is the number of observations that were misclassified. I intuitioned this formula as the example given in the book is for the LOOCV but I believe it should be the same idea. For each fold, we just find the proportion of observations that are misclassified and then average these proportions to estimate the testing error rate. There are some very nice examples given at the end where they show selecting the maximum power of terms for a logistic regression model as well as values of <span class="math inline">\(K\)</span> for KNN. In these cases, choosing the appropriate parameters based off the minimum k-fold testing error rate provides good guidance as to the best fitting model.</p>
+<div id="subset-selection" class="section level4">
+<h4>6.1: Subset Selection</h4>
 </div>
-<div id="the-bootstrap" class="section level4">
-<h4>5.2: The Bootstrap</h4>
-<p>The second portion of this chapter is dedicated to <em>the bootstrap</em> or <em>bootstrapping</em> methods. These are ways of estimating uncertainty or variability in summary quantities or learning models that are derived from sampling the training data with replacement repeatedly. I like these methods a lot and would really like to learn more about them. One of my former stats teachers told us that if we’re mediocre at math, we can usually simulate our way out of a lot of problems. This is the primary use case for bootstraps; sometimes it’s too much effort/impossible to find a closed form for estimates such as standard error so we just make a simulation of sorts with our data and estimate it that way.<br />
-Much of this chapter is an example so I’ll go through it. Suppose we have an amount of money and are going to invest <span class="math inline">\(\alpha\)</span> proportion of it into a fund with <span class="math inline">\(X\)</span> return and <span class="math inline">\(1-\alpha\)</span> into a fund with return <span class="math inline">\(Y\)</span>. Our goal is to minimize the variability of the joint returns:</p>
-<p><span class="math display">\[\sigma^2=Var(\alpha X+(1-\alpha)Y)\]</span> <span class="math display">\[\sigma^2=\alpha^2Var(X)+(1-\alpha)^2Var(Y) + 2\alpha(1-\alpha)Cov(X,Y)\]</span> Now we assume that <span class="math inline">\(Var(X), Var(Y), \&amp;\text{ } Cov(X,Y)\)</span> are fixed so we can take a derivative with respect to <span class="math inline">\(\alpha\)</span>: <span class="math display">\[\frac{d\sigma^2}{d\alpha}=2\alpha Var(X)-2(1-\alpha)Var(Y) + (2-4\alpha)Cov(X,Y)\]</span> Setting to zero and solving: <span class="math display">\[2\alpha Var(X)-2Var(Y) +2\alpha Var(Y) + 2Cov(X,Y)-4\alpha Cov(X,Y)=0\]</span> <span class="math display">\[\alpha=\frac{Var(Y)-Cov(X,Y)}{Var(X)+Var(Y)-2Cov(X,Y)}\]</span> So if we are able to estimate the variability of each fund and their covariance, we can figure out which <span class="math inline">\(\alpha\)</span> provides the most stable return:</p>
-<p><span class="math display">\[\hat{\alpha}=\frac{\hat{\sigma}_Y^2-\hat{\sigma}_{X,Y}}{\hat{\sigma}_X^2+\hat{\sigma}_Y^2-2\hat{\sigma}_{X,Y}}\]</span> Here is where we would apply the bootstrap; estimate each of the quantities on the RHS by repeatedly sampling the training data with replacement and computing sample variances and covariance. The more specific language that they use to describe the bootstrap is as follows. For some large number, <span class="math inline">\(B\)</span>, we draw that many samples, <span class="math inline">\(Z^{*1},Z^{*2},...,Z^{*B}\)</span>, where each <span class="math inline">\(Z^{*i}\)</span> is a sample of size <span class="math inline">\(N\)</span> drawn with replacement. After drawing these samples, we can compute whatever measurement we want such as the standard error of <span class="math inline">\(\alpha\)</span> in the previous example:</p>
-<p><span class="math display">\[S.E._B(\hat{\alpha})=\sqrt{\frac{1}{B-1}\sum_{r=1}^B(\hat{\alpha}^{*r}-\frac{1}{B}\sum_{s=1}^B\hat{\alpha}^{*s})^2}\]</span> So this is just computing the sample standard deviation of <span class="math inline">\(\alpha\)</span>.</p>
+<div id="shrinkage-methods" class="section level4">
+<h4>6.2: Shrinkage Methods</h4>
+</div>
+<div id="dimension-reduction-methods" class="section level4">
+<h4>6.3: Dimension Reduction Methods</h4>
+</div>
+<div id="considerations-in-high-dimensions" class="section level4">
+<h4>6.4: Considerations in High Dimensions</h4>
 </div>
 </div>
 <div id="lab" class="section level3">
 <h3>Lab</h3>
-<p>So for this, we’re going to go through the three cross validation methods and then do an example of the bootstrap with a linear model as the example. The first example will simply be predicting the <code>mpg</code> of the cars in the <code>auto</code> data set via their <code>horsepower</code>.</p>
-<p>First, the validation set approach:</p>
-<pre class="r"><code>set.seed(1)
-# Select half the rows of the auto set for training
-auto_train = Auto %&gt;%
-  slice(
-    sample.int(392, 196)
-  )
-auto_test = Auto %&gt;%
-  anti_join(auto_train)
-
-# Here&#39;s our training model:
-auto_vset_mod = lm(
-  formula = mpg ~ horsepower,
-  data = auto_train
-)
-
-# Compute the testing set MSE
-auto_vset_test_mse = predict(
-  auto_vset_mod,
-  auto_test
-)
-auto_vset_test_mse = mean((auto_vset_test_mse - auto_test$mpg)^2)
-auto_vset_test_mse</code></pre>
-<pre><code>## [1] 23.26601</code></pre>
-<p>So the estimated MSE is about 23 which is somewhat large considering that the middle half of the entire Auto mpg range is [17,29]. The value shown in the book is about 26 but I was not able to replicated this, even by copying their code exactly in a new session so…. not sure what’s going on there.</p>
-<p>We also can compare this to the model with a square term:</p>
-<pre class="r"><code># Train again with a square term:
-auto_vset_mod_sq = lm(
-  formula = mpg ~ poly(horsepower, degree = 2),
-  data = auto_train
-)
-
-# Compute the testing set MSE
-auto_vset_sq_test_mse = predict(
-  auto_vset_mod_sq,
-  auto_test
-)
-auto_vset_sq_test_mse = mean((auto_vset_sq_test_mse - auto_test$mpg)^2)
-auto_vset_sq_test_mse</code></pre>
-<pre><code>## [1] 18.71646</code></pre>
-<p>So with the square term we get a significantly lower test error rate. We can test with a different training set. Here we just set the seed to 2 instead of 1:</p>
-<pre><code>## [1] 25.72651</code></pre>
-<p>This shows us the variability in these estimates just due to the exact validation set we choose.<br />
-Let’s move on to the LOOCV method. Here we’ll fit the same model and use the <code>boot</code> library to compute some of the CV statistics:</p>
-<pre class="r"><code>auto_full_mod = glm(
-  formula = mpg ~ horsepower,
-  data = Auto
-)
-auto_full_cv = cv.glm(
-  data = Auto,
-  glmfit = auto_full_mod
-)
-names(auto_full_cv)</code></pre>
-<pre><code>## [1] &quot;call&quot;  &quot;K&quot;     &quot;delta&quot; &quot;seed&quot;</code></pre>
-<pre class="r"><code>auto_full_cv$delta</code></pre>
-<pre><code>## [1] 24.23151 24.23114</code></pre>
-<p>The values in <code>delta</code> are the estimate of the MSE and the ‘adjusted’ version that attempts to compensate for bias when <span class="math inline">\(K&lt;N\)</span>. I guess we’ll get to exactly what that means soon. In any case, this function is nice because it can do the LOOCV quickly. I’d be surprised if it doesn’t use the closed form version instead of fitting all the models.<br />
-We can test the various degrees of <code>horsepower</code> and see how they compare in the testing MSE using LOOCV:</p>
-<pre class="r"><code>auto_poly = function(deg){
-  cv.glm(
-    data = Auto,
-    glmfit = glm(
-      formula = mpg ~ poly(horsepower, degree = deg),
-      data = Auto
-    )
-  )$delta[1]
-}
-
-vapply(1:5, auto_poly, numeric(1))</code></pre>
-<pre><code>## [1] 24.23151 19.24821 19.33498 19.42443 19.03321</code></pre>
-<p>Here we see a large decline in test MSE and then little change after that.</p>
-<p>Lastly, we can try the k-fold method. First, observe that there is some randomness in the statistics we get:</p>
-<pre class="r"><code>set.seed(17)
-kfold_mses = rep(NA, length = 5)
-
-for(i in 1:5){
-  kfold_mses[i] = cv.glm(
-    data = Auto,
-    glmfit = auto_full_mod,
-    K = 10
-  )$delta[1]
-}
-kfold_mses</code></pre>
-<pre><code>## [1] 24.27207 24.08261 24.29863 24.25307 24.22995</code></pre>
-<p>For the second part of the lab, we’ll look at implementing the example previously given where we’re apportioning an investment between two funds. There is a data set for this:</p>
-<pre class="r"><code>dim(Portfolio)</code></pre>
-<pre><code>## [1] 100   2</code></pre>
-<pre class="r"><code>head(Portfolio)</code></pre>
-<pre><code>##            X          Y
-## 1 -0.8952509 -0.2349235
-## 2 -1.5624543 -0.8851760
-## 3 -0.4170899  0.2718880
-## 4  1.0443557 -0.7341975
-## 5 -0.3155684  0.8419834
-## 6 -1.7371238 -2.0371910</code></pre>
-<p>We will write a function that computes the proporiton we should allocate to fund X first:</p>
-<pre class="r"><code>compute_alpha = function(df, indices){
-  sub_df = df %&gt;% 
-    slice(indices)
-  with(
-    data = sub_df,
-    (var(Y) - cov(X,Y))/(var(X) + var(Y) -2*cov(X, Y))
-  )
-  
-}
-compute_alpha(Portfolio, 1:100)</code></pre>
-<pre><code>## [1] 0.5758321</code></pre>
-<p>Then, we can use the bootstrap library to compute one thousand re-samplings of this statistic:</p>
-<pre class="r"><code>boot(
-  data = Portfolio,
-  statistic = compute_alpha,
-  R = 1000
-)</code></pre>
-<pre><code>## 
-## ORDINARY NONPARAMETRIC BOOTSTRAP
-## 
-## 
-## Call:
-## boot(data = Portfolio, statistic = compute_alpha, R = 1000)
-## 
-## 
-## Bootstrap Statistics :
-##      original      bias    std. error
-## t1* 0.5758321 0.006376356  0.08992828</code></pre>
-<p>Here we get the point estimate and standard error for this statistic. I rather like this library and I think next time I’m approached with one of these problems I’ll consider looking deeper into it. The few times I’ve done this before, I’ve just written the simulation myself in full. Kinda curious what they mean by bias in this context. It’s not entirely clear what’s going on with the arguments of this function at the moment. It looks like it’s calculating <code>statistic(data, indices)</code> each time. Here’s another example: we’ll compute the coefficients for the linear model by bootstrapping and then compare with the given standard error:</p>
-<pre class="r"><code>set.seed(1)
-get_coef = function(df, indices){
-  lm(
-    mpg ~ horsepower,
-    data = df,
-    subset = indices
-  ) %&gt;% 
-    coef()
-}
-
-boot(
-  data = Auto,
-  statistic = get_coef,
-  R = 1000
-)</code></pre>
-<pre><code>## 
-## ORDINARY NONPARAMETRIC BOOTSTRAP
-## 
-## 
-## Call:
-## boot(data = Auto, statistic = get_coef, R = 1000)
-## 
-## 
-## Bootstrap Statistics :
-##       original        bias    std. error
-## t1* 39.9358610  0.0553942585 0.843931305
-## t2* -0.1578447 -0.0006285291 0.007367396</code></pre>
-<p>Then if we compare it to the output of the linear model in full, it’s similar but a bit off:</p>
-<pre><code>## 
-## Call:
-## lm(formula = mpg ~ horsepower, data = Auto)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -13.5710  -3.2592  -0.3435   2.7630  16.9240 
-## 
-## Coefficients:
-##              Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) 39.935861   0.717499   55.66   &lt;2e-16 ***
-## horsepower  -0.157845   0.006446  -24.49   &lt;2e-16 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 4.906 on 390 degrees of freedom
-## Multiple R-squared:  0.6059, Adjusted R-squared:  0.6049 
-## F-statistic: 599.7 on 1 and 390 DF,  p-value: &lt; 2.2e-16</code></pre>
-<p>The linear model is computing these standard errors based off the assumptions that the trend is indeed linear and that the coefficients have a normal sampling distribution. Because the relationship is somewhat non-linear, the bootstrap estimates a higher (and more accurate) variance than the plain linear model.</p>
 </div>
 <div id="exercises" class="section level3">
 <h3>Exercises</h3>
 <div id="section" class="section level4">
 <h4>1</h4>
-<p>They ask to derive the formulation of <span class="math inline">\(\alpha\)</span> in the bootstrapping example and I did this in the text.</p>
-</div>
-<div id="section-1" class="section level4">
-<h4>2</h4>
-<p>What is the probability that a particular bootstrap sample where the sample size is N? Well the probability that the observation is not the first observation is <span class="math inline">\(1-\frac{1}{N}\)</span>. Then the probability that the specific observation is none of the observations in the bootstrap sample is <span class="math inline">\(1-(1-\frac{1}{N})^N\)</span>. Here’s a graph of what that looks like as we increase the sample size.</p>
-<p><img src="data:image/png;base64,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" width="672" /> We can do a little simulation:</p>
-<pre class="r"><code>one_in = function(x){
-  1 %in% sample(1:100, replace = TRUE)
-}
-
-vapply(
-  1:10000, 
-  one_in,
-  logical(1)
-) %&gt;% 
-  mean()</code></pre>
-<pre><code>## [1] 0.6442</code></pre>
-<p>I wonder if there is some intuitive way we could have known this. We could go through figuring out what the limit is but I was kind of hoping to knwo why there is abut a 62% chance of this happening.</p>
-</div>
-<div id="section-2" class="section level4">
-<h4>3</h4>
-<p>I made nice notes comparing k-fold classification with the other two already</p>
-</div>
-<div id="section-3" class="section level4">
-<h4>4</h4>
-<p>Suppose we use a statistical learning method to make a prediction about <span class="math inline">\(Y\)</span> for some value of <span class="math inline">\(X\)</span>. If we want to estimate the the sample standard deviation of these, we could use a bootstrap. A plausible method could be to sample the data with replacement, fit the statistical learning method, and then make a prediction at <span class="math inline">\(X\)</span>. After repeating this many times, we could compute the sample standard deviation from these predictions and use it as an estimate for the general standard deviation about the prediction.</p>
-</div>
-<div id="section-4" class="section level4">
-<h4>5</h4>
-<p>We’re going to return to the <code>default</code> data set where we’ll use the validation set approach to estimate the testing error of modeling whether someone defaults as a function of <code>income</code> and <code>balance</code>. We’ll also consider possible improvement by including <code>student</code> into the model.</p>
-<pre class="r"><code># This will be easier if we just make the outcome literally binary:
-Default = Default %&gt;% 
-  mutate(
-    default_bin = as.numeric(default == &#39;Yes&#39;)
-  )
-
-default_mod = function(seed){
-  
-  set.seed(seed)
-  def_train = sample_frac(Default, 0.5)
-  def_test = anti_join(Default, def_train)
-  
-  mod1 = glm(
-    default_bin ~ income + balance,
-    data = def_train,
-    family = &#39;binomial&#39;
-  )
-  mod1_err = predict(
-    mod1,
-    newdata = def_test,
-    type = &#39;response&#39;
-  ) %&gt;% 
-    round()
-  mod1_err = mean(mod1_err != def_test$default_bin)
-  
-  mod2 = glm(
-    default_bin ~ income + balance + student,
-    data = def_train,
-    family = &#39;binomial&#39;
-  )
-  mod2_err = predict(
-    mod2,
-    newdata = def_test,
-    type = &#39;response&#39;
-  ) %&gt;% 
-    round()
-  mod2_err = mean(mod2_err != def_test$default_bin)
-  
-  tibble(
-    null_error = mean(def_train$default_bin),
-    mod1_err = mod1_err,
-    mod2_err = mod2_err
-  )
-}
-
-
-(1:3) %&gt;% 
-  lapply(default_mod) %&gt;% 
-  bind_rows()</code></pre>
-<pre><code>## # A tibble: 3 x 3
-##   null_error mod1_err mod2_err
-##        &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
-## 1     0.0352   0.0254   0.026 
-## 2     0.034    0.0238   0.0246
-## 3     0.0356   0.0264   0.0272</code></pre>
-<p>The overall performance is not great; we only reduced the error rate by about 30% from the null model. The <code>student</code> variable does not appear to add anything to the model. I believe we previously saw that this was simply associated with balance and not effective when combined.</p>
-</div>
-<div id="section-5" class="section level4">
-<h4>6</h4>
-<p>We will now compare some estimates of standard error for the logistic regression coefficients with those produced from bootstrap samples. Begin by just looking at the coefficient estimates and their standard errors:</p>
-<pre class="r"><code>glm(
-  default_bin ~ income + balance,
-  data = Default,
-  family = &#39;binomial&#39;
-) %&gt;% 
-  broom::tidy(exponentiate = TRUE)</code></pre>
-<pre><code>## # A tibble: 3 x 5
-##   term          estimate  std.error statistic   p.value
-##   &lt;chr&gt;            &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
-## 1 (Intercept) 0.00000973 0.435         -26.5  2.96e-155
-## 2 income      1.00       0.00000499      4.17 2.99e-  5
-## 3 balance     1.01       0.000227       24.8  3.64e-136</code></pre>
-<p>Now we write a function for <code>boot</code> in order to estimate these:</p>
-<pre class="r"><code>default_coef = function(data, index){
-  
-  Default %&gt;% 
-    slice(index) %&gt;% 
-    glm(
-      formula = default_bin ~ income + balance,
-      family = &#39;binomial&#39;
-    ) %&gt;% 
-    coef() %&gt;% 
-    exp()
-}
-
-boot(
-  data = Default,
-  statistic = default_coef,
-  R = 1000
-)</code></pre>
-<pre><code>## 
-## ORDINARY NONPARAMETRIC BOOTSTRAP
-## 
-## 
-## Call:
-## boot(data = Default, statistic = default_coef, R = 1000)
-## 
-## 
-## Bootstrap Statistics :
-##         original       bias     std. error
-## t1* 9.728329e-06 5.230880e-07 4.565895e-06
-## t2* 1.000021e+00 2.071371e-07 4.860660e-06
-## t3* 1.005663e+00 1.989182e-05 2.323510e-04</code></pre>
-<p>Extremely similar. Much power, very bootstrap</p>
-</div>
-<div id="section-6" class="section level4">
-<h4>7</h4>
-<p>Here we’re going to use the <code>Weekly</code> data set to model <code>Direction</code> using <code>Lag1</code> and <code>Lag2</code> as predictors. We’ll manually compute the LOOCV testing error rate.</p>
-<pre class="r"><code>make_loocv = function(i){
-  
-  mod = glm(
-    formula = Direction ~ Lag1 + Lag2,
-    data = slice(Weekly, -1*i),
-    family = &#39;binomial&#39;
-  )
-  
-  Weekly %&gt;% 
-    slice(i) %&gt;% 
-    mutate(
-      pred_prob = predict.glm(
-        mod, 
-        newdata = slice(Weekly, i), 
-        type = &#39;response&#39;
-      ),
-      prediction = ifelse(
-        pred_prob &gt; 0.5,
-        &#39;Up&#39;,
-        &#39;Down&#39;
-      ),
-      prediction = factor(
-        prediction,
-        levels = c(&#39;Down&#39;, &#39;Up&#39;)
-      )
-    )
-  
-}
-
-weekly_loocv = lapply(
-  1:nrow(Weekly),
-  make_loocv
-) %&gt;% 
-  bind_rows()
-
-# Testing error rate estimate:
-mean(weekly_loocv$Direction != weekly_loocv$prediction)</code></pre>
-<pre><code>## [1] 0.4499541</code></pre>
-<p>So here we get an error rate that is quite similar to the null model which is unsurprising given how week of a relationship there is between the predictors and response.</p>
-</div>
-<div id="section-7" class="section level4">
-<h4>8</h4>
-<p>We’re going manually compute the LOOCV again manually and this time we’ll try up to a fourth power of the predictor. We’ll then compare the models as well as the results using different seeds.</p>
-<pre class="r"><code># Here&#39;s the simulated data we&#39;ve been given:
-set.seed(1)
-sim_dat = tibble(
-  x = rnorm(100),
-  y = x-2*x^2+rnorm(100)
-)
-# So just from the formulation, we should expect the quadratic model to perform the best.
-
-# First a functin to make the polynomial regression models:
-pwr_mod = function(dat, deg){
-  
-  glm(
-    formula = y ~ poly(x, degree = deg),
-    data = dat
-  )
-  
-}
-
-# Make the model without each observation and predict:
-make_loocv2 = function(i){
-  
-  mods = lapply(
-    X = 1:4,
-    FUN = pwr_mod,
-    dat = slice(sim_dat, -1*i)
-  )
-  
-  predictions = lapply(
-    X = mods,
-    FUN = predict.glm,
-    FUN.VALUE = numeric(1),
-    newdata = slice(sim_dat, i)
-  )
-  
-  names(predictions) = paste0(&#39;deg_&#39;, 1:4)
-  as_tibble(predictions)
-  
-}
-
-# now run it:
-sim_dat = (1:nrow(sim_dat)) %&gt;% 
-  lapply(make_loocv2) %&gt;% 
-  bind_rows() %&gt;% 
-  bind_cols(sim_dat) %&gt;% 
-  mutate(
-    across(
-      matches(&#39;deg_&#39;),
-      function(x){x - sim_dat$y}
-    )
-  )
-
-# What are the mse:
-sim_dat %&gt;% 
-  summarize(
-    across(
-      matches(&#39;deg&#39;),
-      function(x){mean((x - mean(x))^2)}
-    )
-  )</code></pre>
-<pre><code>## # A tibble: 1 x 4
-##   deg_1 deg_2 deg_3 deg_4
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1  7.29 0.937 0.957 0.954</code></pre>
-<p>As predicted, the quadratic model has the lowest estimated test MSE. We’re also asked about different seeds but we know this should not affect the results of LOOCV as there is no randomness in the process.</p>
-</div>
-<div id="section-8" class="section level4">
-<h4>9</h4>
-<p>The final question uses the <code>Boston</code> data set. We’ll go through a series of related questions:</p>
-<ol style="list-style-type: lower-roman">
-<li>Provide an estimate of the population meand of <code>medv</code> (median value of owner occupied homes in 1000$)</li>
-</ol>
-<pre class="r"><code>Boston = MASS::Boston
-medv_mean = mean(Boston$medv)
-medv_mean</code></pre>
-<pre><code>## [1] 22.53281</code></pre>
-<ol start="2" style="list-style-type: lower-roman">
-<li>Estimate the standard error:</li>
-</ol>
-<pre class="r"><code>sd(Boston$medv)/sqrt(nrow(Boston))</code></pre>
-<pre><code>## [1] 0.4088611</code></pre>
-<ol start="3" style="list-style-type: lower-roman">
-<li>Estimate the standard error using a bootstrap:</li>
-</ol>
-<pre class="r"><code>medv_boot = boot(
-  data = Boston,
-  statistic = function(data, index){
-    data %&gt;% 
-      slice(index) %&gt;% 
-      pluck(&#39;medv&#39;) %&gt;% 
-      mean()
-  },
-  R = 1000
-)
-
-medv_boot</code></pre>
-<pre><code>## 
-## ORDINARY NONPARAMETRIC BOOTSTRAP
-## 
-## 
-## Call:
-## boot(data = Boston, statistic = function(data, index) {
-##     data %&gt;% slice(index) %&gt;% pluck(&quot;medv&quot;) %&gt;% mean()
-## }, R = 1000)
-## 
-## 
-## Bootstrap Statistics :
-##     original      bias    std. error
-## t1* 22.53281 0.008186957   0.4100113</code></pre>
-<p>Quite close as expected.</p>
-<ol start="4" style="list-style-type: lower-roman">
-<li>Use the bootstrap to compute a 95% CI for <code>medv</code> and compare the results to a t-test.</li>
-</ol>
-<pre class="r"><code>medv_boot_se = sd(medv_boot$t) 
-paste0(
-  &#39;Bootstrapped CI = (&#39;, 
-  round(medv_mean - 1.96*medv_boot_se, 3), 
-  &#39;, &#39;, 
-  round(medv_mean + 1.96*medv_boot_se, 3),
-  &#39;)&#39;
-)</code></pre>
-<pre><code>## [1] &quot;Bootstrapped CI = (21.729, 23.336)&quot;</code></pre>
-<pre class="r"><code>t.test(Boston$medv)</code></pre>
-<pre><code>## 
-##  One Sample t-test
-## 
-## data:  Boston$medv
-## t = 55.111, df = 505, p-value &lt; 2.2e-16
-## alternative hypothesis: true mean is not equal to 0
-## 95 percent confidence interval:
-##  21.72953 23.33608
-## sample estimates:
-## mean of x 
-##  22.53281</code></pre>
-<ol start="22" style="list-style-type: lower-alpha">
-<li>Repeat this process with the median and tenth percentile. Order statistics don’t have (or at least I’m not aware of) nice formulae for computing their standard errors so the bootstrap is very useful in this case:</li>
-</ol>
-<pre class="r"><code># First just get estimates of these from the raw data:
-Boston %&gt;% 
-  summarize(
-    median = median(medv),
-    q10 = quantile(medv, 0.1)
-  )</code></pre>
-<pre><code>##   median   q10
-## 1   21.2 12.75</code></pre>
-<pre class="r"><code># Now bootstrap:
-boot(
-  data = Boston,
-  statistic = function(data, index){
-    medvs = data %&gt;% 
-      slice(index) %&gt;% 
-      pluck(&#39;medv&#39;)
-    medvs = c(
-      median(medvs),
-      quantile(medvs, 0.1)
-    )
-    names(medvs) = c(&#39;median&#39;, &#39;q10&#39;)
-    medvs
-  },
-  R = 1000
-)</code></pre>
-<pre><code>## 
-## ORDINARY NONPARAMETRIC BOOTSTRAP
-## 
-## 
-## Call:
-## boot(data = Boston, statistic = function(data, index) {
-##     medvs = data %&gt;% slice(index) %&gt;% pluck(&quot;medv&quot;)
-##     medvs = c(median(medvs), quantile(medvs, 0.1))
-##     names(medvs) = c(&quot;median&quot;, &quot;q10&quot;)
-##     medvs
-## }, R = 1000)
-## 
-## 
-## Bootstrap Statistics :
-##     original  bias    std. error
-## t1*    21.20 -0.0392   0.3775790
-## t2*    12.75  0.0137   0.4826699</code></pre>
-<p>We again get good point estimates and now have access to standard errors of these difficult to wrangle statistics. I was hoping that applying names to the output vector would put them in the <code>print</code> statement but oh well.</p>
-<p>Alright, so I thought this chapter was quite nice. I didn’t know these cross validation methods at all and it was nice to work with them. I didn’t get the feeling that this was particuarly difficult however I’m sure that there are some more advanced methods and scenarios that would make this more challenging.</p>
 </div>
 </div>
 
