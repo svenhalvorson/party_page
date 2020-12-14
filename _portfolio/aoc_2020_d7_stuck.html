@@ -15941,8 +15941,8 @@ a.anchor-link {
 <ol>
 <li>Start with the above table</li>
 <li>Repeatedly join on the parent/child relationship</li>
-<li>At each join, keep the count and rename it</li>
-<li>Count em up somehow</li>
+<li>At each join, compound the count</li>
+<li>Count em up</li>
 </ol>
 <p>I originally thought this would just be products or cummulative products but there is a lot of duplication due to the branching process.</p>
 
@@ -15968,7 +15968,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#gonna comments this out for a sec to make it easier to see:</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Same kind of thing as before</span>
 <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
     <span class="n">golden_parents</span> <span class="o">=</span> <span class="n">golden_parents</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
