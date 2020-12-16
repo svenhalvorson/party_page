@@ -52,7 +52,6 @@ count_children = function(color, n){
   
   # If we're at the leaf of the tree:
   if(length(new_children) < 1){
-    print(color)
     return(n)
   } else{
     
