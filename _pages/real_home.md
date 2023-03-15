@@ -5,7 +5,7 @@ permalink: /
 author_profile: true
 
 gallery1:
-  - url: 'https://svenhalvorson.github.io/party_page/portfolio/distribution_signatures'
+  - url: 'https://github.com/svenhalvorson/qualtreats'
     image_path: assets/images/qualtreats_icon.PNG
     title: "Qualtreats"
   - url: 'https://svenhalvorson.github.io/party_page/portfolio/distribution_signatures'
