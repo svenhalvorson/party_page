@@ -6,6 +6,9 @@ author_profile: true
 
 gallery1:
   - url: 'https://svenhalvorson.github.io/party_page/portfolio/distribution_signatures'
+    image_path: assets/images/qualtreats_icon.PNG
+    title: "Qualtreats"
+  - url: 'https://svenhalvorson.github.io/party_page/portfolio/distribution_signatures'
     image_path: assets/images/dist_sigs_teaser.png
     title: "Distribution Signatures"
   - url: 'https://svenhalvorson.github.io/party_page/portfolio/ISL/landing'
