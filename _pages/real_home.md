@@ -6,8 +6,8 @@ author_profile: true
 
 gallery1:
   - url: 'https://github.com/svenhalvorson/qualtreats'
-    image_path: assets/images/qualtreats_icon.PNG
-    title: "Qualtreats"
+    image_path: assets/images/qualtables_icon.PNG
+    title: "Qualtables"
   - url: 'https://svenhalvorson.github.io/party_page/portfolio/distribution_signatures'
     image_path: assets/images/dist_sigs_teaser.png
     title: "Distribution Signatures"
